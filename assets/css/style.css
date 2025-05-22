@@ -794,3 +794,146 @@
     letter-spacing: 1.2px;
 }
 
+/*************** CONTATO *****/
+.contato {
+    width: 100vw;
+    height: auto;
+    display: flex;
+    padding: 2rem 0rem 3rem 0rem;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--color-white);
+}
+
+.container-contato {
+    width: 100%;
+    height: 100vh;
+    max-width: 1400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.headline-contato {
+    width: 100%;
+    height: 40vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.titulo-contato {
+    height: 100%;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+
+.titulo-contato h1 {
+    color: var(--color-black);
+    width: 50%;
+    font-size: 8vw;
+    font-weight: lighter;
+    font-family: var(--font-grande);
+}
+
+.descricao-contato {
+    width: 50%;
+    text-align: right;
+}
+
+.descricao-contato a {
+    text-decoration: none;
+    color: var(--color-black);
+    font-size: 2rem;
+    letter-spacing: 1.5px;
+    line-height: 1.4;
+    font-weight: bold;
+}
+
+.conteudo-contato {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+}
+
+.formulario-contato {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+    padding: 2rem 0rem 2rem 0rem;
+}
+
+.formulario-contato h2 {
+    font-size: 2rem;
+}
+
+.formulario-contato p {
+    font-size: 1.5rem;
+    color: var(--color-gray1);
+    font-weight: 500;
+    line-height: 1.4;
+}
+
+.form {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.form input {
+    font-family: var(--font-pequena);
+    width: 100%;
+    height: 30px;
+    border-radius: 30px;
+    outline: none;
+    border: 2px solid rgba(128, 128, 128, 0.5);
+    padding: 1.5rem 1rem;
+    font-size: 1.2rem;
+}
+
+.form textarea {
+    width: 100%;
+    height: 100%;
+    border-radius: 30px;
+    outline: none;
+    border: 2px solid rgba(128, 128, 128, 0.5);
+    font-family: var(--font-pequena);
+    font-size: 1.2rem;
+    padding: 1.5rem 1rem;
+}
+
+.btn {
+    background-color: var(--color-destaque1);
+    color: var(--color-black);
+    font-weight: bold;
+    width: 190px;
+    padding: 1rem 0rem;
+    border: 2px solid rgba(128, 128, 128, 0.5);
+    outline: none;
+    border-radius: 30px;
+}
+
+.logo-contato {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+}
+
+.logo-contato img {
+    width: 50%;
+    border-radius: 30px;
+}
+
