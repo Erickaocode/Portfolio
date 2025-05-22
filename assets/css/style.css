@@ -639,15 +639,15 @@ a {
 
 
 .box-skills img {
-    width: 250px; /* tamanho fixo e igual para todos */
+    width: 250px; 
     height: 350px;
-    object-fit: contain; /* preserva proporção e evita cortes */
+    object-fit: contain; 
     display: block;
     margin: 0 auto;
 }
 
 .box-skills img[src*="JS_icon.png"] {
-    margin-top: 70px; /* ajuste conforme necessário */
+    margin-top: 70px; 
 }
 
 
@@ -664,120 +664,9 @@ a {
     }
 }
 
-/*************** SERVIÇOS *****/
-.servicos {
-    background-color: var(--color-white);
-    width: 100vw;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem 1rem;
-}
+/*****Espaço para serviço******/
 
-.container-servicos {
-    background-color: var(--color-white);
-    width: 100%;
-    max-width: 1400px;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.headline-servicos {
-    width: 100%;
-    height: 40vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.titulo-servicos {
-    height: 100%;
-    width: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: left;
-}
-
-.titulo-servicos h1 {
-    color: var(--color-black);
-    width: 50%;
-    font-size: 8vw;
-    font-weight: lighter;
-    font-family: var(--font-grande);
-}
-
-.descricao-servicos {
-    width: 50%;
-    font-size: 2rem;
-    text-align: right;
-    line-height: 1.4;
-    letter-spacing: 1.5px;
-}
-
-.servicos-cards {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 2rem;
-    padding: 2rem 0rem;
-}
-
-.card-servicos {
-    border: 1px solid hsla(0, 0%, 0%, 0.35);
-    max-width: 95%;
-    min-height: 180px;
-    border-radius: 150px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 2rem;
-}
-
-.card-servicos-left {
-    margin-left: 5%;
-    border: 1px solid hsla(0, 0%, 0%, 0.35);
-    width: 95%;
-    min-height: 180px;
-    border-radius: 150px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 2rem;
-    gap: 7%;
-}
-
-.card-titulo {
-    width: 68%;
-    font-size: clamp(0.8rem, 2.5vw + .4rem, 2rem);
-    font-family: var(--font-pequena);
-    font-weight: normal;
-}
-
-.card-icon {
-    width: 25%;
-    max-width: 120px;
-    height: 60px;
-    border: 1px solid hsla(0, 0%, 0%, 0.35);
-    border-radius: 100px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.card-icon i {
-    font-size: 2rem;
-    color: var(--color-gray1);
-    margin-bottom: -7px;
-}
-
-/*************** ALGUMA FRASE AQUI  *****/
+/*************** Portfolio  *****/
 .free-your-mind {
     background-color: var(--color-white);
     width: 100vw;
@@ -1142,8 +1031,8 @@ a {
 }
 
 .logo-contato img {
-    width: 65%;
-    border-radius: 36px;
+    width: 50%;
+    border-radius: 30px;
 }
 
 /*************** FOOTER *****/
