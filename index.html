@@ -426,6 +426,37 @@
     <script src="assets/js/slideSobre.js"></script>
     <script src="assets/js/slidePortfolio.js"></script>
 
+    <script>
+    // ===== BOTÕES FIXOS =====
+    (function () {
+        const backToTopButton = document.getElementById('backToTop');
+        const whatsappButton  = document.getElementById('whatsappButton');
+
+        function toggleButtons() {
+            if (window.scrollY > 100) {
+                backToTopButton.style.display = 'flex';
+                whatsappButton.style.display  = 'flex';
+                setTimeout(() => {
+                    backToTopButton.style.opacity = '1';
+                    whatsappButton.style.opacity  = '1';
+                }, 10);
+            } else {
+                backToTopButton.style.opacity = '0';
+                whatsappButton.style.opacity  = '0';
+                setTimeout(() => {
+                    backToTopButton.style.display = 'none';
+                    whatsappButton.style.display  = 'none';
+                }, 500);
+            }
+        }
+
+        window.addEventListener('scroll', toggleButtons);
+        backToTopButton.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+        whatsappButton.addEventListener('click',  () => window.open('https://wa.me/5511994842434', '_blank'));
+    })();
+
+    </script>
+
 </body>
 
 </html>
