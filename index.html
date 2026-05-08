@@ -287,6 +287,42 @@
             gap: 3rem;
         }
 
+        /* Headline scroll */
+        .headline-sobre {
+            width: 100vw;
+            margin-left: calc(-50vw + 50%);
+            overflow: hidden;
+        }
+
+        .headline-scroll {
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
+            animation: scroll-marquee 20s linear infinite;
+        }
+
+        @keyframes scroll-marquee {
+            0%   { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .headline-scroll span {
+            font-family: var(--font-grande);
+            font-size: clamp(3rem, 6vw, 5rem);
+            text-transform: uppercase;
+            display: flex; align-items: center;
+        }
+
+        .headline-scroll .divisor {
+            width: 16px; height: 16px;
+            background-color: var(--color-gray2);
+            border-radius: 50%;
+            margin: 0 20px; flex-shrink: 0;
+        }
+
+        .headline-scroll .bold  { font-weight: bold; color: var(--color-white); }
+        .headline-scroll .light { font-weight: lighter; color: var(--color-gray2); }
+
     </style>
 </head>
 
