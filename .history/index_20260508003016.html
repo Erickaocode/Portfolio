@@ -472,100 +472,68 @@
         .box-skills h3 { font-size: 1.1rem; }
         .box-skills p { color: var(--color-gray2); font-size: 0.9rem; line-height: 1.4; }
 
-        /* ===== TRANSIÇÃO PORTFOLIO ===== */
-        .portfolio-transicao {
+        /* ===== FREE YOUR MIND — transição animada ===== */
+        .free-your-mind {
+            background-color: var(--color-white);
             width: 100%;
-            background-color: var(--color-black);
-            overflow: hidden;
-            position: relative;
-            padding: 5rem 0 3rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* linha decorativa que cresce */
-        .pt-linha {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--color-destaque1), transparent);
-            transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .portfolio-transicao.pt-visible .pt-linha { width: 80%; }
-
-        /* texto outline gigante */
-        .pt-titulo {
+            padding: 0;
             font-family: var(--font-grande);
-            font-size: clamp(5rem, 18vw, 18rem);
-            font-weight: 800;
-            letter-spacing: -0.02em;
-            line-height: 1;
-            color: transparent;
-            -webkit-text-stroke: 1px hsla(0,0%,100%,0.15);
-            user-select: none;
-            position: relative;
-            z-index: 1;
-            /* cada letra vem de baixo */
-            display: flex;
             overflow: hidden;
-            padding: 0.1em 0;
+            position: relative;
         }
 
-        .pt-letra {
+        .container-free-your-mind {
+            width: 100%;
+            display: flex; flex-direction: column;
+            padding: 0.5rem 1.5rem;
+        }
+
+        .line-container { display: flex; align-items: center; overflow: hidden; }
+        .line-container.center { justify-content: center; }
+        .line-container.right  { justify-content: flex-end; }
+
+        /* cada palavra entra deslizando da borda oposta */
+        .fym-word {
             display: inline-block;
-            transform: translateY(110%);
+            color: var(--color-black);
+            font-size: clamp(3rem, 12vw, 15vw);
+            line-height: 0.95;
+            transform: translateX(-120px);
             opacity: 0;
-            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-                        opacity 0.5s ease;
+            transition: transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+                        opacity 0.9s ease;
         }
 
-        .portfolio-transicao.pt-visible .pt-letra {
-            transform: translateY(0);
+        .fym-word.right-word {
+            transform: translateX(120px);
+        }
+
+        .fym-word.fym-visible {
+            transform: translateX(0);
             opacity: 1;
         }
 
-        /* delay por letra */
-        .pt-letra:nth-child(1)  { transition-delay: 0.00s; }
-        .pt-letra:nth-child(2)  { transition-delay: 0.05s; }
-        .pt-letra:nth-child(3)  { transition-delay: 0.10s; }
-        .pt-letra:nth-child(4)  { transition-delay: 0.15s; }
-        .pt-letra:nth-child(5)  { transition-delay: 0.20s; }
-        .pt-letra:nth-child(6)  { transition-delay: 0.25s; }
-        .pt-letra:nth-child(7)  { transition-delay: 0.30s; }
-        .pt-letra:nth-child(8)  { transition-delay: 0.35s; }
-        .pt-letra:nth-child(9)  { transition-delay: 0.40s; }
+        /* delay escalonado */
+        .fym-word:nth-child(1) { transition-delay: 0s; }
+        .fym-word:nth-child(2) { transition-delay: 0.12s; }
+        .fym-word:nth-child(3) { transition-delay: 0.24s; }
 
-        /* badge sobreposto */
-        .pt-badge {
-            position: absolute;
-            bottom: 2.5rem;
-            right: clamp(1rem, 5vw, 5rem);
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-            color: var(--color-gray2);
-            font-size: 0.85rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            opacity: 0;
-            transform: translateY(10px);
-            transition: opacity 0.8s ease 0.6s, transform 0.8s ease 0.6s;
+        .fym-line {
+            flex-grow: 1;
+            height: 1px;
+            background-color: var(--color-gray2);
+            margin: 0 1.5rem;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s;
         }
 
-        .portfolio-transicao.pt-visible .pt-badge {
-            opacity: 1;
-            transform: translateY(0);
+        .line-container.right .fym-line {
+            transform-origin: right;
         }
 
-        .pt-badge::before {
-            content: '';
-            width: 30px; height: 1px;
-            background: var(--color-destaque1);
+        .fym-line.fym-visible {
+            transform: scaleX(1);
         }
 
         /* ===== PORTFOLIO ===== */
@@ -1179,9 +1147,9 @@
                 <div class="left-sobre" data-aos="fade-right" data-aos-duration="1000">
                     <div class="textos-sobre">
                         <h1>Olá, sou o Erick Silva!</h1>
-                        <p>Sou apaixonado por tecnologia e desenvolvimento, sempre buscando evoluir minhas habilidades e criar soluções modernas e funcionais. Tenho experiência no desenvolvimento de projetos web e estou constantemente aprimorando meus conhecimentos para entregar interfaces cada vez mais intuitivas, responsivas e bem estruturadas. Meu objetivo é transformar ideias em experiências digitais que unam desempenho, estética e usabilidade.
+                        <p>Sou apaixonado por tecnologia e estou iniciando minha jornada na área da programação. Atualmente, me dedico ao aprendizado de HTML, CSS, JavaScript e SQL, com o objetivo de me tornar um desenvolvedor completo.
                         <br><br>
-                        </p>
+                        Busco constantemente crescer profissionalmente, colocar meus conhecimentos em prática e contribuir com ideias inovadoras. Estou aberto a oportunidades, parcerias e trocas de conhecimento!</p>
                     </div>
                     <div class="redes-sociais">
                         <a href="https://www.instagram.com/_erickz77_/" target="_blank">INSTAGRAM <i class="bi bi-arrow-right"></i></a>
@@ -1191,7 +1159,7 @@
                 </div>
                 <div class="right-sobre" data-aos="fade-left" data-aos-duration="1000">
                     <div class="imagem-sobre">
-                        <img src="assets/img/erickfoto.jpeg" alt="Foto do Erick">
+                        <img src="assets/img/FOTO erickão.jpg" alt="Foto do Erick">
                     </div>
                     <div class="complemento-sobre">
                         <img src="assets/img/texto-giratorio.png" alt="">
@@ -1270,14 +1238,24 @@
         </div>
     </section>
 
-    <!-- Transição Portfolio -->
-    <div class="portfolio-transicao" id="portfolio-transicao" aria-hidden="true">
-        <div class="pt-linha"></div>
-        <h2 class="pt-titulo">
-            <span class="pt-letra">P</span><span class="pt-letra">O</span><span class="pt-letra">R</span><span class="pt-letra">T</span><span class="pt-letra">F</span><span class="pt-letra">O</span><span class="pt-letra">L</span><span class="pt-letra">I</span><span class="pt-letra">O</span>
-        </h2>
-        <div class="pt-badge">Projetos selecionados</div>
-    </div>
+    <!-- POR TI Folio — transição animada -->
+    <section id="free-your-mind" class="free-your-mind">
+        <div class="container-free-your-mind">
+            <div class="line-container">
+                <span class="fym-word">POR</span>
+                <div class="fym-line"></div>
+            </div>
+            <div class="line-container center">
+                <div class="fym-line"></div>
+                <span class="fym-word">TI</span>
+                <div class="fym-line"></div>
+            </div>
+            <div class="line-container right">
+                <div class="fym-line"></div>
+                <span class="fym-word right-word">Folio</span>
+            </div>
+        </div>
+    </section>
 
     <!-- Portfolio -->
     <section id="portfolio" class="portfolio">
@@ -1301,7 +1279,7 @@
                     </div>
                     <div class="textos-case">
                         <div class="conteudo-textos-case">
-                            <h1>Projeto Hortifrúti</h1>
+                            <h1>Projeto Pessoal</h1>
                             <p>Sistema de hortifrúti desenvolvido em linguagem C, criado para proporcionar uma experiência de compra funcional, eficiente e intuitiva.</p>
                             <span>Hortifrúti</span>
                         </div>
@@ -1313,16 +1291,16 @@
                     <div class="imagens-case">
                         <div class="slide">
                             <i class="bi bi-chevron-left prev"></i>
-                            <img src="assets/img/imagem.png" alt="Dep low 1" class="active">
-                            <img src="assets/img/imagem.png" alt="Dep low 2">
-                            <img src="assets/img/imagem.png" alt="Dep low 3">
+                            <img src="assets/img/imagem.png" alt="Berlim 1" class="active">
+                            <img src="assets/img/imagem.png" alt="Berlim 2">
+                            <img src="assets/img/imagem.png" alt="Berlim 3">
                             <i class="bi bi-chevron-right next"></i>
                         </div>
                     </div>
                     <div class="textos-case">
                         <div class="conteudo-textos-case">
-                            <h1>Dep low</h1>
-                            <p>A Dep Low é uma marca de roupas focada no estilo streetwear minimalista, criada para jovens que buscam autenticidade, atitude e identidade através da moda. A proposta da marca une peças modernas, versáteis e estilosas, trazendo um visual urbano com uma estética limpa e marcante.</p>
+                            <h1>Berlim Promotora</h1>
+                            <p>Meu primeiro cliente! Com esse projeto pude aprimorar minhas habilidades práticas e atender às necessidades específicas do cliente.</p>
                             <span>Website</span>
                         </div>
                     </div>
@@ -1560,19 +1538,27 @@
         });
     })();
 
-    // ===== TRANSIÇÃO PORTFOLIO — scroll reveal letra a letra =====
+    // ===== FREE YOUR MIND — scroll reveal =====
     (function () {
-        const sec = document.getElementById('portfolio-transicao');
-        if (!sec) return;
+        const words = document.querySelectorAll('.fym-word');
+        const lines = document.querySelectorAll('.free-your-mind .fym-line');
+        const section = document.getElementById('free-your-mind');
+
         const obs = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    sec.classList.add('pt-visible');
-                    obs.unobserve(sec);
+                    words.forEach((w, i) => {
+                        setTimeout(() => w.classList.add('fym-visible'), i * 120);
+                    });
+                    lines.forEach((l, i) => {
+                        setTimeout(() => l.classList.add('fym-visible'), i * 120 + 100);
+                    });
+                    obs.unobserve(section);
                 }
             });
-        }, { threshold: 0.25 });
-        obs.observe(sec);
+        }, { threshold: 0.3 });
+
+        if (section) obs.observe(section);
     })();
     (function () {
         const hs = document.getElementById('headline-scroll');
