@@ -1012,6 +1012,73 @@
 
         .credits-column p { margin: 0.2rem 0; }
 
+        /* ===== RESPONSIVIDADE MOBILE ===== */
+        @media (max-width: 768px) {
+
+            /* Header */
+            .header { padding: 1rem 1.2rem; }
+
+            /* Início */
+            .inicio { padding: 7rem 1.2rem 3rem; min-height: 100svh; }
+            .titulo-inicio { font-size: clamp(1.8rem, 8vw, 2.5rem); }
+            .paragrafo-inicio p { font-size: 1rem; }
+
+            /* Sobre */
+            .sobre { padding: 4rem 1.2rem; }
+            .conteudo-sobre { flex-direction: column-reverse; gap: 2.5rem; }
+            .left-sobre  { width: 100%; }
+            .right-sobre { width: 100%; justify-content: center; }
+            .imagem-sobre img { max-width: 260px; }
+            .complemento-sobre { width: 100px; height: 100px; top: -10px; right: calc(50% - 130px - 50px); }
+            .textos-sobre h1 { font-size: 1.8rem; }
+            .textos-sobre p  { font-size: 0.95rem; }
+            .redes-sociais a { font-size: 0.9rem; }
+
+            /* Skills */
+            .skills { padding: 4rem 1.2rem; }
+            .conteudo-skills { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
+            .box-skills { min-height: 140px; padding: 1.2rem 0.8rem; }
+            .box-skills img { width: 55px; height: 55px; }
+
+            /* Free your mind */
+            .free-your-mind { padding: 0.5rem 1rem; }
+            .fym-line { margin: 0 0.8rem; }
+
+            /* Portfolio */
+            .portfolio { padding: 4rem 1.2rem 5rem; }
+            .headline-portfolio {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            .headline-portfolio .titulo { font-size: clamp(2.5rem, 12vw, 4rem); }
+            .headline-portfolio .descricao { text-align: left; font-size: 0.95rem; }
+
+            .container-case { gap: 4rem; }
+
+            .case1, .case2, .case3, .case4 {
+                flex-direction: column !important;
+                gap: 1.5rem;
+            }
+
+            .imagens-case { width: 100%; aspect-ratio: 4/3; border-radius: 10px; }
+            .textos-case  { width: 100%; }
+            .conteudo-textos-case h1 { font-size: 1.8rem; }
+            .conteudo-textos-case p  { font-size: 0.95rem; }
+
+            /* Contato */
+            .contato { padding: 4rem 1.2rem; }
+
+            /* Footer */
+            .container-footer {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1.5rem;
+            }
+
+            .credits-column { text-align: left; }
+        }
+
     </style>
 </head>
 
