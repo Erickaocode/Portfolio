@@ -436,6 +436,42 @@
             width: 100%;
         }
 
+        /* badge da skill (linguagem C, C++, C#) */
+        .skill-badge {
+            font-family: var(--font-grande);
+            font-size: clamp(1.6rem, 3vw, 2.4rem);
+            font-weight: 800;
+            color: var(--color-white);
+            line-height: 1;
+        }
+
+        .box-skills {
+            border: 1px solid hsla(0,0%,100%,0.12);
+            border-radius: 20px;
+            color: var(--color-white);
+            display: flex; flex-direction: column;
+            justify-content: center; align-items: center;
+            text-align: center;
+            padding: 2rem 1rem;
+            gap: 1rem;
+            transition: border-color 0.3s ease, transform 0.3s ease;
+            min-height: 180px;
+        }
+
+        .box-skills:hover {
+            border-color: var(--color-destaque1);
+            transform: translateY(-4px);
+        }
+
+        .box-skills img {
+            width: clamp(60px, 10vw, 100px);
+            height: clamp(60px, 10vw, 100px);
+            object-fit: contain;
+        }
+
+        .box-skills h3 { font-size: 1.1rem; }
+        .box-skills p { color: var(--color-gray2); font-size: 0.9rem; line-height: 1.4; }
+
     </style>
 </head>
 
