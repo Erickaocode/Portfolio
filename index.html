@@ -749,6 +749,57 @@
             100% { transform: translateX(-50%); }
         }
 
+        /* ===== CONTATO ===== */
+        .contato {
+            width: 100%;
+            padding: 6rem 2rem;
+            background-color: var(--color-black);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* glow decorativo */
+        .contato::before {
+            content: '';
+            position: absolute;
+            top: -100px; left: 50%;
+            transform: translateX(-50%);
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(231,252,0,0.07) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .container-contato {
+            width: 100%; max-width: 1000px;
+            margin: 0 auto;
+            display: flex; flex-direction: column;
+            gap: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .headline-contato {
+            display: flex; flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 1rem;
+        }
+
+        .titulo-contato h1 {
+            color: var(--color-white);
+            font-size: clamp(2.8rem, 7vw, 6rem);
+            font-weight: 700;
+            font-family: var(--font-grande);
+            line-height: 1;
+        }
+
+        .subtitulo-contato {
+            color: var(--color-gray2);
+            font-size: clamp(1rem, 1.5vw, 1.2rem);
+            max-width: 500px;
+            line-height: 1.6;
+        }
+
     </style>
 </head>
 
@@ -1033,39 +1084,82 @@
         </svg>
     </div>
 
-        <!--Contato-->
-        <section id="contato" class="contato">
-            <div class="container-contato" data-aos="fade-up" data-aos-duration="1000">
-                <div class="headline-contato" data-aos="fade-up" data-aos-delay="200">
-                    <div class="titulo-contato">
-                        <h1>Contato</h1>
-                    </div>
-                    <div class="descricao-contato">
-                        <ul class="lista-contato">
-                            <li><a href="ericksilva112017@gmail.com">ericksilva112017@gmail.com</a></li>
-                            
-                        </ul>
-                    </div>
+    <!-- Contato -->
+    <section id="contato" class="contato">
+        <div class="container-contato" data-aos="fade-up" data-aos-duration="1000">
+
+            <!-- Ticker animado -->
+            <div class="contato-ticker">
+                <div class="contato-ticker-track">
+                    <span>Entre em contato</span><span class="destaque">✦</span>
+                    <span>Vamos trabalhar juntos</span><span class="destaque">✦</span>
+                    <span>Projetos web</span><span class="destaque">✦</span>
+                    <span>Desenvolvimento</span><span class="destaque">✦</span>
+                    <span>Entre em contato</span><span class="destaque">✦</span>
+                    <span>Vamos trabalhar juntos</span><span class="destaque">✦</span>
+                    <span>Projetos web</span><span class="destaque">✦</span>
+                    <span>Desenvolvimento</span><span class="destaque">✦</span>
                 </div>
-                <div class="conteudo-contato" data-aos="fade-up" data-aos-delay="400">
-                    <div class="formulario-contato">
-                        <h2>Entre em contato</h2>
-                        <p></p>
-                        <form class="form">
-                            <input type="text" placeholder="Digite seu nome completo">
-                            <input type="phone" placeholder="(55) 22222-2222">
-                            <input type="email" placeholder="Seu melhor email">
-                            <textarea name="mensagem" id="mensagem" placeholder="Escreva o que você deseja aqui..."></textarea>
-                            <button class="btn">Enviar</button>
-                        </form>
+            </div>
+
+            <!-- Headline centralizada -->
+            <div class="headline-contato">
+                <div class="titulo-contato">
+                    <h1>Vamos conversar?</h1>
+                </div>
+                <p class="subtitulo-contato">Tem um projeto em mente, uma ideia ou só quer trocar uma ideia? Me manda uma mensagem!</p>
+
+                <!-- Chips de contato rápido -->
+                <div class="contato-rapido">
+                    <div class="contato-chip">
+                        <i class="bi bi-envelope-fill"></i>
+                        <a href="mailto:ericksilva112017@gmail.com">ericksilva112017@gmail.com</a>
                     </div>
-                    <div class="logo-contato" data-aos="fade-up" data-aos-delay="600">
-                        <img src="assets/img/IMG ERICKÃO.jpg" alt="">
+                    <div class="contato-chip">
+                        <i class="bi bi-whatsapp"></i>
+                        <a href="https://wa.me/5511994842434" target="_blank">WhatsApp</a>
+                    </div>
+                    <div class="contato-chip">
+                        <i class="bi bi-geo-alt-fill"></i>
+                        <span>Brasil</span>
                     </div>
                 </div>
             </div>
-        </section>
-        <!--Fim Contato-->
+
+            <!-- Card formulário -->
+            <div class="card-formulario" data-aos="fade-up" data-aos-delay="200">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Nome</label>
+                        <input type="text" placeholder="Seu nome completo">
+                    </div>
+                    <div class="form-group">
+                        <label>Telefone</label>
+                        <input type="tel" placeholder="(11) 99999-9999">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" placeholder="seu@email.com">
+                </div>
+                <div class="form-group">
+                    <label>Mensagem</label>
+                    <textarea placeholder="Me conte sobre seu projeto ou ideia..."></textarea>
+                </div>
+                <div class="form-footer">
+                    <div class="form-socials">
+                        <a href="https://www.instagram.com/_erickz77_/" target="_blank" class="form-social-btn"><i class="bi bi-instagram"></i></a>
+                        <a href="https://github.com/Erickaocode/" target="_blank" class="form-social-btn"><i class="bi bi-github"></i></a>
+                        <a href="https://www.linkedin.com/in/erick-silva-8579002b0/" target="_blank" class="form-social-btn"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                    <button class="btn">
+                        Enviar mensagem <i class="bi bi-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </section>
 
         <!--Footer-->
         <footer class="footer" id="footer">
