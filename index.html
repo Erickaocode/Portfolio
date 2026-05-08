@@ -1083,6 +1083,13 @@
         @media (min-width: 600px)  { .conteudo-skills { grid-template-columns: repeat(3, 1fr); } }
         @media (min-width: 1025px) { .conteudo-skills { grid-template-columns: repeat(4, 1fr); } }
 
+        /* Tablet */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .headline-portfolio { flex-direction: column; align-items: flex-start; gap: 1rem; }
+            .headline-portfolio .titulo { font-size: clamp(3rem, 8vw, 5rem); }
+            .headline-portfolio .descricao { text-align: left; }
+        }
+
     </style>
 </head>
 
