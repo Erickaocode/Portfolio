@@ -711,6 +711,44 @@
             bottom: 0; left: 0;
         }
 
+        /* ticker de fundo no contato */
+        .contato-ticker {
+            width: 100%;
+            overflow: hidden;
+            padding: 1.5rem 0;
+            border-top: 1px solid hsla(0,0%,100%,0.08);
+            border-bottom: 1px solid hsla(0,0%,100%,0.08);
+            margin-bottom: 3rem;
+        }
+
+        .contato-ticker-track {
+            display: flex;
+            white-space: nowrap;
+            animation: ticker-scroll 18s linear infinite;
+            gap: 0;
+        }
+
+        .contato-ticker-track span {
+            font-family: var(--font-grande);
+            font-size: clamp(1.2rem, 2.5vw, 2rem);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            padding: 0 2rem;
+            color: transparent;
+            -webkit-text-stroke: 1px hsla(0,0%,100%,0.2);
+        }
+
+        .contato-ticker-track span.destaque {
+            color: var(--color-destaque1);
+            -webkit-text-stroke: 0;
+        }
+
+        @keyframes ticker-scroll {
+            0%   { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
     </style>
 </head>
 
