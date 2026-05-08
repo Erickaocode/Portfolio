@@ -800,6 +800,29 @@
             line-height: 1.6;
         }
 
+        /* Infos de contato rápido */
+        .contato-rapido {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .contato-chip {
+            display: flex; align-items: center; gap: 0.5rem;
+            padding: 0.5rem 1.2rem;
+            border: 1px solid hsla(0,0%,100%,0.15);
+            border-radius: 50px;
+            color: var(--color-gray2);
+            font-size: 0.9rem;
+            transition: border-color 0.3s, color 0.3s;
+            cursor: default;
+        }
+
+        .contato-chip i { color: var(--color-destaque1); font-size: 1rem; }
+        .contato-chip a { color: inherit; }
+        .contato-chip:hover { border-color: var(--color-destaque1); color: var(--color-white); }
+
     </style>
 </head>
 
