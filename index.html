@@ -34,6 +34,25 @@
             --color-destaque2: #728e6f;
         }
 
+        /* ===== SCROLLBAR ===== */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--color-black); }
+        ::-webkit-scrollbar-thumb { background-color: var(--color-gray1); border-radius: 20px; border: 2px solid var(--color-black); }
+        ::-webkit-scrollbar-thumb:hover { background-color: var(--color-gray2); }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            background-color: var(--color-black);
+            width: 100%;
+            font-family: var(--font-pequena);
+            overflow-x: hidden;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        li { list-style: none; }
+        a { text-decoration: none; }
+
     </style>
 </head>
 
