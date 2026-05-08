@@ -472,6 +472,32 @@
         .box-skills h3 { font-size: 1.1rem; }
         .box-skills p { color: var(--color-gray2); font-size: 0.9rem; line-height: 1.4; }
 
+        /* ===== TRANSIÇÃO PORTFOLIO ===== */
+        .portfolio-transicao {
+            width: 100%;
+            background-color: var(--color-black);
+            overflow: hidden;
+            position: relative;
+            padding: 5rem 0 3rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* linha decorativa que cresce */
+        .pt-linha {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--color-destaque1), transparent);
+            transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .portfolio-transicao.pt-visible .pt-linha { width: 80%; }
+
     </style>
 </head>
 
@@ -649,6 +675,15 @@
             </div>
         </div>
     </section>
+
+    <!-- Transição Portfolio -->
+    <div class="portfolio-transicao" id="portfolio-transicao" aria-hidden="true">
+        <div class="pt-linha"></div>
+        <h2 class="pt-titulo">
+            <span class="pt-letra">P</span><span class="pt-letra">O</span><span class="pt-letra">R</span><span class="pt-letra">T</span><span class="pt-letra">F</span><span class="pt-letra">O</span><span class="pt-letra">L</span><span class="pt-letra">I</span><span class="pt-letra">O</span>
+        </h2>
+        <div class="pt-badge">Projetos selecionados</div>
+    </div>
 
         <!--Portfolio-->
         <section id="portfolio" class="portfolio">
