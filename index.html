@@ -257,6 +257,20 @@
         .cta:hover svg { transform: translateX(0); stroke: var(--color-destaque1); }
         .cta:active { transform: scale(0.95); }
 
+        /* badge scroll */
+        .scroll-hint {
+            margin-top: 2rem;
+            display: flex; align-items: center; gap: 0.5rem;
+            color: var(--color-gray2);
+            font-size: 0.9rem;
+            animation: bounceY 2s infinite;
+        }
+
+        @keyframes bounceY {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(6px); }
+        }
+
     </style>
 </head>
 
