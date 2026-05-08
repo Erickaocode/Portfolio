@@ -271,6 +271,22 @@
             50% { transform: translateY(6px); }
         }
 
+        /* ===== SOBRE ===== */
+        .sobre {
+            background-color: var(--color-black);
+            width: 100%;
+            padding: 5rem 2rem;
+            z-index: 1; user-select: none;
+            overflow: hidden;
+        }
+
+        .container-sobre {
+            width: 100%; max-width: 1400px;
+            margin: 0 auto;
+            display: flex; flex-direction: column;
+            gap: 3rem;
+        }
+
     </style>
 </head>
 
@@ -329,42 +345,56 @@
         </div>
     </main>
 
-        <!--Sobre-->
-        <section id="sobre" class="sobre">
-            <div class="container-sobre">
-                <!--Slide Sobre-->
-                <div class="headline-sobre" data-aos="fade-up" data-aos-duration="1000">
-                    <div class="headline-scroll" id="headline-scroll">
+    <!-- Sobre -->
+    <section id="sobre" class="sobre">
+        <div class="container-sobre">
+            <!-- Headline scroll -->
+            <div class="headline-sobre" data-aos="fade-up" data-aos-duration="1000">
+                <div class="headline-scroll" id="headline-scroll">
+                    <span class="bold">Sobre mim</span>
+                    <span class="divisor"></span>
+                    <span class="light">About me</span>
+                    <span class="divisor"></span>
+                    <span class="bold">Sobre mim</span>
+                    <span class="divisor"></span>
+                    <span class="light">About me</span>
+                    <span class="divisor"></span>
+                    <span class="bold">Sobre mim</span>
+                    <span class="divisor"></span>
+                    <span class="light">About me</span>
+                    <span class="divisor"></span>
+                    <span class="bold">Sobre mim</span>
+                    <span class="divisor"></span>
+                    <span class="light">About me</span>
+                    <span class="divisor"></span>
+                </div>
+            </div>
 
+            <div class="conteudo-sobre">
+                <div class="left-sobre" data-aos="fade-right" data-aos-duration="1000">
+                    <div class="textos-sobre">
+                        <h1>Olá, sou o Erick Silva!</h1>
+                        <p>Sou apaixonado por tecnologia e desenvolvimento, sempre buscando evoluir minhas habilidades e criar soluções modernas e funcionais. Tenho experiência no desenvolvimento de projetos web e estou constantemente aprimorando meus conhecimentos para entregar interfaces cada vez mais intuitivas, responsivas e bem estruturadas. Meu objetivo é transformar ideias em experiências digitais que unam desempenho, estética e usabilidade.
+                        <br><br>
+                        </p>
+                    </div>
+                    <div class="redes-sociais">
+                        <a href="https://www.instagram.com/_erickz77_/" target="_blank">INSTAGRAM <i class="bi bi-arrow-right"></i></a>
+                        <a href="https://github.com/Erickaocode/" target="_blank">GITHUB <i class="bi bi-arrow-right"></i></a>
+                        <a href="https://www.linkedin.com/in/erick-silva-8579002b0/" target="_blank">LINKEDIN <i class="bi bi-arrow-right"></i></a>
                     </div>
                 </div>
-                <div class="conteudo-sobre">
-                    <div class="left-sobre" data-aos="fade-right" data-aos-duration="1000">
-                        <div class="textos-sobre">
-                            <h1>Olá Sou o Erick Silva!
-                            </h1>
-                            <p> sou apaixonado por tecnologia e estou iniciando minha jornada na área da programação. Atualmente, estou me dedicando ao aprendizado de linguagens como HTML, CSS, JavaScript e SQL, com o objetivo de me tornar um desenvolvedor completo.
-                                Busco constantemente crescer profissionalmente, colocar meus conhecimentos em prática e contribuir com ideias inovadoras que possam gerar valor para as pessoas e empresas. Acredito que, com dedicação e criatividade, posso fazer a diferença no mundo da tecnologia.                                
-                                Estou aberto a oportunidades, parcerias e trocas de conhecimento que me ajudem a evoluir ainda mais nesse universo desafiador e fascinante da programação.</p>
-                        </div>
-                        <div class="redes-sociais">
-                            <a href="https://www.instagram.com/_erickz77_/">INSTAGRAM<i class="bi bi-arrow-right"></i></a>
-                            <a href="https://github.com/Erickaocode/">GITHUB<i class="bi bi-arrow-right"></i></a>
-                            <a href="https://www.linkedin.com/in/erick-silva-8579002b0/">LINKEDIN<i class="bi bi-arrow-right"></i></a>
-                        </div>
+                <div class="right-sobre" data-aos="fade-left" data-aos-duration="1000">
+                    <div class="imagem-sobre">
+                        <img src="assets/img/erickfoto.jpeg" alt="Foto do Erick">
                     </div>
-                    <div class="right-sobre" data-aos="fade-left" data-aos-duration="1000">
-                        <div class="imagem-sobre">
-                            <img src="assets/img/FOTO erickão.jpg" alt="">
-                        </div>
-                        <div class="complemento-sobre">
-                            <img src="assets/img/texto-giratorio.png" alt="">
-                        </div>
+                    <div class="complemento-sobre">
+                        <img src="assets/img/texto-giratorio.png" alt="">
                     </div>
                 </div>
             </div>
-        </section>
-        <!--Fim Sobre-->
+        </div>
+    </section>
 
         <!--Skills-->
         <section id="skills" class="skills">
