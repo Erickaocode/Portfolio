@@ -398,6 +398,44 @@
 
         @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
+        /* ===== SKILLS ===== */
+        .skills {
+            width: 100%;
+            padding: 5rem 2rem;
+            display: flex; align-items: center; justify-content: center;
+        }
+
+        .container-skills {
+            width: 100%; max-width: 1400px;
+            display: flex; flex-direction: column;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .headline-skills {
+            width: 100%; text-align: center;
+            color: var(--color-white);
+        }
+
+        .text-headline-skills h2 {
+            font-family: var(--font-grande);
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 0.5rem;
+        }
+
+        .text-headline-skills p {
+            font-size: clamp(0.95rem, 1.2vw, 1.3rem);
+            color: var(--color-gray2);
+            line-height: 1.5;
+        }
+
+        .conteudo-skills {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            width: 100%;
+        }
+
     </style>
 </head>
 
@@ -507,40 +545,74 @@
         </div>
     </section>
 
-        <!--Skills-->
-        <section id="skills" class="skills">
-            <div class="container-skills" data-aos="fade-up" data-aos-duration="1000">
-                <div class="headline-skills">
-                    <div class="text-headline-skills" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
-                        <h2>Minhas Skills</h2>
-                        <p>Essas são algumas linguagens que tenho domínio</p>
-                    </div>
-                </div>
-                <div class="conteudo-skills">
-                    <div class="box-skills" data-aos="fade-up" data-aos-delay="300" data-aos-duration="1000">
-                        <img src="assets/img/HTML_icon.png" alt="">
-                        <h3></h3>
-                        <p></p>
-                    </div>
-                    <div class="box-skills" data-aos="fade-up" data-aos-delay="300" data-aos-duration="1000">
-                        <img src="assets/img/CSS_icon.png" alt="">
-                        <h3></h3>
-                        <p></p>
-                    </div>
-                    <div class="box-skills" data-aos="fade-up" data-aos-delay="300" data-aos-duration="1000">
-                        <img src="assets/img/JS_icon.png" alt="">
-                        <h3></h3>
-                        <p></p>
-                    </div>
-                    <div class="box-skills" data-aos="fade-up" data-aos-delay="300" data-aos-duration="1000">
-                        <h3></h3>
-                        <img src="assets/img/SQL_icon.png" alt="">
-                        <p></p>
-                    </div>
+    <!-- Skills -->
+    <section id="skills" class="skills">
+        <div class="container-skills" data-aos="fade-up" data-aos-duration="1000">
+            <div class="headline-skills">
+                <div class="text-headline-skills">
+                    <h2>Minhas Skills</h2>
+                    <p>Essas são as linguagens que tenho domínio</p>
                 </div>
             </div>
-        </section>
-        <!--Fim Skills-->
+            <div class="conteudo-skills">
+                <!-- HTML -->
+                <div class="box-skills" data-aos="fade-up" data-aos-delay="50" data-aos-duration="700">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5">
+                    <h3>HTML</h3>
+                </div>
+                <!-- CSS -->
+                <div class="box-skills" data-aos="fade-up" data-aos-delay="100" data-aos-duration="700">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3">
+                    <h3>CSS</h3>
+                </div>
+                <!-- JavaScript -->
+                <div class="box-skills" data-aos="fade-up" data-aos-delay="150" data-aos-duration="700">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript">
+                    <h3>JavaScript</h3>
+                </div>
+                <!-- MySQL -->
+                <div class="box-skills" data-aos="fade-up" data-aos-delay="200" data-aos-duration="700">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL">
+                    <h3>MySQL</h3>
+                </div>
+                <!-- Linux -->
+                <div class="box-skills" data-aos="fade-up" data-aos-delay="250" data-aos-duration="700">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux">
+                    <h3>Linux</h3>
+                </div>
+                <!-- PHP -->
+                <div class="box-skills" data-aos="fade-up" data-aos-delay="300" data-aos-duration="700">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP">
+                    <h3>PHP</h3>
+                </div>
+                <!-- TypeScript -->
+                <div class="box-skills" data-aos="fade-up" data-aos-delay="350" data-aos-duration="700">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript">
+                    <h3>TypeScript</h3>
+                </div>
+                <!-- React -->
+                <div class="box-skills" data-aos="fade-up" data-aos-delay="400" data-aos-duration="700">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React">
+                    <h3>React</h3>
+                </div>
+                <!-- Linguagem C -->
+                <div class="box-skills" data-aos="fade-up" data-aos-delay="450" data-aos-duration="700">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" alt="C">
+                    <h3>Linguagem C</h3>
+                </div>
+                <!-- C++ -->
+                <div class="box-skills" data-aos="fade-up" data-aos-delay="500" data-aos-duration="700">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C++">
+                    <h3>C++</h3>
+                </div>
+                <!-- C# -->
+                <div class="box-skills" data-aos="fade-up" data-aos-delay="550" data-aos-duration="700">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" alt="C#">
+                    <h3>C#</h3>
+                </div>
+            </div>
+        </div>
+    </section>
 
         <!--espaço para serviço -->
 
