@@ -693,6 +693,24 @@
             width: fit-content;
         }
 
+        /* ===== TRANSIÇÃO CONTATO ===== */
+        .contato-transicao {
+            width: 100%;
+            background: linear-gradient(to bottom, var(--color-black) 0%, #0e0e0e 100%);
+            overflow: hidden;
+            position: relative;
+            height: 120px;
+            display: flex;
+            align-items: flex-end;
+        }
+
+        .contato-transicao svg {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            bottom: 0; left: 0;
+        }
+
     </style>
 </head>
 
@@ -969,6 +987,13 @@
             </div>
         </div>
     </section>
+
+    <!-- Transição para Contato -->
+    <div class="contato-transicao" aria-hidden="true">
+        <svg viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,0 C360,100 1080,100 1440,0 L1440,120 L0,120 Z" fill="#080808"/>
+        </svg>
+    </div>
 
         <!--Contato-->
         <section id="contato" class="contato">
