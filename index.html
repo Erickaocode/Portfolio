@@ -53,17 +53,57 @@
         li { list-style: none; }
         a { text-decoration: none; }
 
+        /* ===== BOTÕES FIXOS ===== */
+        .fixed-button {
+            position: fixed;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background-color: var(--color-white);
+            color: var(--color-black);
+            cursor: pointer;
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.5s ease, box-shadow 0.5s ease;
+        }
+
+        #backToTop {
+            bottom: 20px;
+            left: 20px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.5);
+        }
+
+        #whatsappButton {
+            bottom: 20px;
+            right: 20px;
+            background-color: #25D366;
+            box-shadow: 0px 0px 10px rgba(0,255,0,0.5);
+            animation: pulse 2s infinite;
+        }
+
+        #whatsappButton i { font-size: 22px; color: #fff; }
+        .fixed-button i { font-size: 22px; }
+
+        @keyframes pulse {
+            0%   { transform: scale(1);   box-shadow: 0 0 10px rgba(0,255,0,0.5); }
+            50%  { transform: scale(1.08); box-shadow: 0 0 20px rgba(0,255,0,0.7); }
+            100% { transform: scale(1);   box-shadow: 0 0 10px rgba(0,255,0,0.5); }
+        }
+
     </style>
 </head>
 
 <body>
 
-    <!--Botão voltar ao topo-->
+    <!-- Botão voltar ao topo -->
     <div id="backToTop" class="fixed-button">
         <i class="bi bi-chevron-up"></i>
     </div>
 
-    <!--Botão WhatsApp-->
+    <!-- Botão WhatsApp -->
     <div id="whatsappButton" class="fixed-button">
         <i class="bi bi-whatsapp"></i>
     </div>
