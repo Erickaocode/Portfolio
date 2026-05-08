@@ -540,6 +540,34 @@
         .pt-letra:nth-child(8)  { transition-delay: 0.35s; }
         .pt-letra:nth-child(9)  { transition-delay: 0.40s; }
 
+        /* badge sobreposto */
+        .pt-badge {
+            position: absolute;
+            bottom: 2.5rem;
+            right: clamp(1rem, 5vw, 5rem);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            color: var(--color-gray2);
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.8s ease 0.6s, transform 0.8s ease 0.6s;
+        }
+
+        .portfolio-transicao.pt-visible .pt-badge {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .pt-badge::before {
+            content: '';
+            width: 30px; height: 1px;
+            background: var(--color-destaque1);
+        }
+
     </style>
 </head>
 
