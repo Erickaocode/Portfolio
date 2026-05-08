@@ -1079,6 +1079,10 @@
             .credits-column { text-align: left; }
         }
 
+        /* Skills: mobile 2 → tablet 3 → desktop 4 */
+        @media (min-width: 600px)  { .conteudo-skills { grid-template-columns: repeat(3, 1fr); } }
+        @media (min-width: 1025px) { .conteudo-skills { grid-template-columns: repeat(4, 1fr); } }
+
     </style>
 </head>
 
