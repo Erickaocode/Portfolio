@@ -531,6 +531,31 @@
         whatsappButton.addEventListener('click',  () => window.open('https://wa.me/5511994842434', '_blank'));
     })();
 
+    // ===== MENU =====
+    (function () {
+        const menuToggle = document.getElementById('menuToggle');
+        const menuAberto = document.querySelector('.menu-aberto');
+        const navLinks   = document.querySelectorAll('.nav-menu a');
+
+        menuToggle.addEventListener('change', function () {
+            if (menuToggle.checked) {
+                menuAberto.classList.add('active');
+                document.body.classList.add('no-scroll');
+            } else {
+                menuAberto.classList.remove('active');
+                document.body.classList.remove('no-scroll');
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                menuToggle.checked = false;
+                menuAberto.classList.remove('active');
+                document.body.classList.remove('no-scroll');
+            });
+        });
+    })();
+
     </script>
 
 </body>
