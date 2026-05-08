@@ -323,6 +323,81 @@
         .headline-scroll .bold  { font-weight: bold; color: var(--color-white); }
         .headline-scroll .light { font-weight: lighter; color: var(--color-gray2); }
 
+        /* Conteúdo sobre */
+        .conteudo-sobre {
+            display: flex;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .left-sobre {
+            color: var(--color-white);
+            width: 50%;
+            display: flex; flex-direction: column;
+            justify-content: center; align-items: flex-start;
+            gap: 2rem;
+        }
+
+        .textos-sobre h1 {
+            font-size: clamp(1.8rem, 3vw, 3rem);
+            font-family: var(--font-grande);
+            margin-bottom: 1rem;
+        }
+
+        .textos-sobre p {
+            font-size: clamp(0.95rem, 1.2vw, 1.2rem);
+            color: var(--color-gray2);
+            font-weight: 400;
+            line-height: 1.7;
+            letter-spacing: 0.5px;
+        }
+
+        .redes-sociais {
+            width: 100%;
+            display: flex; flex-direction: column;
+            gap: 1rem;
+        }
+
+        .redes-sociais a {
+            display: flex; justify-content: space-between; align-items: center;
+            color: var(--color-gray2);
+            font-size: clamp(0.9rem, 1.2vw, 1.2rem);
+            width: 100%;
+            padding-bottom: 8px;
+            border-bottom: 1px solid hsla(0,0%,100%,0.15);
+            transition: color 0.3s ease;
+        }
+
+        .redes-sociais a:hover { color: var(--color-destaque1); }
+
+        .right-sobre {
+            width: 50%;
+            display: flex; align-items: center; justify-content: center;
+            position: relative;
+        }
+
+        .imagem-sobre img {
+            width: 100%;
+            max-width: 320px;
+            border-radius: 12px;
+            z-index: 2;
+            position: relative;
+        }
+
+        .complemento-sobre {
+            position: absolute;
+            width: 160px; height: 160px;
+            top: -20px; right: 0;
+            z-index: 1;
+        }
+
+        .complemento-sobre img {
+            width: 100%;
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
     </style>
 </head>
 
