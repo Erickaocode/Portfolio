@@ -649,48 +649,6 @@
 
         .portfolio-transicao.pt-visible .pt-linha { width: 80%; }
 
-        /* texto outline gigante */
-        .pt-titulo {
-            font-family: var(--font-grande);
-            font-size: clamp(5rem, 18vw, 18rem);
-            font-weight: 800;
-            letter-spacing: -0.02em;
-            line-height: 1;
-            color: transparent;
-            -webkit-text-stroke: 1px hsla(0,0%,100%,0.15);
-            user-select: none;
-            position: relative;
-            z-index: 1;
-            /* cada letra vem de baixo */
-            display: flex;
-            overflow: hidden;
-            padding: 0.1em 0;
-        }
-
-        .pt-letra {
-            display: inline-block;
-            transform: translateY(110%);
-            opacity: 0;
-            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-                        opacity 0.5s ease;
-        }
-
-        .portfolio-transicao.pt-visible .pt-letra {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        /* delay por letra */
-        .pt-letra:nth-child(1)  { transition-delay: 0.00s; }
-        .pt-letra:nth-child(2)  { transition-delay: 0.05s; }
-        .pt-letra:nth-child(3)  { transition-delay: 0.10s; }
-        .pt-letra:nth-child(4)  { transition-delay: 0.15s; }
-        .pt-letra:nth-child(5)  { transition-delay: 0.20s; }
-        .pt-letra:nth-child(6)  { transition-delay: 0.25s; }
-        .pt-letra:nth-child(7)  { transition-delay: 0.30s; }
-        .pt-letra:nth-child(8)  { transition-delay: 0.35s; }
-        .pt-letra:nth-child(9)  { transition-delay: 0.40s; }
-
         /* badge sobreposto */
         .pt-badge {
             position: absolute;
@@ -1506,9 +1464,6 @@
     <!-- Transição Portfolio -->
     <div class="portfolio-transicao" id="portfolio-transicao" aria-hidden="true">
         <div class="pt-linha"></div>
-        <h2 class="pt-titulo">
-            <span class="pt-letra">P</span><span class="pt-letra">O</span><span class="pt-letra">R</span><span class="pt-letra">T</span><span class="pt-letra">F</span><span class="pt-letra">O</span><span class="pt-letra">L</span><span class="pt-letra">I</span><span class="pt-letra">O</span>
-        </h2>
         <div class="pt-badge">Projetos selecionados</div>
     </div>
 
