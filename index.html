@@ -108,6 +108,18 @@
             .blob { animation: none; }
         }
 
+        /* ===== BARRA DE PROGRESSO ===== */
+        #scrollProgress {
+            position: fixed;
+            top: 0; left: 0;
+            height: 3px;
+            width: 0%;
+            background: linear-gradient(90deg, var(--color-destaque2), var(--color-destaque1));
+            box-shadow: 0 0 12px rgba(var(--color-destaque1-rgb),0.6);
+            z-index: 1001;
+            transition: width 0.1s ease-out;
+        }
+
         /* ===== BOTÕES FIXOS ===== */
         .fixed-button {
             position: fixed;
@@ -1152,6 +1164,9 @@
 
 <body>
 
+    <!-- Barra de progresso de scroll -->
+    <div id="scrollProgress"></div>
+
     <!-- Glow de cursor global -->
     <div id="cursorGlow"></div>
 
@@ -1614,6 +1629,20 @@
             glow.classList.remove('active');
             active = false;
         });
+    })();
+
+    // ===== BARRA DE PROGRESSO =====
+    (function () {
+        const bar = document.getElementById('scrollProgress');
+        if (!bar) return;
+        function updateProgress() {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+            bar.style.width = pct + '%';
+        }
+        window.addEventListener('scroll', updateProgress, { passive: true });
+        updateProgress();
     })();
 
     // ===== BOTÕES FIXOS =====
