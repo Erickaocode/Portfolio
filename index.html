@@ -722,7 +722,7 @@
             gap: 6rem;
         }
 
-        .case1, .case2, .case3, .case4 {
+        .case1, .case2, .case3, .case4, .case5 {
             display: flex;
             align-items: center;
             gap: 3rem;
@@ -735,7 +735,27 @@
             aspect-ratio: 16/10;
             border-radius: 12px;
             overflow: hidden;
+            position: relative;
+            box-shadow: 0 20px 50px -20px rgba(0,0,0,0.6);
+            transition: box-shadow 0.4s ease;
         }
+
+        .imagens-case::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 60%, rgba(0,0,0,0.5));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .imagens-case:hover {
+            box-shadow: 0 25px 60px -15px rgba(var(--color-destaque1-rgb),0.15);
+        }
+
+        .imagens-case:hover::after { opacity: 1; }
 
         .slide {
             position: relative;
@@ -747,10 +767,12 @@
             object-fit: cover;
             position: absolute; top: 0; left: 0;
             opacity: 0;
-            transition: opacity 1s ease-in-out;
+            transition: opacity 1s ease-in-out, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .slide img.active { opacity: 1; }
+
+        .imagens-case:hover .slide img.active { transform: scale(1.06); }
 
         .prev, .next {
             cursor: pointer;
@@ -769,6 +791,29 @@
         .prev:hover, .next:hover { background: rgba(0,0,0,0.7); }
         .prev { left: 8px; }
         .next { right: 8px; }
+
+        .em-breve-placeholder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            background: hsla(0,0%,100%,0.03);
+            border: 1px dashed hsla(0,0%,100%,0.15);
+        }
+
+        .em-breve-placeholder i {
+            font-size: 3rem;
+            color: var(--color-gray1);
+        }
+
+        .em-breve-placeholder span {
+            font-family: var(--font-grande);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--color-gray2);
+            font-size: 0.9rem;
+        }
 
         .textos-case {
             width: 50%;
