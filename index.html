@@ -251,7 +251,21 @@
             display: flex; align-items: center; justify-content: center;
             padding: 6rem 2rem 2rem;
             z-index: 1; user-select: none;
+            position: relative;
+            overflow: hidden;
         }
+
+        .inicio-spotlight {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            background: radial-gradient(600px circle at var(--x, 50%) var(--y, 50%), rgba(var(--color-destaque1-rgb),0.08), transparent 60%);
+            transition: background 0.2s ease-out;
+        }
+
+        .container-inicio { position: relative; z-index: 1; }
 
         .container-inicio {
             width: 100%; max-width: 1400px;
@@ -274,11 +288,31 @@
             font-size: clamp(2.2rem, 5vw, 5rem);
             font-weight: 700;
             line-height: 1.1;
+            /* largura fixa: impede que o bloco inteiro se desloque horizontalmente
+               quando a frase do scramble muda de tamanho */
+            width: 100%;
+        }
+
+        .titulo-inicio h1 { font-size: inherit; }
+
+        .titulo-inicio h1:first-child {
+            background: linear-gradient(90deg, var(--color-white) 40%, var(--color-destaque1) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
 
         .destaque-inicio {
             color: var(--color-gray2);
             font-weight: 400;
+            /* reserva espaço para 2 linhas: evita que a página "trema" quando o texto do scramble
+               troca de frase e o número de linhas muda (ex: "Web Developer" -> "Engenheiro de Software") */
+            min-height: calc(1.1em * 2);
+        }
+
+        .scramble-char {
+            color: var(--color-destaque1);
+            opacity: 0.8;
         }
 
         .paragrafo-inicio p {
@@ -1211,11 +1245,14 @@
 
     <!-- Início -->
     <main id="inicio" class="inicio">
+        <div class="blob" style="width:400px;height:400px;top:80px;left:60px;background:radial-gradient(circle, rgba(61,90,153,0.4), transparent 70%);"></div>
+        <div class="blob" style="width:450px;height:450px;bottom:80px;right:60px;background:radial-gradient(circle, rgba(47,129,255,0.3), transparent 70%); animation-delay: -9s;"></div>
+        <div class="inicio-spotlight" id="inicioSpotlight"></div>
         <div class="container-inicio">
             <div class="conteudo-inicio" data-aos="fade-up" data-aos-duration="1000">
                 <div class="titulo-inicio">
                     <h1>Erick Silva│Dev</h1>
-                    <h1 class="destaque-inicio">Desenvolvedor Web</h1>
+                    <h1 class="destaque-inicio" id="destaqueInicio">Desenvolvedor Web</h1>
                 </div>
                 <div class="paragrafo-inicio" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
                     <p>Este site tem o propósito de mostrar os meus conhecimentos e projetos pessoais.</p>
@@ -1633,6 +1670,20 @@
         window.addEventListener('mouseleave', () => {
             glow.classList.remove('active');
             active = false;
+        });
+    })();
+
+    // ===== SPOTLIGHT DO MOUSE (INÍCIO) =====
+    (function () {
+        const inicio = document.getElementById('inicio');
+        const spotlight = document.getElementById('inicioSpotlight');
+        if (!inicio || !spotlight) return;
+        inicio.addEventListener('mousemove', (e) => {
+            const rect = inicio.getBoundingClientRect();
+            const x = ((e.clientX - rect.left) / rect.width) * 100;
+            const y = ((e.clientY - rect.top) / rect.height) * 100;
+            spotlight.style.setProperty('--x', x + '%');
+            spotlight.style.setProperty('--y', y + '%');
         });
     })();
 
