@@ -71,6 +71,29 @@
         li { list-style: none; }
         a { text-decoration: none; }
 
+        /* ===== BLOBS DECORATIVOS ===== */
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(70px);
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.5;
+            animation: blobFloat 16s ease-in-out infinite;
+            will-change: transform;
+            backface-visibility: hidden;
+        }
+
+        @keyframes blobFloat {
+            0%, 100% { transform: translate3d(0, 0, 0); }
+            33%      { transform: translate3d(4%, -6%, 0); }
+            66%      { transform: translate3d(-3%, 5%, 0); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .blob { animation: none; }
+        }
+
         /* ===== BOTÕES FIXOS ===== */
         .fixed-button {
             position: fixed;
