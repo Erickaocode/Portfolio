@@ -1048,13 +1048,33 @@
 
         /* Card do formulário */
         .card-formulario {
-            background: hsla(255,255,255,0.03);
+            position: relative;
+            background: hsla(0,0%,100%,0.03);
             border: 1px solid hsla(0,0%,100%,0.1);
             border-radius: 24px;
             padding: 3rem 2.5rem;
             display: flex; flex-direction: column;
             gap: 1.5rem;
             backdrop-filter: blur(6px);
+            transition: border-color 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .card-formulario:focus-within {
+            border-color: rgba(var(--color-destaque1-rgb), 0.4);
+            box-shadow: 0 25px 60px -25px rgba(var(--color-destaque1-rgb), 0.4);
+        }
+
+        .card-formulario-tag {
+            position: absolute;
+            top: -13px; left: 28px;
+            background: var(--color-black);
+            padding: 0 10px;
+            font-family: monospace;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            color: var(--color-destaque1);
+            border: 1px solid hsla(0,0%,100%,0.12);
+            border-radius: 6px;
         }
 
         .form-row {
@@ -1076,14 +1096,30 @@
             color: var(--color-gray2);
         }
 
+        .input-wrap {
+            position: relative;
+            display: flex;
+        }
+
+        .input-wrap i {
+            position: absolute;
+            left: 1rem; top: 1rem;
+            color: var(--color-gray2);
+            font-size: 0.95rem;
+            pointer-events: none;
+            transition: color 0.3s ease;
+        }
+
+        .input-wrap:focus-within i { color: var(--color-destaque1); }
+
         .form-group input,
         .form-group textarea {
             font-family: var(--font-pequena);
             width: 100%;
-            background: hsla(255,255,255,0.05);
+            background: hsla(0,0%,100%,0.05);
             border: 1px solid hsla(0,0%,100%,0.12);
             border-radius: 12px;
-            padding: 0.9rem 1rem;
+            padding: 0.9rem 1rem 0.9rem 2.7rem;
             font-size: 1rem;
             color: var(--color-white);
             outline: none;
@@ -1096,7 +1132,7 @@
         .form-group input:focus,
         .form-group textarea:focus {
             border-color: var(--color-destaque1);
-            background: hsla(255,255,255,0.08);
+            background: hsla(0,0%,100%,0.08);
         }
 
         .form-group textarea {
@@ -1129,7 +1165,7 @@
         .form-social-btn:hover {
             border-color: var(--color-destaque1);
             color: var(--color-destaque1);
-            background: hsla(231,252,0,0.06);
+            background: rgba(var(--color-destaque1-rgb),0.06);
         }
 
         .btn {
@@ -1150,7 +1186,7 @@
 
         .btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(231,252,0,0.25);
+            box-shadow: 0 8px 24px rgba(var(--color-destaque1-rgb),0.25);
         }
 
         .btn:active { transform: scale(0.97); }
