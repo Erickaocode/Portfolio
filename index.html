@@ -551,11 +551,15 @@
             width: 100%;
             padding: 5rem 2rem;
             display: flex; align-items: center; justify-content: center;
+            position: relative;
+            overflow: hidden;
         }
 
         .container-skills {
             width: 100%; max-width: 1400px;
             display: flex; flex-direction: column;
+            position: relative;
+            z-index: 1;
             align-items: center;
             gap: 3rem;
         }
@@ -584,15 +588,6 @@
             width: 100%;
         }
 
-        /* badge da skill (linguagem C, C++, C#) */
-        .skill-badge {
-            font-family: var(--font-grande);
-            font-size: clamp(1.6rem, 3vw, 2.4rem);
-            font-weight: 800;
-            color: var(--color-white);
-            line-height: 1;
-        }
-
         .box-skills {
             border: 1px solid hsla(0,0%,100%,0.12);
             border-radius: 20px;
@@ -602,19 +597,27 @@
             text-align: center;
             padding: 2rem 1rem;
             gap: 1rem;
-            transition: border-color 0.3s ease, transform 0.3s ease;
+            transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
             min-height: 180px;
+            background: hsla(0,0%,100%,0.015);
         }
 
         .box-skills:hover {
             border-color: var(--color-destaque1);
-            transform: translateY(-4px);
+            transform: translateY(-6px);
+            box-shadow: 0 12px 40px -12px rgba(var(--color-destaque1-rgb),0.35);
+            background: rgba(var(--color-destaque1-rgb),0.03);
         }
 
         .box-skills img {
             width: clamp(60px, 10vw, 100px);
             height: clamp(60px, 10vw, 100px);
             object-fit: contain;
+        }
+
+        .box-skills i {
+            font-size: clamp(2.4rem, 6vw, 3.6rem);
+            color: var(--color-destaque1);
         }
 
         .box-skills h3 { font-size: 1.1rem; }
