@@ -176,6 +176,11 @@
             background-color: rgba(8,8,8,0.92);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
+            /* isola o header em sua própria camada de composição: sem isso, o blur do
+               header precisa ser recalculado a cada frame das blobs animadas atrás dele,
+               o que em celulares mais fracos aparece como um "tremor" contínuo */
+            transform: translateZ(0);
+            backface-visibility: hidden;
         }
 
         .logo-text {
