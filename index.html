@@ -5,6 +5,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <title>Portfólio Erick│Dev</title>
+    <meta name="description" content="Portfólio de Erick Silva, desenvolvedor web. Projetos, skills e contato.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Portfólio Erick│Dev">
+    <meta property="og:description" content="Portfólio de Erick Silva, desenvolvedor web. Projetos, skills e contato.">
+    <meta property="og:image" content="assets/img/erickfoto.jpeg">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Portfólio Erick│Dev">
+    <meta name="twitter:description" content="Portfólio de Erick Silva, desenvolvedor web. Projetos, skills e contato.">
+    <meta name="twitter:image" content="assets/img/erickfoto.jpeg">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+
+    <!-- Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
 
     <!--Bootstrap Icons-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
@@ -30,8 +47,9 @@
             --color-gray1: #3d4143;
             --color-gray2: #9c9d9d;
             --color-white: #f6f6f6;
-            --color-destaque1: #e7fc00;
-            --color-destaque2: #728e6f;
+            --color-destaque1: #2f81ff;
+            --color-destaque1-rgb: 47,129,255;
+            --color-destaque2: #3d5a99;
         }
 
         /* ===== SCROLLBAR ===== */
@@ -52,6 +70,55 @@
 
         li { list-style: none; }
         a { text-decoration: none; }
+
+        /* ===== GLOW DE CURSOR GLOBAL ===== */
+        #cursorGlow {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 2;
+            background: radial-gradient(500px circle at var(--cx, 50%) var(--cy, 50%), rgba(var(--color-destaque1-rgb),0.06), transparent 70%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        #cursorGlow.active { opacity: 1; }
+
+        /* ===== BLOBS DECORATIVOS ===== */
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(70px);
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.5;
+            animation: blobFloat 16s ease-in-out infinite;
+            will-change: transform;
+            backface-visibility: hidden;
+        }
+
+        @keyframes blobFloat {
+            0%, 100% { transform: translate3d(0, 0, 0); }
+            33%      { transform: translate3d(4%, -6%, 0); }
+            66%      { transform: translate3d(-3%, 5%, 0); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .blob { animation: none; }
+        }
+
+        /* ===== BARRA DE PROGRESSO ===== */
+        #scrollProgress {
+            position: fixed;
+            top: 0; left: 0;
+            height: 3px;
+            width: 0%;
+            background: linear-gradient(90deg, var(--color-destaque2), var(--color-destaque1));
+            box-shadow: 0 0 12px rgba(var(--color-destaque1-rgb),0.6);
+            z-index: 1001;
+            transition: width 0.1s ease-out;
+        }
 
         /* ===== BOTÕES FIXOS ===== */
         .fixed-button {
@@ -109,6 +176,11 @@
             background-color: rgba(8,8,8,0.92);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
+            /* isola o header em sua própria camada de composição: sem isso, o blur do
+               header precisa ser recalculado a cada frame das blobs animadas atrás dele,
+               o que em celulares mais fracos aparece como um "tremor" contínuo */
+            transform: translateZ(0);
+            backface-visibility: hidden;
         }
 
         .logo-text {
@@ -179,7 +251,21 @@
             display: flex; align-items: center; justify-content: center;
             padding: 6rem 2rem 2rem;
             z-index: 1; user-select: none;
+            position: relative;
+            overflow: hidden;
         }
+
+        .inicio-spotlight {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            background: radial-gradient(600px circle at var(--x, 50%) var(--y, 50%), rgba(var(--color-destaque1-rgb),0.08), transparent 60%);
+            transition: background 0.2s ease-out;
+        }
+
+        .container-inicio { position: relative; z-index: 1; }
 
         .container-inicio {
             width: 100%; max-width: 1400px;
@@ -202,11 +288,31 @@
             font-size: clamp(2.2rem, 5vw, 5rem);
             font-weight: 700;
             line-height: 1.1;
+            /* largura fixa: impede que o bloco inteiro se desloque horizontalmente
+               quando a frase do scramble muda de tamanho */
+            width: 100%;
+        }
+
+        .titulo-inicio h1 { font-size: inherit; }
+
+        .titulo-inicio h1:first-child {
+            background: linear-gradient(90deg, var(--color-white) 40%, var(--color-destaque1) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
 
         .destaque-inicio {
             color: var(--color-gray2);
             font-weight: 400;
+            /* reserva espaço para 2 linhas: evita que a página "trema" quando o texto do scramble
+               troca de frase e o número de linhas muda (ex: "Web Developer" -> "Engenheiro de Software") */
+            min-height: calc(1.1em * 2);
+        }
+
+        .scramble-char {
+            color: var(--color-destaque1);
+            opacity: 0.8;
         }
 
         .paragrafo-inicio p {
@@ -278,6 +384,7 @@
             padding: 5rem 2rem;
             z-index: 1; user-select: none;
             overflow: hidden;
+            position: relative;
         }
 
         .container-sobre {
@@ -285,6 +392,8 @@
             margin: 0 auto;
             display: flex; flex-direction: column;
             gap: 3rem;
+            position: relative;
+            z-index: 1;
         }
 
         /* Headline scroll */
@@ -292,6 +401,8 @@
             width: 100vw;
             margin-left: calc(-50vw + 50%);
             overflow: hidden;
+            -webkit-mask-image: linear-gradient(90deg, transparent, black 12%, black 88%, transparent);
+            mask-image: linear-gradient(90deg, transparent, black 12%, black 88%, transparent);
         }
 
         .headline-scroll {
@@ -318,9 +429,18 @@
             background-color: var(--color-gray2);
             border-radius: 50%;
             margin: 0 20px; flex-shrink: 0;
+            box-shadow: 0 0 12px rgba(var(--color-destaque1-rgb),0.6);
         }
 
-        .headline-scroll .bold  { font-weight: bold; color: var(--color-white); }
+        .headline-scroll .bold {
+            font-weight: bold;
+            background: linear-gradient(90deg, var(--color-white), var(--color-destaque1));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 30px rgba(var(--color-destaque1-rgb),0.25);
+        }
+
         .headline-scroll .light { font-weight: lighter; color: var(--color-gray2); }
 
         /* Conteúdo sobre */
@@ -342,6 +462,11 @@
             font-size: clamp(1.8rem, 3vw, 3rem);
             font-family: var(--font-grande);
             margin-bottom: 1rem;
+            line-height: 1.2;
+            /* mesma razão do título do contato: reserva 2 linhas para o texto do scramble
+               não mudar de altura (1 <-> 2 linhas) e empurrar o parágrafo abaixo */
+            min-height: calc(1.2em * 2);
+            display: block;
         }
 
         .textos-sobre p {
@@ -355,20 +480,55 @@
         .redes-sociais {
             width: 100%;
             display: flex; flex-direction: column;
-            gap: 1rem;
+            gap: 0.5rem;
         }
 
         .redes-sociais a {
-            display: flex; justify-content: space-between; align-items: center;
+            display: flex; align-items: center; gap: 1rem;
             color: var(--color-gray2);
             font-size: clamp(0.9rem, 1.2vw, 1.2rem);
             width: 100%;
-            padding-bottom: 8px;
+            padding: 10px 6px;
             border-bottom: 1px solid hsla(0,0%,100%,0.15);
             transition: color 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
 
+        .redes-sociais a::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, rgba(var(--color-destaque1-rgb),0.1), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.4s ease;
+            z-index: 0;
+        }
+
+        .redes-sociais a:hover::before { transform: translateX(0); }
+        .redes-sociais a > * { position: relative; z-index: 1; }
+
+        .rede-icon {
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.1rem;
+            color: #fff;
+            flex-shrink: 0;
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .rede-icon.instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+        .rede-icon.github { background: #24292e; }
+        .rede-icon.linkedin { background: #0A66C2; }
+
+        .rede-label { flex: 1; font-weight: 600; letter-spacing: 1px; }
+
+        .redes-sociais a i.bi-arrow-right { transition: transform 0.3s ease; }
+
         .redes-sociais a:hover { color: var(--color-destaque1); }
+        .redes-sociais a:hover .rede-icon { transform: scale(1.12) rotate(-8deg); }
+        .redes-sociais a:hover i.bi-arrow-right { transform: translateX(6px); }
 
         .right-sobre {
             width: 50%;
@@ -384,18 +544,6 @@
             position: relative;
         }
 
-        .complemento-sobre {
-            position: absolute;
-            width: 160px; height: 160px;
-            top: -20px; right: 0;
-            z-index: 1;
-        }
-
-        .complemento-sobre img {
-            width: 100%;
-            animation: rotate 20s linear infinite;
-        }
-
         @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
         /* ===== SKILLS ===== */
@@ -403,11 +551,15 @@
             width: 100%;
             padding: 5rem 2rem;
             display: flex; align-items: center; justify-content: center;
+            position: relative;
+            overflow: hidden;
         }
 
         .container-skills {
             width: 100%; max-width: 1400px;
             display: flex; flex-direction: column;
+            position: relative;
+            z-index: 1;
             align-items: center;
             gap: 3rem;
         }
@@ -436,15 +588,6 @@
             width: 100%;
         }
 
-        /* badge da skill (linguagem C, C++, C#) */
-        .skill-badge {
-            font-family: var(--font-grande);
-            font-size: clamp(1.6rem, 3vw, 2.4rem);
-            font-weight: 800;
-            color: var(--color-white);
-            line-height: 1;
-        }
-
         .box-skills {
             border: 1px solid hsla(0,0%,100%,0.12);
             border-radius: 20px;
@@ -454,19 +597,27 @@
             text-align: center;
             padding: 2rem 1rem;
             gap: 1rem;
-            transition: border-color 0.3s ease, transform 0.3s ease;
+            transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
             min-height: 180px;
+            background: hsla(0,0%,100%,0.015);
         }
 
         .box-skills:hover {
             border-color: var(--color-destaque1);
-            transform: translateY(-4px);
+            transform: translateY(-6px);
+            box-shadow: 0 12px 40px -12px rgba(var(--color-destaque1-rgb),0.35);
+            background: rgba(var(--color-destaque1-rgb),0.03);
         }
 
         .box-skills img {
             width: clamp(60px, 10vw, 100px);
             height: clamp(60px, 10vw, 100px);
             object-fit: contain;
+        }
+
+        .box-skills i {
+            font-size: clamp(2.4rem, 6vw, 3.6rem);
+            color: var(--color-destaque1);
         }
 
         .box-skills h3 { font-size: 1.1rem; }
@@ -478,7 +629,7 @@
             background-color: var(--color-black);
             overflow: hidden;
             position: relative;
-            padding: 5rem 0 3rem;
+            padding: 3.5rem 0;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -496,65 +647,25 @@
             transition: width 1.2s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .portfolio-transicao.pt-visible .pt-linha { width: 80%; }
+        .portfolio-transicao.pt-visible .pt-linha { width: 70%; }
 
-        /* texto outline gigante */
-        .pt-titulo {
-            font-family: var(--font-grande);
-            font-size: clamp(5rem, 18vw, 18rem);
-            font-weight: 800;
-            letter-spacing: -0.02em;
-            line-height: 1;
-            color: transparent;
-            -webkit-text-stroke: 1px hsla(0,0%,100%,0.15);
-            user-select: none;
+        /* badge central */
+        .pt-badge {
             position: relative;
             z-index: 1;
-            /* cada letra vem de baixo */
-            display: flex;
-            overflow: hidden;
-            padding: 0.1em 0;
-        }
-
-        .pt-letra {
-            display: inline-block;
-            transform: translateY(110%);
-            opacity: 0;
-            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-                        opacity 0.5s ease;
-        }
-
-        .portfolio-transicao.pt-visible .pt-letra {
-            transform: translateY(0);
-            opacity: 1;
-        }
-
-        /* delay por letra */
-        .pt-letra:nth-child(1)  { transition-delay: 0.00s; }
-        .pt-letra:nth-child(2)  { transition-delay: 0.05s; }
-        .pt-letra:nth-child(3)  { transition-delay: 0.10s; }
-        .pt-letra:nth-child(4)  { transition-delay: 0.15s; }
-        .pt-letra:nth-child(5)  { transition-delay: 0.20s; }
-        .pt-letra:nth-child(6)  { transition-delay: 0.25s; }
-        .pt-letra:nth-child(7)  { transition-delay: 0.30s; }
-        .pt-letra:nth-child(8)  { transition-delay: 0.35s; }
-        .pt-letra:nth-child(9)  { transition-delay: 0.40s; }
-
-        /* badge sobreposto */
-        .pt-badge {
-            position: absolute;
-            bottom: 2.5rem;
-            right: clamp(1rem, 5vw, 5rem);
             display: flex;
             align-items: center;
-            gap: 0.6rem;
+            gap: 0.8rem;
+            background: var(--color-black);
+            padding: 0 1.5rem;
             color: var(--color-gray2);
-            font-size: 0.85rem;
-            letter-spacing: 2px;
+            font-family: var(--font-grande);
+            font-size: clamp(0.8rem, 1.2vw, 0.95rem);
+            letter-spacing: 3px;
             text-transform: uppercase;
             opacity: 0;
             transform: translateY(10px);
-            transition: opacity 0.8s ease 0.6s, transform 0.8s ease 0.6s;
+            transition: opacity 0.8s ease 0.3s, transform 0.8s ease 0.3s;
         }
 
         .portfolio-transicao.pt-visible .pt-badge {
@@ -562,10 +673,12 @@
             transform: translateY(0);
         }
 
-        .pt-badge::before {
+        .pt-badge::before,
+        .pt-badge::after {
             content: '';
             width: 30px; height: 1px;
             background: var(--color-destaque1);
+            flex-shrink: 0;
         }
 
         /* ===== PORTFOLIO ===== */
@@ -609,7 +722,7 @@
             gap: 6rem;
         }
 
-        .case1, .case2, .case3, .case4 {
+        .case1, .case2, .case3, .case4, .case5 {
             display: flex;
             align-items: center;
             gap: 3rem;
@@ -622,7 +735,27 @@
             aspect-ratio: 16/10;
             border-radius: 12px;
             overflow: hidden;
+            position: relative;
+            box-shadow: 0 20px 50px -20px rgba(0,0,0,0.6);
+            transition: box-shadow 0.4s ease;
         }
+
+        .imagens-case::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 60%, rgba(0,0,0,0.5));
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .imagens-case:hover {
+            box-shadow: 0 25px 60px -15px rgba(var(--color-destaque1-rgb),0.15);
+        }
+
+        .imagens-case:hover::after { opacity: 1; }
 
         .slide {
             position: relative;
@@ -634,10 +767,12 @@
             object-fit: cover;
             position: absolute; top: 0; left: 0;
             opacity: 0;
-            transition: opacity 1s ease-in-out;
+            transition: opacity 1s ease-in-out, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .slide img.active { opacity: 1; }
+
+        .imagens-case:hover .slide img.active { transform: scale(1.06); }
 
         .prev, .next {
             cursor: pointer;
@@ -656,6 +791,29 @@
         .prev:hover, .next:hover { background: rgba(0,0,0,0.7); }
         .prev { left: 8px; }
         .next { right: 8px; }
+
+        .em-breve-placeholder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            background: hsla(0,0%,100%,0.03);
+            border: 1px dashed hsla(0,0%,100%,0.15);
+        }
+
+        .em-breve-placeholder i {
+            font-size: 3rem;
+            color: var(--color-gray1);
+        }
+
+        .em-breve-placeholder span {
+            font-family: var(--font-grande);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--color-gray2);
+            font-size: 0.9rem;
+        }
 
         .textos-case {
             width: 50%;
@@ -765,12 +923,12 @@
             top: -100px; left: 50%;
             transform: translateX(-50%);
             width: 600px; height: 600px;
-            background: radial-gradient(circle, rgba(231,252,0,0.07) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(var(--color-destaque1-rgb),0.07) 0%, transparent 70%);
             pointer-events: none;
         }
 
         .container-contato {
-            width: 100%; max-width: 1000px;
+            width: 100%; max-width: 1180px;
             margin: 0 auto;
             display: flex; flex-direction: column;
             gap: 3rem;
@@ -778,60 +936,145 @@
             z-index: 1;
         }
 
+        /* Grid assimétrico: infos à esquerda, formulário à direita */
+        .contato-grid {
+            display: grid;
+            grid-template-columns: 0.85fr 1.15fr;
+            gap: 3.5rem;
+            align-items: center;
+        }
+
+        .contato-info {
+            display: flex; flex-direction: column;
+            align-items: flex-start;
+            gap: 1.4rem;
+        }
+
+        .contato-status {
+            display: inline-flex; align-items: center; gap: 0.6rem;
+            padding: 0.45rem 1rem;
+            border: 1px solid hsla(0,0%,100%,0.15);
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--color-gray2);
+        }
+
+        .status-dot {
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: #3ddc84;
+            flex-shrink: 0;
+            animation: statusPulse 2s infinite;
+        }
+
+        @keyframes statusPulse {
+            0%   { box-shadow: 0 0 0 0 rgba(61,220,132,0.5); }
+            70%  { box-shadow: 0 0 0 8px rgba(61,220,132,0); }
+            100% { box-shadow: 0 0 0 0 rgba(61,220,132,0); }
+        }
+
         .headline-contato {
             display: flex; flex-direction: column;
-            align-items: center;
-            text-align: center;
+            align-items: flex-start;
+            text-align: left;
             gap: 1rem;
+        }
+
+        .titulo-contato {
+            /* largura fixa: com align-items:center (mobile) esse bloco encolhe para o
+               tamanho do texto e fica centralizado; como o efeito scramble troca letras
+               por símbolos de largura diferente, o bloco inteiro ficava se deslocando
+               (tremor) a cada troca. Com width:100% ele não muda mais de tamanho. */
+            width: 100%;
         }
 
         .titulo-contato h1 {
             color: var(--color-white);
-            font-size: clamp(2.8rem, 7vw, 6rem);
+            font-size: clamp(2.4rem, 5vw, 4.2rem);
             font-weight: 700;
             font-family: var(--font-grande);
-            line-height: 1;
+            line-height: 1.05;
+            /* reserva espaço para 2 linhas: os caracteres aleatórios do scramble (símbolos)
+               têm largura diferente das letras finais, então por uma fração de segundo a
+               quebra de linha do texto pode mudar (1 <-> 2 linhas), empurrando o que vem
+               abaixo e dando a sensação de tremor a cada repetição do efeito */
+            min-height: calc(1.05em * 2);
+            display: block;
         }
 
         .subtitulo-contato {
             color: var(--color-gray2);
-            font-size: clamp(1rem, 1.5vw, 1.2rem);
-            max-width: 500px;
+            font-size: clamp(1rem, 1.5vw, 1.1rem);
+            max-width: 420px;
             line-height: 1.6;
         }
 
         /* Infos de contato rápido */
         .contato-rapido {
             display: flex;
-            justify-content: center;
+            flex-direction: column;
+            align-items: flex-start;
             gap: 1rem;
-            flex-wrap: wrap;
         }
 
         .contato-chip {
-            display: flex; align-items: center; gap: 0.5rem;
-            padding: 0.5rem 1.2rem;
-            border: 1px solid hsla(0,0%,100%,0.15);
-            border-radius: 50px;
+            display: flex; align-items: center; gap: 0.8rem;
             color: var(--color-gray2);
-            font-size: 0.9rem;
-            transition: border-color 0.3s, color 0.3s;
-            cursor: default;
+            font-size: 0.95rem;
+            transition: color 0.3s;
         }
 
-        .contato-chip i { color: var(--color-destaque1); font-size: 1rem; }
+        .contato-chip-icon {
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+            background: hsla(0,0%,100%,0.06);
+            border: 1px solid hsla(0,0%,100%,0.12);
+            color: var(--color-destaque1);
+            font-size: 0.95rem;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+
         .contato-chip a { color: inherit; }
-        .contato-chip:hover { border-color: var(--color-destaque1); color: var(--color-white); }
+        .contato-chip:hover { color: var(--color-white); }
+        .contato-chip:hover .contato-chip-icon {
+            transform: scale(1.12) rotate(-6deg);
+            background: rgba(var(--color-destaque1-rgb), 0.15);
+        }
 
         /* Card do formulário */
         .card-formulario {
-            background: hsla(255,255,255,0.03);
+            position: relative;
+            background: hsla(0,0%,100%,0.03);
             border: 1px solid hsla(0,0%,100%,0.1);
             border-radius: 24px;
             padding: 3rem 2.5rem;
             display: flex; flex-direction: column;
             gap: 1.5rem;
             backdrop-filter: blur(6px);
+            transition: border-color 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .card-formulario:focus-within {
+            border-color: rgba(var(--color-destaque1-rgb), 0.4);
+            box-shadow: 0 25px 60px -25px rgba(var(--color-destaque1-rgb), 0.4);
+        }
+
+        .card-formulario-tag {
+            position: absolute;
+            top: -13px; left: 28px;
+            background: var(--color-black);
+            padding: 0 10px;
+            font-family: monospace;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            color: var(--color-destaque1);
+            border: 1px solid hsla(0,0%,100%,0.12);
+            border-radius: 6px;
         }
 
         .form-row {
@@ -853,14 +1096,30 @@
             color: var(--color-gray2);
         }
 
+        .input-wrap {
+            position: relative;
+            display: flex;
+        }
+
+        .input-wrap i {
+            position: absolute;
+            left: 1rem; top: 1rem;
+            color: var(--color-gray2);
+            font-size: 0.95rem;
+            pointer-events: none;
+            transition: color 0.3s ease;
+        }
+
+        .input-wrap:focus-within i { color: var(--color-destaque1); }
+
         .form-group input,
         .form-group textarea {
             font-family: var(--font-pequena);
             width: 100%;
-            background: hsla(255,255,255,0.05);
+            background: hsla(0,0%,100%,0.05);
             border: 1px solid hsla(0,0%,100%,0.12);
             border-radius: 12px;
-            padding: 0.9rem 1rem;
+            padding: 0.9rem 1rem 0.9rem 2.7rem;
             font-size: 1rem;
             color: var(--color-white);
             outline: none;
@@ -873,7 +1132,7 @@
         .form-group input:focus,
         .form-group textarea:focus {
             border-color: var(--color-destaque1);
-            background: hsla(255,255,255,0.08);
+            background: hsla(0,0%,100%,0.08);
         }
 
         .form-group textarea {
@@ -906,7 +1165,7 @@
         .form-social-btn:hover {
             border-color: var(--color-destaque1);
             color: var(--color-destaque1);
-            background: hsla(231,252,0,0.06);
+            background: rgba(var(--color-destaque1-rgb),0.06);
         }
 
         .btn {
@@ -927,12 +1186,20 @@
 
         .btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 24px rgba(231,252,0,0.25);
+            box-shadow: 0 8px 24px rgba(var(--color-destaque1-rgb),0.25);
         }
 
         .btn:active { transform: scale(0.97); }
 
         /* Mobile contato */
+        @media (max-width: 900px) {
+            .contato-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+            .contato-info { align-items: center; text-align: center; }
+            .headline-contato { align-items: center; text-align: center; }
+            .subtitulo-contato { max-width: 100%; }
+            .contato-rapido { align-items: center; }
+        }
+
         @media (max-width: 768px) {
             .contato { padding: 4rem 1.2rem; }
             .card-formulario { padding: 2rem 1.2rem; }
@@ -1015,6 +1282,11 @@
         /* ===== RESPONSIVIDADE MOBILE ===== */
         @media (max-width: 768px) {
 
+            /* Blobs: em celulares o blur animado junto com o header fixo (backdrop-filter)
+               costuma sobrecarregar a GPU e dar sensação de "tremor" na tela; aqui elas ficam
+               paradas (sem animação) e com blur mais leve, sem mudar posição/tamanho/layout */
+            .blob { animation: none; filter: blur(40px); }
+
             /* Header */
             .header { padding: 1rem 1.2rem; }
 
@@ -1029,7 +1301,6 @@
             .left-sobre  { width: 100%; }
             .right-sobre { width: 100%; justify-content: center; }
             .imagem-sobre img { max-width: 260px; }
-            .complemento-sobre { width: 100px; height: 100px; top: -10px; right: calc(50% - 130px - 50px); }
             .textos-sobre h1 { font-size: 1.8rem; }
             .textos-sobre p  { font-size: 0.95rem; }
             .redes-sociais a { font-size: 0.9rem; }
@@ -1039,6 +1310,7 @@
             .conteudo-skills { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
             .box-skills { min-height: 140px; padding: 1.2rem 0.8rem; }
             .box-skills img { width: 55px; height: 55px; }
+            .box-skills i { font-size: 2.2rem; }
 
             /* Free your mind */
             .free-your-mind { padding: 0.5rem 1rem; }
@@ -1056,7 +1328,7 @@
 
             .container-case { gap: 4rem; }
 
-            .case1, .case2, .case3, .case4 {
+            .case1, .case2, .case3, .case4, .case5 {
                 flex-direction: column !important;
                 gap: 1.5rem;
             }
@@ -1097,6 +1369,12 @@
 
 <body>
 
+    <!-- Barra de progresso de scroll -->
+    <div id="scrollProgress"></div>
+
+    <!-- Glow de cursor global -->
+    <div id="cursorGlow"></div>
+
     <!-- Botão voltar ao topo -->
     <div id="backToTop" class="fixed-button">
         <i class="bi bi-chevron-up"></i>
@@ -1125,7 +1403,7 @@
             <nav class="nav-menu">
                 <a href="#inicio">INÍCIO</a>
                 <a href="#sobre">SOBRE</a>
-                <a href="#portfolio">PORTFOLIO</a>
+                <a href="#portfolio">PROJETOS</a>
                 <a href="#contato">CONTATO</a>
             </nav>
         </div>
@@ -1133,11 +1411,14 @@
 
     <!-- Início -->
     <main id="inicio" class="inicio">
+        <div class="blob" style="width:400px;height:400px;top:80px;left:60px;background:radial-gradient(circle, rgba(61,90,153,0.4), transparent 70%);"></div>
+        <div class="blob" style="width:450px;height:450px;bottom:80px;right:60px;background:radial-gradient(circle, rgba(47,129,255,0.3), transparent 70%); animation-delay: -9s;"></div>
+        <div class="inicio-spotlight" id="inicioSpotlight"></div>
         <div class="container-inicio">
             <div class="conteudo-inicio" data-aos="fade-up" data-aos-duration="1000">
                 <div class="titulo-inicio">
                     <h1>Erick Silva│Dev</h1>
-                    <h1 class="destaque-inicio">Desenvolvedor Web</h1>
+                    <h1 class="destaque-inicio" id="destaqueInicio">Desenvolvedor Web</h1>
                 </div>
                 <div class="paragrafo-inicio" data-aos="fade-up" data-aos-delay="200" data-aos-duration="1000">
                     <p>Este site tem o propósito de mostrar os meus conhecimentos e projetos pessoais.</p>
@@ -1152,6 +1433,8 @@
 
     <!-- Sobre -->
     <section id="sobre" class="sobre">
+        <div class="blob" style="width:420px;height:420px;top:80px;left:60px;background:radial-gradient(circle, rgba(47,129,255,0.35), transparent 70%);"></div>
+        <div class="blob" style="width:360px;height:360px;bottom:80px;right:60px;background:radial-gradient(circle, rgba(61,90,153,0.35), transparent 70%); animation-delay: -6s;"></div>
         <div class="container-sobre">
             <!-- Headline scroll -->
             <div class="headline-sobre" data-aos="fade-up" data-aos-duration="1000">
@@ -1178,23 +1461,32 @@
             <div class="conteudo-sobre">
                 <div class="left-sobre" data-aos="fade-right" data-aos-duration="1000">
                     <div class="textos-sobre">
-                        <h1>Olá, sou o Erick Silva!</h1>
+                        <h1 id="scrambleSobre">Olá, sou o Erick Silva!</h1>
                         <p>Sou apaixonado por tecnologia e desenvolvimento, sempre buscando evoluir minhas habilidades e criar soluções modernas e funcionais. Tenho experiência no desenvolvimento de projetos web e estou constantemente aprimorando meus conhecimentos para entregar interfaces cada vez mais intuitivas, responsivas e bem estruturadas. Meu objetivo é transformar ideias em experiências digitais que unam desempenho, estética e usabilidade.
                         <br><br>
                         </p>
                     </div>
                     <div class="redes-sociais">
-                        <a href="https://www.instagram.com/_erickz77_/" target="_blank">INSTAGRAM <i class="bi bi-arrow-right"></i></a>
-                        <a href="https://github.com/Erickaocode/" target="_blank">GITHUB <i class="bi bi-arrow-right"></i></a>
-                        <a href="https://www.linkedin.com/in/erick-silva-8579002b0/" target="_blank">LINKEDIN <i class="bi bi-arrow-right"></i></a>
+                        <a href="https://www.instagram.com/_erickz77_/" target="_blank">
+                            <span class="rede-icon instagram"><i class="bi bi-instagram"></i></span>
+                            <span class="rede-label">INSTAGRAM</span>
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
+                        <a href="https://github.com/Erickaocode/" target="_blank">
+                            <span class="rede-icon github"><i class="bi bi-github"></i></span>
+                            <span class="rede-label">GITHUB</span>
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/erick-silva-8579002b0/" target="_blank">
+                            <span class="rede-icon linkedin"><i class="bi bi-linkedin"></i></span>
+                            <span class="rede-label">LINKEDIN</span>
+                            <i class="bi bi-arrow-right"></i>
+                        </a>
                     </div>
                 </div>
                 <div class="right-sobre" data-aos="fade-left" data-aos-duration="1000">
                     <div class="imagem-sobre">
                         <img src="assets/img/erickfoto.jpeg" alt="Foto do Erick">
-                    </div>
-                    <div class="complemento-sobre">
-                        <img src="assets/img/texto-giratorio.png" alt="">
                     </div>
                 </div>
             </div>
@@ -1203,68 +1495,130 @@
 
     <!-- Skills -->
     <section id="skills" class="skills">
+        <div class="blob" style="width:420px;height:420px;top:60px;right:60px;background:radial-gradient(circle, rgba(47,129,255,0.25), transparent 70%); animation-delay: -3s;"></div>
         <div class="container-skills" data-aos="fade-up" data-aos-duration="1000">
             <div class="headline-skills">
                 <div class="text-headline-skills">
                     <h2>Minhas Skills</h2>
-                    <p>Essas são as linguagens que tenho domínio</p>
+                    <p>Tecnologias e ferramentas que uso no dia a dia</p>
                 </div>
             </div>
             <div class="conteudo-skills">
-                <!-- HTML -->
-                <div class="box-skills" data-aos="fade-up" data-aos-delay="50" data-aos-duration="700">
+                <div class="box-skills" data-aos="fade-up" data-aos-delay="20" data-aos-duration="700">
                     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML5">
                     <h3>HTML</h3>
                 </div>
-                <!-- CSS -->
-                <div class="box-skills" data-aos="fade-up" data-aos-delay="100" data-aos-duration="700">
+                <div class="box-skills" data-aos="fade-up" data-aos-delay="40" data-aos-duration="700">
                     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS3">
                     <h3>CSS</h3>
                 </div>
-                <!-- JavaScript -->
-                <div class="box-skills" data-aos="fade-up" data-aos-delay="150" data-aos-duration="700">
+                <div class="box-skills" data-aos="fade-up" data-aos-delay="60" data-aos-duration="700">
                     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript">
                     <h3>JavaScript</h3>
                 </div>
-                <!-- MySQL -->
-                <div class="box-skills" data-aos="fade-up" data-aos-delay="200" data-aos-duration="700">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL">
-                    <h3>MySQL</h3>
-                </div>
-                <!-- Linux -->
-                <div class="box-skills" data-aos="fade-up" data-aos-delay="250" data-aos-duration="700">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux">
-                    <h3>Linux</h3>
-                </div>
-                <!-- PHP -->
-                <div class="box-skills" data-aos="fade-up" data-aos-delay="300" data-aos-duration="700">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP">
-                    <h3>PHP</h3>
-                </div>
-                <!-- TypeScript -->
-                <div class="box-skills" data-aos="fade-up" data-aos-delay="350" data-aos-duration="700">
+                <div class="box-skills" data-aos="fade-up" data-aos-delay="80" data-aos-duration="700">
                     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" alt="TypeScript">
                     <h3>TypeScript</h3>
                 </div>
-                <!-- React -->
-                <div class="box-skills" data-aos="fade-up" data-aos-delay="400" data-aos-duration="700">
+                <div class="box-skills" data-aos="fade-up" data-aos-delay="100" data-aos-duration="700">
                     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React">
                     <h3>React</h3>
                 </div>
-                <!-- Linguagem C -->
-                <div class="box-skills" data-aos="fade-up" data-aos-delay="450" data-aos-duration="700">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" alt="C">
-                    <h3>Linguagem C</h3>
+                <div class="box-skills" data-aos="fade-up" data-aos-delay="120" data-aos-duration="700">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg" alt="Vue.js">
+                    <h3>Vue.js</h3>
                 </div>
-                <!-- C++ -->
-                <div class="box-skills" data-aos="fade-up" data-aos-delay="500" data-aos-duration="700">
+                <div class="box-skills" data-aos="fade-up" data-aos-delay="140" data-aos-duration="700">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="PHP">
+                    <h3>PHP</h3>
+                </div>
+                <div class="box-skills" data-aos="fade-up" data-aos-delay="160" data-aos-duration="700">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg" alt="Laravel">
+                    <h3>Laravel</h3>
+                </div>
+                <div class="box-skills" data-aos="fade-up" data-aos-delay="180" data-aos-duration="700">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" alt="C#">
+                    <h3>C#</h3>
+                </div>
+                <div class="box-skills" data-aos="fade-up" data-aos-delay="200" data-aos-duration="700">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dotnetcore/dotnetcore-plain.svg" alt="ASP.NET Core">
+                    <h3>ASP.NET Core</h3>
+                </div>
+                <div class="box-skills" data-aos="fade-up" data-aos-delay="220" data-aos-duration="700">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" alt="C">
+                    <h3>C</h3>
+                </div>
+                <div class="box-skills" data-aos="fade-up" data-aos-delay="240" data-aos-duration="700">
                     <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" alt="C++">
                     <h3>C++</h3>
                 </div>
-                <!-- C# -->
-                <div class="box-skills" data-aos="fade-up" data-aos-delay="550" data-aos-duration="700">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" alt="C#">
-                    <h3>C#</h3>
+                <div class="box-skills" data-aos="fade-up" data-aos-delay="260" data-aos-duration="700">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL">
+                    <h3>MySQL</h3>
+                </div>
+                <div class="box-skills" data-aos="fade-up" data-aos-delay="280" data-aos-duration="700">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/microsoftsqlserver/microsoftsqlserver-plain.svg" alt="SQL Server">
+                    <h3>SQL Server</h3>
+                </div>
+                <div class="box-skills" data-aos="fade-up" data-aos-delay="300" data-aos-duration="700">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg" alt="Supabase">
+                    <h3>Supabase</h3>
+                </div>
+                <div class="box-skills" data-aos="fade-up" data-aos-delay="320" data-aos-duration="700">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-plain.svg" alt="Docker">
+                    <h3>Docker</h3>
+                </div>
+                <div class="box-skills" data-aos="fade-up" data-aos-delay="340" data-aos-duration="700">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git">
+                    <h3>Git</h3>
+                </div>
+                <div class="box-skills" data-aos="fade-up" data-aos-delay="360" data-aos-duration="700">
+                    <i class="bi bi-github"></i>
+                    <h3>GitHub</h3>
+                </div>
+                <div class="box-skills" data-aos="fade-up" data-aos-delay="380" data-aos-duration="700">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg" alt="Postman">
+                    <h3>Postman</h3>
+                </div>
+                <div class="box-skills" data-aos="fade-up" data-aos-delay="400" data-aos-duration="700">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/swagger/swagger-original.svg" alt="Swagger">
+                    <h3>Swagger</h3>
+                </div>
+                <div class="box-skills" data-aos="fade-up" data-aos-delay="420" data-aos-duration="700">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux">
+                    <h3>Linux</h3>
+                </div>
+                <div class="box-skills" data-aos="fade-up" data-aos-delay="440" data-aos-duration="700">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/windows8/windows8-original.svg" alt="Windows">
+                    <h3>Windows</h3>
+                </div>
+                <div class="box-skills" data-aos="fade-up" data-aos-delay="460" data-aos-duration="700">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bash/bash-original.svg" alt="Bash">
+                    <h3>Bash</h3>
+                </div>
+                <div class="box-skills" data-aos="fade-up" data-aos-delay="480" data-aos-duration="700">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/powershell/powershell-original.svg" alt="PowerShell">
+                    <h3>PowerShell</h3>
+                </div>
+                <div class="box-skills" data-aos="fade-up" data-aos-delay="500" data-aos-duration="700">
+                    <i class="bi bi-robot"></i>
+                    <h3>IA Generativa</h3>
+                </div>
+                <div class="box-skills" data-aos="fade-up" data-aos-delay="520" data-aos-duration="700">
+                    <i class="bi bi-diagram-3"></i>
+                    <h3>AI Agents & n8n</h3>
+                </div>
+                <div class="box-skills" data-aos="fade-up" data-aos-delay="540" data-aos-duration="700">
+                    <i class="bi bi-stars"></i>
+                    <h3>Google Gemini</h3>
+                </div>
+                <div class="box-skills" data-aos="fade-up" data-aos-delay="560" data-aos-duration="700">
+                    <i class="bi bi-terminal"></i>
+                    <h3>Ollama</h3>
+                </div>
+                <div class="box-skills" data-aos="fade-up" data-aos-delay="580" data-aos-duration="700">
+                    <i class="bi bi-chat-dots"></i>
+                    <h3>Botpress</h3>
                 </div>
             </div>
         </div>
@@ -1273,9 +1627,6 @@
     <!-- Transição Portfolio -->
     <div class="portfolio-transicao" id="portfolio-transicao" aria-hidden="true">
         <div class="pt-linha"></div>
-        <h2 class="pt-titulo">
-            <span class="pt-letra">P</span><span class="pt-letra">O</span><span class="pt-letra">R</span><span class="pt-letra">T</span><span class="pt-letra">F</span><span class="pt-letra">O</span><span class="pt-letra">L</span><span class="pt-letra">I</span><span class="pt-letra">O</span>
-        </h2>
         <div class="pt-badge">Projetos selecionados</div>
     </div>
 
@@ -1283,7 +1634,7 @@
     <section id="portfolio" class="portfolio">
         <div class="container-portfolio" data-aos="fade-up" data-aos-duration="1000">
             <div class="headline-portfolio">
-                <h1 class="titulo">Portfolio</h1>
+                <h1 class="titulo" id="scrambleProjetos">Projetos</h1>
                 <span class="descricao">Desenvolvi projetos personalizados, criando soluções inovadoras que atendem as necessidades e superam expectativas.</span>
             </div>
 
@@ -1292,18 +1643,14 @@
                 <div class="case1" data-aos="fade-right" data-aos-delay="100">
                     <div class="imagens-case">
                         <div class="slide">
-                            <i class="bi bi-chevron-left prev"></i>
-                            <img src="assets/img/Imagem 1 Hort.png" alt="Hortifrúti 1" class="active">
-                            <img src="assets/img/Imagem 2 Hort.png" alt="Hortifrúti 2">
-                            <img src="assets/img/Imagem 3 Hort.png" alt="Hortifrúti 3">
-                            <i class="bi bi-chevron-right next"></i>
+                            <img src="assets/img/dep-low-preview.png" alt="Dep Low" class="active">
                         </div>
                     </div>
                     <div class="textos-case">
                         <div class="conteudo-textos-case">
-                            <h1>Projeto Hortifrúti</h1>
-                            <p>Sistema de hortifrúti desenvolvido em linguagem C, criado para proporcionar uma experiência de compra funcional, eficiente e intuitiva.</p>
-                            <span>Hortifrúti</span>
+                            <h1>Dep Low</h1>
+                            <p>A Dep Low é uma marca de roupas focada no estilo streetwear minimalista, criada para jovens que buscam autenticidade, atitude e identidade através da moda. A proposta da marca une peças modernas, versáteis e estilosas, trazendo um visual urbano com uma estética limpa e marcante.</p>
+                            <span><a href="https://dep-company.vercel.app" target="_blank" style="color:inherit;">Ver site ao vivo</a></span>
                         </div>
                     </div>
                 </div>
@@ -1312,18 +1659,14 @@
                 <div class="case2" data-aos="fade-left" data-aos-delay="100">
                     <div class="imagens-case">
                         <div class="slide">
-                            <i class="bi bi-chevron-left prev"></i>
-                            <img src="assets/img/imagem.png" alt="Dep low 1" class="active">
-                            <img src="assets/img/imagem.png" alt="Dep low 2">
-                            <img src="assets/img/imagem.png" alt="Dep low 3">
-                            <i class="bi bi-chevron-right next"></i>
+                            <img src="assets/img/mini-portfolio-preview.png" alt="Mini Portfólio" class="active">
                         </div>
                     </div>
                     <div class="textos-case">
                         <div class="conteudo-textos-case">
-                            <h1>Dep low</h1>
-                            <p>A Dep Low é uma marca de roupas focada no estilo streetwear minimalista, criada para jovens que buscam autenticidade, atitude e identidade através da moda. A proposta da marca une peças modernas, versáteis e estilosas, trazendo um visual urbano com uma estética limpa e marcante.</p>
-                            <span>Website</span>
+                            <h1>Mini Portfólio</h1>
+                            <p>Um cartão de link-in-bio pessoal, reunindo minhas redes sociais, principais skills e um player do Spotify, com foco em objetividade e facilidade de acesso.</p>
+                            <span><a href="https://github.com/Erickaocode/Mini-Portfolio" target="_blank" style="color:inherit;">Ver no GitHub</a></span>
                         </div>
                     </div>
                 </div>
@@ -1332,17 +1675,14 @@
                 <div class="case3" data-aos="fade-right" data-aos-delay="100">
                     <div class="imagens-case">
                         <div class="slide">
-                            <i class="bi bi-chevron-left prev"></i>
-                            <img src="assets/img/imagem.png" alt="" class="active">
-                            <img src="assets/img/imagem.png" alt="">
-                            <i class="bi bi-chevron-right next"></i>
+                            <img src="assets/img/falcon-burguer-preview.png" alt="Falcon Burguer" class="active">
                         </div>
                     </div>
                     <div class="textos-case">
                         <div class="conteudo-textos-case">
-                            <h1>Em breve</h1>
-                            <p>Novo projeto chegando em breve.</p>
-                            <span>Em desenvolvimento</span>
+                            <h1>Falcon Burguer</h1>
+                            <p>Site institucional para uma hamburgueria, com cardápio, destaque para os itens mais pedidos e chamadas diretas para pedido e delivery.</p>
+                            <span><a href="https://falcon-burguer.vercel.app" target="_blank" style="color:inherit;">Ver site ao vivo</a></span>
                         </div>
                     </div>
                 </div>
@@ -1351,17 +1691,14 @@
                 <div class="case4" data-aos="fade-left" data-aos-delay="100">
                     <div class="imagens-case">
                         <div class="slide">
-                            <i class="bi bi-chevron-left prev"></i>
-                            <img src="assets/img/imagem.png" alt="" class="active">
-                            <img src="assets/img/imagem.png" alt="">
-                            <i class="bi bi-chevron-right next"></i>
+                            <img src="assets/img/supergestao-preview.png" alt="SuperGestão" class="active">
                         </div>
                     </div>
                     <div class="textos-case">
                         <div class="conteudo-textos-case">
-                            <h1>Em breve</h1>
-                            <p>Novo projeto chegando em breve.</p>
-                            <span>Em desenvolvimento</span>
+                            <h1>SuperGestão</h1>
+                            <p>Sistema de gestão de projetos e tarefas em .NET (C#), com dashboard de progresso, containerizado com Docker e integrado ao Supabase.</p>
+                            <span>Projeto privado</span>
                         </div>
                     </div>
                 </div>
@@ -1394,60 +1731,79 @@
                 </div>
             </div>
 
-            <!-- Headline centralizada -->
-            <div class="headline-contato">
-                <div class="titulo-contato">
-                    <h1>Vamos conversar?</h1>
-                </div>
-                <p class="subtitulo-contato">Tem um projeto em mente, uma ideia ou só quer trocar uma ideia? Me manda uma mensagem!</p>
+            <div class="contato-grid">
+                <!-- Infos à esquerda -->
+                <div class="contato-info" data-aos="fade-right" data-aos-duration="900">
+                    <span class="contato-status"><span class="status-dot"></span>Disponível para novos projetos</span>
 
-                <!-- Chips de contato rápido -->
-                <div class="contato-rapido">
-                    <div class="contato-chip">
-                        <i class="bi bi-envelope-fill"></i>
-                        <a href="mailto:ericksilva112017@gmail.com">ericksilva112017@gmail.com</a>
+                    <div class="headline-contato">
+                        <div class="titulo-contato">
+                            <h1 id="scrambleContato">Vamos conversar?</h1>
+                        </div>
+                        <p class="subtitulo-contato">Tem um projeto em mente, uma ideia ou só quer trocar uma ideia? Me manda uma mensagem!</p>
                     </div>
-                    <div class="contato-chip">
-                        <i class="bi bi-whatsapp"></i>
-                        <a href="https://wa.me/5511994842434" target="_blank">WhatsApp</a>
-                    </div>
-                    <div class="contato-chip">
-                        <i class="bi bi-geo-alt-fill"></i>
-                        <span>Brasil</span>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Card formulário -->
-            <div class="card-formulario" data-aos="fade-up" data-aos-delay="200">
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Nome</label>
-                        <input type="text" placeholder="Seu nome completo">
+                    <!-- Chips de contato rápido -->
+                    <div class="contato-rapido">
+                        <div class="contato-chip">
+                            <span class="contato-chip-icon"><i class="bi bi-envelope-fill"></i></span>
+                            <a href="mailto:ericksilva112017@gmail.com">ericksilva112017@gmail.com</a>
+                        </div>
+                        <div class="contato-chip">
+                            <span class="contato-chip-icon"><i class="bi bi-whatsapp"></i></span>
+                            <a href="https://wa.me/5511994842434" target="_blank">WhatsApp</a>
+                        </div>
+                        <div class="contato-chip">
+                            <span class="contato-chip-icon"><i class="bi bi-geo-alt-fill"></i></span>
+                            <span>Brasil</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card formulário -->
+                <form class="card-formulario" id="formContato" data-aos="fade-left" data-aos-delay="150">
+                    <span class="card-formulario-tag">&lt;contato/&gt;</span>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="contatoNome">Nome</label>
+                            <div class="input-wrap">
+                                <i class="bi bi-person-fill"></i>
+                                <input type="text" id="contatoNome" name="nome" placeholder="Seu nome completo" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="contatoTelefone">Telefone</label>
+                            <div class="input-wrap">
+                                <i class="bi bi-telephone-fill"></i>
+                                <input type="tel" id="contatoTelefone" name="telefone" placeholder="(11) 99999-9999">
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group">
-                        <label>Telefone</label>
-                        <input type="tel" placeholder="(11) 99999-9999">
+                        <label for="contatoEmail">Email</label>
+                        <div class="input-wrap">
+                            <i class="bi bi-envelope-fill"></i>
+                            <input type="email" id="contatoEmail" name="email" placeholder="seu@email.com" required>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label>Email</label>
-                    <input type="email" placeholder="seu@email.com">
-                </div>
-                <div class="form-group">
-                    <label>Mensagem</label>
-                    <textarea placeholder="Me conte sobre seu projeto ou ideia..."></textarea>
-                </div>
-                <div class="form-footer">
-                    <div class="form-socials">
-                        <a href="https://www.instagram.com/_erickz77_/" target="_blank" class="form-social-btn"><i class="bi bi-instagram"></i></a>
-                        <a href="https://github.com/Erickaocode/" target="_blank" class="form-social-btn"><i class="bi bi-github"></i></a>
-                        <a href="https://www.linkedin.com/in/erick-silva-8579002b0/" target="_blank" class="form-social-btn"><i class="bi bi-linkedin"></i></a>
+                    <div class="form-group">
+                        <label for="contatoMensagem">Mensagem</label>
+                        <div class="input-wrap">
+                            <i class="bi bi-chat-left-text-fill"></i>
+                            <textarea id="contatoMensagem" name="mensagem" placeholder="Me conte sobre seu projeto ou ideia..." required></textarea>
+                        </div>
                     </div>
-                    <button class="btn">
-                        Enviar mensagem <i class="bi bi-arrow-right"></i>
-                    </button>
-                </div>
+                    <div class="form-footer">
+                        <div class="form-socials">
+                            <a href="https://www.instagram.com/_erickz77_/" target="_blank" class="form-social-btn" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                            <a href="https://github.com/Erickaocode/" target="_blank" class="form-social-btn" aria-label="GitHub"><i class="bi bi-github"></i></a>
+                            <a href="https://www.linkedin.com/in/erick-silva-8579002b0/" target="_blank" class="form-social-btn" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                        </div>
+                        <button type="submit" class="btn">
+                            Enviar mensagem <i class="bi bi-arrow-right"></i>
+                        </button>
+                    </div>
+                </form>
             </div>
 
         </div>
@@ -1464,7 +1820,7 @@
                 <nav class="footer-nav">
                     <a href="#inicio">Início</a>
                     <a href="#sobre">Sobre</a>
-                    <a href="#portfolio">Portfolio</a>
+                    <a href="#portfolio">Projetos</a>
                     <a href="#contato">Contato</a>
                 </nav>
             </div>
@@ -1477,7 +1833,7 @@
             </div>
         </div>
         <div class="credits-column">
-            <p>&copy; 2025 Todos os direitos reservados.</p>
+            <p>&copy; 2026 Todos os direitos reservados.</p>
             <p>Desenvolvido por Erick│Dev.</p>
         </div>
     </footer>
@@ -1487,6 +1843,153 @@
     <script>AOS.init({ once: true });</script>
 
     <script>
+    // ===== CLASSE COMPARTILHADA: EFEITO SCRAMBLE =====
+    const SCRAMBLE_CHARS = '!<>-_\\/[]{}—=+*^?#0101';
+
+    function TextScramble(node) {
+        this.el = node;
+        this.frame = 0;
+        this.frameRequest = null;
+        this.queue = [];
+        this.update = this.update.bind(this);
+    }
+
+    TextScramble.prototype.setText = function (newText) {
+        const oldText = this.el.textContent;
+        const length = Math.max(oldText.length, newText.length);
+        const promise = new Promise((resolve) => { this.resolve = resolve; });
+        this.queue = [];
+        for (let i = 0; i < length; i++) {
+            const from = oldText[i] || '';
+            const to = newText[i] || '';
+            const start = Math.floor(Math.random() * 30);
+            const end = start + Math.floor(Math.random() * 30) + 10;
+            this.queue.push({ from, to, start, end, char: '' });
+        }
+        cancelAnimationFrame(this.frameRequest);
+        this.frame = 0;
+        this.update();
+        return promise;
+    };
+
+    TextScramble.prototype.update = function () {
+        let output = '';
+        let complete = 0;
+        for (let i = 0; i < this.queue.length; i++) {
+            const item = this.queue[i];
+            if (this.frame >= item.end) {
+                complete++;
+                output += item.to;
+            } else if (this.frame >= item.start) {
+                if (!item.char || Math.random() < 0.3) {
+                    item.char = SCRAMBLE_CHARS[Math.floor(Math.random() * SCRAMBLE_CHARS.length)];
+                }
+                output += '<span class="scramble-char">' + item.char + '</span>';
+            } else {
+                output += item.from;
+            }
+        }
+        this.el.innerHTML = output;
+        if (complete === this.queue.length) {
+            this.resolve();
+        } else {
+            this.frameRequest = requestAnimationFrame(this.update);
+            this.frame++;
+        }
+    };
+
+    // ===== TEXTO COM EFEITO SCRAMBLE (INÍCIO) =====
+    (function () {
+        const el = document.getElementById('destaqueInicio');
+        if (!el) return;
+
+        const frases = [
+            'Desenvolvedor Web', 'Web Developer',
+            'Engenheiro de Software', 'Software Engineer',
+            'Engenheiro de IA', 'AI Engineer',
+            'Full Stack Developer',
+            'Criador de Soluções Digitais', 'Digital Solutions Creator'
+        ];
+        const fx = new TextScramble(el);
+        let counter = 0;
+
+        function next() {
+            fx.setText(frases[counter]).then(() => {
+                setTimeout(next, 2400);
+            });
+            counter = (counter + 1) % frases.length;
+        }
+
+        setTimeout(next, 1800);
+    })();
+
+    // ===== TEXTO COM EFEITO SCRAMBLE (uma vez, ao entrar na tela) =====
+    function scrambleOnVisible(id) {
+        const el = document.getElementById(id);
+        if (!el) return;
+        const finalText = el.textContent;
+        const fx = new TextScramble(el);
+        let played = false;
+        const obs = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting && !played) {
+                    played = true;
+                    fx.setText(finalText);
+                    obs.unobserve(el);
+                }
+            });
+        }, { threshold: 0.4 });
+        obs.observe(el);
+    }
+
+    scrambleOnVisible('scrambleSobre');
+    scrambleOnVisible('scrambleProjetos');
+    scrambleOnVisible('scrambleContato');
+
+    // ===== GLOW DE CURSOR GLOBAL =====
+    (function () {
+        const glow = document.getElementById('cursorGlow');
+        if (!glow) return;
+        let active = false;
+        window.addEventListener('mousemove', (e) => {
+            glow.style.setProperty('--cx', e.clientX + 'px');
+            glow.style.setProperty('--cy', e.clientY + 'px');
+            if (!active) { glow.classList.add('active'); active = true; }
+        });
+        window.addEventListener('mouseleave', () => {
+            glow.classList.remove('active');
+            active = false;
+        });
+    })();
+
+    // ===== SPOTLIGHT DO MOUSE (INÍCIO) =====
+    (function () {
+        const inicio = document.getElementById('inicio');
+        const spotlight = document.getElementById('inicioSpotlight');
+        if (!inicio || !spotlight) return;
+        inicio.addEventListener('mousemove', (e) => {
+            const rect = inicio.getBoundingClientRect();
+            const x = ((e.clientX - rect.left) / rect.width) * 100;
+            const y = ((e.clientY - rect.top) / rect.height) * 100;
+            spotlight.style.setProperty('--x', x + '%');
+            spotlight.style.setProperty('--y', y + '%');
+        });
+    })();
+
+    // ===== BARRA DE PROGRESSO =====
+    (function () {
+        const bar = document.getElementById('scrollProgress');
+        if (!bar) return;
+        function updateProgress() {
+            const scrollTop = window.scrollY;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+            bar.style.width = pct + '%';
+        }
+        window.addEventListener('scroll', updateProgress, { passive: true });
+        updateProgress();
+    })();
+
     // ===== BOTÕES FIXOS =====
     (function () {
         const backToTopButton = document.getElementById('backToTop');
@@ -1557,6 +2060,26 @@
 
             setInterval(() => { current = (current + 1) % images.length; showSlide(current); }, 3500);
             showSlide(0);
+        });
+    })();
+
+    // ===== FORMULÁRIO DE CONTATO (mailto) =====
+    (function () {
+        const form = document.getElementById('formContato');
+        if (!form) return;
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            const nome = form.nome.value.trim();
+            const telefone = form.telefone.value.trim();
+            const email = form.email.value.trim();
+            const mensagem = form.mensagem.value.trim();
+
+            const assunto = encodeURIComponent(`Contato via portfólio - ${nome}`);
+            const corpo = encodeURIComponent(
+                `Nome: ${nome}\nTelefone: ${telefone || 'não informado'}\nEmail: ${email}\n\nMensagem:\n${mensagem}`
+            );
+
+            window.location.href = `mailto:ericksilva112017@gmail.com?subject=${assunto}&body=${corpo}`;
         });
     })();
 
