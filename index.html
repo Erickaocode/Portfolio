@@ -1918,6 +1918,29 @@
         setTimeout(next, 1800);
     })();
 
+    // ===== TEXTO COM EFEITO SCRAMBLE (uma vez, ao entrar na tela) =====
+    function scrambleOnVisible(id) {
+        const el = document.getElementById(id);
+        if (!el) return;
+        const finalText = el.textContent;
+        const fx = new TextScramble(el);
+        let played = false;
+        const obs = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting && !played) {
+                    played = true;
+                    fx.setText(finalText);
+                    obs.unobserve(el);
+                }
+            });
+        }, { threshold: 0.4 });
+        obs.observe(el);
+    }
+
+    scrambleOnVisible('scrambleSobre');
+    scrambleOnVisible('scrambleProjetos');
+    scrambleOnVisible('scrambleContato');
+
     // ===== GLOW DE CURSOR GLOBAL =====
     (function () {
         const glow = document.getElementById('cursorGlow');
