@@ -1192,6 +1192,14 @@
         .btn:active { transform: scale(0.97); }
 
         /* Mobile contato */
+        @media (max-width: 900px) {
+            .contato-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+            .contato-info { align-items: center; text-align: center; }
+            .headline-contato { align-items: center; text-align: center; }
+            .subtitulo-contato { max-width: 100%; }
+            .contato-rapido { align-items: center; }
+        }
+
         @media (max-width: 768px) {
             .contato { padding: 4rem 1.2rem; }
             .card-formulario { padding: 2rem 1.2rem; }
