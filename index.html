@@ -1657,6 +1657,31 @@
         }
     };
 
+    // ===== TEXTO COM EFEITO SCRAMBLE (INÍCIO) =====
+    (function () {
+        const el = document.getElementById('destaqueInicio');
+        if (!el) return;
+
+        const frases = [
+            'Desenvolvedor Web', 'Web Developer',
+            'Engenheiro de Software', 'Software Engineer',
+            'Engenheiro de IA', 'AI Engineer',
+            'Full Stack Developer',
+            'Criador de Soluções Digitais', 'Digital Solutions Creator'
+        ];
+        const fx = new TextScramble(el);
+        let counter = 0;
+
+        function next() {
+            fx.setText(frases[counter]).then(() => {
+                setTimeout(next, 2400);
+            });
+            counter = (counter + 1) % frases.length;
+        }
+
+        setTimeout(next, 1800);
+    })();
+
     // ===== GLOW DE CURSOR GLOBAL =====
     (function () {
         const glow = document.getElementById('cursorGlow');
