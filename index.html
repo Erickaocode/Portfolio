@@ -923,12 +923,12 @@
             top: -100px; left: 50%;
             transform: translateX(-50%);
             width: 600px; height: 600px;
-            background: radial-gradient(circle, rgba(231,252,0,0.07) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(var(--color-destaque1-rgb),0.07) 0%, transparent 70%);
             pointer-events: none;
         }
 
         .container-contato {
-            width: 100%; max-width: 1000px;
+            width: 100%; max-width: 1180px;
             margin: 0 auto;
             display: flex; flex-direction: column;
             gap: 3rem;
@@ -936,25 +936,79 @@
             z-index: 1;
         }
 
+        /* Grid assimétrico: infos à esquerda, formulário à direita */
+        .contato-grid {
+            display: grid;
+            grid-template-columns: 0.85fr 1.15fr;
+            gap: 3.5rem;
+            align-items: center;
+        }
+
+        .contato-info {
+            display: flex; flex-direction: column;
+            align-items: flex-start;
+            gap: 1.4rem;
+        }
+
+        .contato-status {
+            display: inline-flex; align-items: center; gap: 0.6rem;
+            padding: 0.45rem 1rem;
+            border: 1px solid hsla(0,0%,100%,0.15);
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--color-gray2);
+        }
+
+        .status-dot {
+            width: 8px; height: 8px;
+            border-radius: 50%;
+            background: #3ddc84;
+            flex-shrink: 0;
+            animation: statusPulse 2s infinite;
+        }
+
+        @keyframes statusPulse {
+            0%   { box-shadow: 0 0 0 0 rgba(61,220,132,0.5); }
+            70%  { box-shadow: 0 0 0 8px rgba(61,220,132,0); }
+            100% { box-shadow: 0 0 0 0 rgba(61,220,132,0); }
+        }
+
         .headline-contato {
             display: flex; flex-direction: column;
-            align-items: center;
-            text-align: center;
+            align-items: flex-start;
+            text-align: left;
             gap: 1rem;
+        }
+
+        .titulo-contato {
+            /* largura fixa: com align-items:center (mobile) esse bloco encolhe para o
+               tamanho do texto e fica centralizado; como o efeito scramble troca letras
+               por símbolos de largura diferente, o bloco inteiro ficava se deslocando
+               (tremor) a cada troca. Com width:100% ele não muda mais de tamanho. */
+            width: 100%;
         }
 
         .titulo-contato h1 {
             color: var(--color-white);
-            font-size: clamp(2.8rem, 7vw, 6rem);
+            font-size: clamp(2.4rem, 5vw, 4.2rem);
             font-weight: 700;
             font-family: var(--font-grande);
-            line-height: 1;
+            line-height: 1.05;
+            /* reserva espaço para 2 linhas: os caracteres aleatórios do scramble (símbolos)
+               têm largura diferente das letras finais, então por uma fração de segundo a
+               quebra de linha do texto pode mudar (1 <-> 2 linhas), empurrando o que vem
+               abaixo e dando a sensação de tremor a cada repetição do efeito */
+            min-height: calc(1.05em * 2);
+            display: block;
         }
 
         .subtitulo-contato {
             color: var(--color-gray2);
-            font-size: clamp(1rem, 1.5vw, 1.2rem);
-            max-width: 500px;
+            font-size: clamp(1rem, 1.5vw, 1.1rem);
+            max-width: 420px;
             line-height: 1.6;
         }
 
@@ -1617,60 +1671,79 @@
                 </div>
             </div>
 
-            <!-- Headline centralizada -->
-            <div class="headline-contato">
-                <div class="titulo-contato">
-                    <h1>Vamos conversar?</h1>
-                </div>
-                <p class="subtitulo-contato">Tem um projeto em mente, uma ideia ou só quer trocar uma ideia? Me manda uma mensagem!</p>
+            <div class="contato-grid">
+                <!-- Infos à esquerda -->
+                <div class="contato-info" data-aos="fade-right" data-aos-duration="900">
+                    <span class="contato-status"><span class="status-dot"></span>Disponível para novos projetos</span>
 
-                <!-- Chips de contato rápido -->
-                <div class="contato-rapido">
-                    <div class="contato-chip">
-                        <i class="bi bi-envelope-fill"></i>
-                        <a href="mailto:ericksilva112017@gmail.com">ericksilva112017@gmail.com</a>
+                    <div class="headline-contato">
+                        <div class="titulo-contato">
+                            <h1 id="scrambleContato">Vamos conversar?</h1>
+                        </div>
+                        <p class="subtitulo-contato">Tem um projeto em mente, uma ideia ou só quer trocar uma ideia? Me manda uma mensagem!</p>
                     </div>
-                    <div class="contato-chip">
-                        <i class="bi bi-whatsapp"></i>
-                        <a href="https://wa.me/5511994842434" target="_blank">WhatsApp</a>
-                    </div>
-                    <div class="contato-chip">
-                        <i class="bi bi-geo-alt-fill"></i>
-                        <span>Brasil</span>
-                    </div>
-                </div>
-            </div>
 
-            <!-- Card formulário -->
-            <div class="card-formulario" data-aos="fade-up" data-aos-delay="200">
-                <div class="form-row">
-                    <div class="form-group">
-                        <label>Nome</label>
-                        <input type="text" placeholder="Seu nome completo">
+                    <!-- Chips de contato rápido -->
+                    <div class="contato-rapido">
+                        <div class="contato-chip">
+                            <span class="contato-chip-icon"><i class="bi bi-envelope-fill"></i></span>
+                            <a href="mailto:ericksilva112017@gmail.com">ericksilva112017@gmail.com</a>
+                        </div>
+                        <div class="contato-chip">
+                            <span class="contato-chip-icon"><i class="bi bi-whatsapp"></i></span>
+                            <a href="https://wa.me/5511994842434" target="_blank">WhatsApp</a>
+                        </div>
+                        <div class="contato-chip">
+                            <span class="contato-chip-icon"><i class="bi bi-geo-alt-fill"></i></span>
+                            <span>Brasil</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card formulário -->
+                <form class="card-formulario" id="formContato" data-aos="fade-left" data-aos-delay="150">
+                    <span class="card-formulario-tag">&lt;contato/&gt;</span>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="contatoNome">Nome</label>
+                            <div class="input-wrap">
+                                <i class="bi bi-person-fill"></i>
+                                <input type="text" id="contatoNome" name="nome" placeholder="Seu nome completo" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="contatoTelefone">Telefone</label>
+                            <div class="input-wrap">
+                                <i class="bi bi-telephone-fill"></i>
+                                <input type="tel" id="contatoTelefone" name="telefone" placeholder="(11) 99999-9999">
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group">
-                        <label>Telefone</label>
-                        <input type="tel" placeholder="(11) 99999-9999">
+                        <label for="contatoEmail">Email</label>
+                        <div class="input-wrap">
+                            <i class="bi bi-envelope-fill"></i>
+                            <input type="email" id="contatoEmail" name="email" placeholder="seu@email.com" required>
+                        </div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <label>Email</label>
-                    <input type="email" placeholder="seu@email.com">
-                </div>
-                <div class="form-group">
-                    <label>Mensagem</label>
-                    <textarea placeholder="Me conte sobre seu projeto ou ideia..."></textarea>
-                </div>
-                <div class="form-footer">
-                    <div class="form-socials">
-                        <a href="https://www.instagram.com/_erickz77_/" target="_blank" class="form-social-btn"><i class="bi bi-instagram"></i></a>
-                        <a href="https://github.com/Erickaocode/" target="_blank" class="form-social-btn"><i class="bi bi-github"></i></a>
-                        <a href="https://www.linkedin.com/in/erick-silva-8579002b0/" target="_blank" class="form-social-btn"><i class="bi bi-linkedin"></i></a>
+                    <div class="form-group">
+                        <label for="contatoMensagem">Mensagem</label>
+                        <div class="input-wrap">
+                            <i class="bi bi-chat-left-text-fill"></i>
+                            <textarea id="contatoMensagem" name="mensagem" placeholder="Me conte sobre seu projeto ou ideia..." required></textarea>
+                        </div>
                     </div>
-                    <button class="btn">
-                        Enviar mensagem <i class="bi bi-arrow-right"></i>
-                    </button>
-                </div>
+                    <div class="form-footer">
+                        <div class="form-socials">
+                            <a href="https://www.instagram.com/_erickz77_/" target="_blank" class="form-social-btn" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                            <a href="https://github.com/Erickaocode/" target="_blank" class="form-social-btn" aria-label="GitHub"><i class="bi bi-github"></i></a>
+                            <a href="https://www.linkedin.com/in/erick-silva-8579002b0/" target="_blank" class="form-social-btn" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                        </div>
+                        <button type="submit" class="btn">
+                            Enviar mensagem <i class="bi bi-arrow-right"></i>
+                        </button>
+                    </div>
+                </form>
             </div>
 
         </div>
