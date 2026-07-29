@@ -462,6 +462,11 @@
             font-size: clamp(1.8rem, 3vw, 3rem);
             font-family: var(--font-grande);
             margin-bottom: 1rem;
+            line-height: 1.2;
+            /* mesma razão do título do contato: reserva 2 linhas para o texto do scramble
+               não mudar de altura (1 <-> 2 linhas) e empurrar o parágrafo abaixo */
+            min-height: calc(1.2em * 2);
+            display: block;
         }
 
         .textos-sobre p {
@@ -475,20 +480,55 @@
         .redes-sociais {
             width: 100%;
             display: flex; flex-direction: column;
-            gap: 1rem;
+            gap: 0.5rem;
         }
 
         .redes-sociais a {
-            display: flex; justify-content: space-between; align-items: center;
+            display: flex; align-items: center; gap: 1rem;
             color: var(--color-gray2);
             font-size: clamp(0.9rem, 1.2vw, 1.2rem);
             width: 100%;
-            padding-bottom: 8px;
+            padding: 10px 6px;
             border-bottom: 1px solid hsla(0,0%,100%,0.15);
             transition: color 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
 
+        .redes-sociais a::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, rgba(var(--color-destaque1-rgb),0.1), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.4s ease;
+            z-index: 0;
+        }
+
+        .redes-sociais a:hover::before { transform: translateX(0); }
+        .redes-sociais a > * { position: relative; z-index: 1; }
+
+        .rede-icon {
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.1rem;
+            color: #fff;
+            flex-shrink: 0;
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .rede-icon.instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+        .rede-icon.github { background: #24292e; }
+        .rede-icon.linkedin { background: #0A66C2; }
+
+        .rede-label { flex: 1; font-weight: 600; letter-spacing: 1px; }
+
+        .redes-sociais a i.bi-arrow-right { transition: transform 0.3s ease; }
+
         .redes-sociais a:hover { color: var(--color-destaque1); }
+        .redes-sociais a:hover .rede-icon { transform: scale(1.12) rotate(-8deg); }
+        .redes-sociais a:hover i.bi-arrow-right { transform: translateX(6px); }
 
         .right-sobre {
             width: 50%;
@@ -502,18 +542,6 @@
             border-radius: 12px;
             z-index: 2;
             position: relative;
-        }
-
-        .complemento-sobre {
-            position: absolute;
-            width: 160px; height: 160px;
-            top: -20px; right: 0;
-            z-index: 1;
-        }
-
-        .complemento-sobre img {
-            width: 100%;
-            animation: rotate 20s linear infinite;
         }
 
         @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
