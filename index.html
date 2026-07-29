@@ -1282,6 +1282,11 @@
         /* ===== RESPONSIVIDADE MOBILE ===== */
         @media (max-width: 768px) {
 
+            /* Blobs: em celulares o blur animado junto com o header fixo (backdrop-filter)
+               costuma sobrecarregar a GPU e dar sensação de "tremor" na tela; aqui elas ficam
+               paradas (sem animação) e com blur mais leve, sem mudar posição/tamanho/layout */
+            .blob { animation: none; filter: blur(40px); }
+
             /* Header */
             .header { padding: 1rem 1.2rem; }
 
@@ -1296,7 +1301,6 @@
             .left-sobre  { width: 100%; }
             .right-sobre { width: 100%; justify-content: center; }
             .imagem-sobre img { max-width: 260px; }
-            .complemento-sobre { width: 100px; height: 100px; top: -10px; right: calc(50% - 130px - 50px); }
             .textos-sobre h1 { font-size: 1.8rem; }
             .textos-sobre p  { font-size: 0.95rem; }
             .redes-sociais a { font-size: 0.9rem; }
@@ -1306,6 +1310,7 @@
             .conteudo-skills { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
             .box-skills { min-height: 140px; padding: 1.2rem 0.8rem; }
             .box-skills img { width: 55px; height: 55px; }
+            .box-skills i { font-size: 2.2rem; }
 
             /* Free your mind */
             .free-your-mind { padding: 0.5rem 1rem; }
@@ -1323,7 +1328,7 @@
 
             .container-case { gap: 4rem; }
 
-            .case1, .case2, .case3, .case4 {
+            .case1, .case2, .case3, .case4, .case5 {
                 flex-direction: column !important;
                 gap: 1.5rem;
             }
