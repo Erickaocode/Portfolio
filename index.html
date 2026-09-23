@@ -731,26 +731,6 @@
         });
     })();
 
-    // ===== FORMULÁRIO DE CONTATO (mailto) =====
-    (function () {
-        const form = document.getElementById('formContato');
-        if (!form) return;
-        form.addEventListener('submit', function (e) {
-            e.preventDefault();
-            const nome = form.nome.value.trim();
-            const telefone = form.telefone.value.trim();
-            const email = form.email.value.trim();
-            const mensagem = form.mensagem.value.trim();
-
-            const assunto = encodeURIComponent(`Contato via portfólio - ${nome}`);
-            const corpo = encodeURIComponent(
-                `Nome: ${nome}\nTelefone: ${telefone || 'não informado'}\nEmail: ${email}\n\nMensagem:\n${mensagem}`
-            );
-
-            window.location.href = `mailto:ericksilva112017@gmail.com?subject=${assunto}&body=${corpo}`;
-        });
-    })();
-
     </script>
 
     <script src="js/main.js"></script>
