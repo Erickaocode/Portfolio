@@ -630,62 +630,6 @@
         });
     })();
 
-    // ===== SPOTLIGHT DO MOUSE (INÍCIO) =====
-    (function () {
-        const inicio = document.getElementById('inicio');
-        const spotlight = document.getElementById('inicioSpotlight');
-        if (!inicio || !spotlight) return;
-        inicio.addEventListener('mousemove', (e) => {
-            const rect = inicio.getBoundingClientRect();
-            const x = ((e.clientX - rect.left) / rect.width) * 100;
-            const y = ((e.clientY - rect.top) / rect.height) * 100;
-            spotlight.style.setProperty('--x', x + '%');
-            spotlight.style.setProperty('--y', y + '%');
-        });
-    })();
-
-    // ===== BARRA DE PROGRESSO =====
-    (function () {
-        const bar = document.getElementById('scrollProgress');
-        if (!bar) return;
-        function updateProgress() {
-            const scrollTop = window.scrollY;
-            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-            const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
-            bar.style.width = pct + '%';
-        }
-        window.addEventListener('scroll', updateProgress, { passive: true });
-        updateProgress();
-    })();
-
-    // ===== BOTÕES FIXOS =====
-    (function () {
-        const backToTopButton = document.getElementById('backToTop');
-        const whatsappButton  = document.getElementById('whatsappButton');
-
-        function toggleButtons() {
-            if (window.scrollY > 100) {
-                backToTopButton.style.display = 'flex';
-                whatsappButton.style.display  = 'flex';
-                setTimeout(() => {
-                    backToTopButton.style.opacity = '1';
-                    whatsappButton.style.opacity  = '1';
-                }, 10);
-            } else {
-                backToTopButton.style.opacity = '0';
-                whatsappButton.style.opacity  = '0';
-                setTimeout(() => {
-                    backToTopButton.style.display = 'none';
-                    whatsappButton.style.display  = 'none';
-                }, 500);
-            }
-        }
-
-        window.addEventListener('scroll', toggleButtons);
-        backToTopButton.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-        whatsappButton.addEventListener('click',  () => window.open('https://wa.me/5511994842434', '_blank'));
-    })();
-
     </script>
 
     <script src="js/main.js"></script>
