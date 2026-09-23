@@ -1,0 +1,38 @@
+/* ===== RESET & VARIÁVEIS ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --font-grande: 'Syne', sans-serif;
+    --font-pequena: 'DM Sans', sans-serif;
+    --color-black: #080808;
+    --color-gray1: #3d4143;
+    --color-gray2: #9c9d9d;
+    --color-white: #f6f6f6;
+    --color-destaque1: #2f81ff;
+    --color-destaque1-rgb: 47,129,255;
+    --color-destaque2: #3d5a99;
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--color-black); }
+::-webkit-scrollbar-thumb { background-color: var(--color-gray1); border-radius: 20px; border: 2px solid var(--color-black); }
+::-webkit-scrollbar-thumb:hover { background-color: var(--color-gray2); }
+
+html { scroll-behavior: smooth; }
+
+body {
+    background-color: var(--color-black);
+    width: 100%;
+    font-family: var(--font-pequena);
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+}
+
+li { list-style: none; }
+a { text-decoration: none; }
+
