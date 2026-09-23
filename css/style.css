@@ -342,3 +342,172 @@ a { text-decoration: none; }
     50% { transform: translateY(6px); }
 }
 
+/* ===== SOBRE ===== */
+.sobre {
+    background-color: var(--color-black);
+    width: 100%;
+    padding: 5rem 2rem;
+    z-index: 1; user-select: none;
+    overflow: hidden;
+    position: relative;
+}
+
+.container-sobre {
+    width: 100%; max-width: 1400px;
+    margin: 0 auto;
+    display: flex; flex-direction: column;
+    gap: 3rem;
+    position: relative;
+    z-index: 1;
+}
+
+/* Headline scroll */
+.headline-sobre {
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(90deg, transparent, black 12%, black 88%, transparent);
+    mask-image: linear-gradient(90deg, transparent, black 12%, black 88%, transparent);
+}
+
+.headline-scroll {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    animation: scroll-marquee 20s linear infinite;
+}
+
+@keyframes scroll-marquee {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+.headline-scroll span {
+    font-family: var(--font-grande);
+    font-size: clamp(3rem, 6vw, 5rem);
+    text-transform: uppercase;
+    display: flex; align-items: center;
+}
+
+.headline-scroll .divisor {
+    width: 16px; height: 16px;
+    background-color: var(--color-gray2);
+    border-radius: 50%;
+    margin: 0 20px; flex-shrink: 0;
+    box-shadow: 0 0 12px rgba(var(--color-destaque1-rgb),0.6);
+}
+
+.headline-scroll .bold {
+    font-weight: bold;
+    background: linear-gradient(90deg, var(--color-white), var(--color-destaque1));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 30px rgba(var(--color-destaque1-rgb),0.25);
+}
+
+.headline-scroll .light { font-weight: lighter; color: var(--color-gray2); }
+
+/* Conteúdo sobre */
+.conteudo-sobre {
+    display: flex;
+    gap: 4rem;
+    align-items: center;
+}
+
+.left-sobre {
+    color: var(--color-white);
+    width: 50%;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: flex-start;
+    gap: 2rem;
+}
+
+.textos-sobre h1 {
+    font-size: clamp(1.8rem, 3vw, 3rem);
+    font-family: var(--font-grande);
+    margin-bottom: 1rem;
+    line-height: 1.2;
+    /* mesma razão do título do contato: reserva 2 linhas para o texto do scramble
+       não mudar de altura (1 <-> 2 linhas) e empurrar o parágrafo abaixo */
+    min-height: calc(1.2em * 2);
+    display: block;
+}
+
+.textos-sobre p {
+    font-size: clamp(0.95rem, 1.2vw, 1.2rem);
+    color: var(--color-gray2);
+    font-weight: 400;
+    line-height: 1.7;
+    letter-spacing: 0.5px;
+}
+
+.redes-sociais {
+    width: 100%;
+    display: flex; flex-direction: column;
+    gap: 0.5rem;
+}
+
+.redes-sociais a {
+    display: flex; align-items: center; gap: 1rem;
+    color: var(--color-gray2);
+    font-size: clamp(0.9rem, 1.2vw, 1.2rem);
+    width: 100%;
+    padding: 10px 6px;
+    border-bottom: 1px solid hsla(0,0%,100%,0.15);
+    transition: color 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.redes-sociais a::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(var(--color-destaque1-rgb),0.1), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.4s ease;
+    z-index: 0;
+}
+
+.redes-sociais a:hover::before { transform: translateX(0); }
+.redes-sociais a > * { position: relative; z-index: 1; }
+
+.rede-icon {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.1rem;
+    color: #fff;
+    flex-shrink: 0;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.rede-icon.instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); }
+.rede-icon.github { background: #24292e; }
+.rede-icon.linkedin { background: #0A66C2; }
+
+.rede-label { flex: 1; font-weight: 600; letter-spacing: 1px; }
+
+.redes-sociais a i.bi-arrow-right { transition: transform 0.3s ease; }
+
+.redes-sociais a:hover { color: var(--color-destaque1); }
+.redes-sociais a:hover .rede-icon { transform: scale(1.12) rotate(-8deg); }
+.redes-sociais a:hover i.bi-arrow-right { transform: translateX(6px); }
+
+.right-sobre {
+    width: 50%;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+}
+
+.imagem-sobre img {
+    width: 100%;
+    max-width: 320px;
+    border-radius: 12px;
+    z-index: 2;
+    position: relative;
+}
+
+@keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
