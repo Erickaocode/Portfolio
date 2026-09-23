@@ -209,3 +209,136 @@ a { text-decoration: none; }
 .menu-aberto.active .nav-menu a { opacity: 1; transform: translateY(0); }
 .nav-menu a:hover { color: var(--color-destaque1); }
 
+/* ===== INÍCIO ===== */
+.inicio {
+    width: 100%;
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    padding: 6rem 2rem 2rem;
+    z-index: 1; user-select: none;
+    position: relative;
+    overflow: hidden;
+}
+
+.inicio-spotlight {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    background: radial-gradient(600px circle at var(--x, 50%) var(--y, 50%), rgba(var(--color-destaque1-rgb),0.08), transparent 60%);
+    transition: background 0.2s ease-out;
+}
+
+.container-inicio { position: relative; z-index: 1; }
+
+.container-inicio {
+    width: 100%; max-width: 1400px;
+    color: var(--color-white);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    min-height: 80vh;
+}
+
+.conteudo-inicio {
+    width: 100%;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+    gap: 1.5rem;
+}
+
+.titulo-inicio {
+    font-family: var(--font-grande);
+    font-size: clamp(2.2rem, 5vw, 5rem);
+    font-weight: 700;
+    line-height: 1.1;
+    /* largura fixa: impede que o bloco inteiro se desloque horizontalmente
+       quando a frase do scramble muda de tamanho */
+    width: 100%;
+}
+
+.titulo-inicio h1 { font-size: inherit; }
+
+.titulo-inicio h1:first-child {
+    background: linear-gradient(90deg, var(--color-white) 40%, var(--color-destaque1) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.destaque-inicio {
+    color: var(--color-gray2);
+    font-weight: 400;
+    /* reserva espaço para 2 linhas: evita que a página "trema" quando o texto do scramble
+       troca de frase e o número de linhas muda (ex: "Web Developer" -> "Engenheiro de Software") */
+    min-height: calc(1.1em * 2);
+}
+
+.scramble-char {
+    color: var(--color-destaque1);
+    opacity: 0.8;
+}
+
+.paragrafo-inicio p {
+    font-size: clamp(1rem, 1.8vw, 1.4rem);
+    max-width: 700px;
+    color: var(--color-gray2);
+    line-height: 1.6;
+}
+
+/* Botão CTA */
+.cta {
+    position: relative;
+    padding: 14px 24px;
+    transition: all 0.2s ease;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.cta:before {
+    content: "";
+    position: absolute; top: 0; left: 0;
+    display: block;
+    border-radius: 50px;
+    background: var(--color-destaque2);
+    width: 45px; height: 45px;
+    transition: all 0.3s ease;
+}
+
+.cta span {
+    position: relative;
+    font-family: var(--font-pequena);
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: var(--color-white);
+}
+
+.cta svg {
+    position: relative; top: 0; margin-left: 10px;
+    fill: none; stroke-linecap: round; stroke-linejoin: round;
+    stroke: var(--color-destaque2); stroke-width: 2;
+    transform: translateX(-5px);
+    transition: all 0.3s ease;
+}
+
+.cta:hover:before { width: 100%; background: var(--color-destaque2); }
+.cta:hover svg { transform: translateX(0); stroke: var(--color-destaque1); }
+.cta:active { transform: scale(0.95); }
+
+/* badge scroll */
+.scroll-hint {
+    margin-top: 2rem;
+    display: flex; align-items: center; gap: 0.5rem;
+    color: var(--color-gray2);
+    font-size: 0.9rem;
+    animation: bounceY 2s infinite;
+}
+
+@keyframes bounceY {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(6px); }
+}
+
