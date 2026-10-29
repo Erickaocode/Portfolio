@@ -243,6 +243,15 @@ ${dados.mensagem}`
         return `mailto:${EMAIL}?subject=${assunto}&body=${corpo}`;
     }
 
+    // máscara simples: (11) 99999-9999 ou (11) 9999-9999
+    form.telefone.addEventListener('input', () => {
+        const d = form.telefone.value.replace(/\D/g, '').slice(0, 11);
+        let v = d;
+        if (d.length > 2)  v = `(${d.slice(0, 2)}) ${d.slice(2)}`;
+        if (d.length > 6)  v = `(${d.slice(0, 2)}) ${d.slice(2, d.length - 4)}-${d.slice(-4)}`;
+        form.telefone.value = v;
+    });
+
     // marca o campo inválido só depois que a pessoa sai dele
     form.querySelectorAll('input[required], textarea[required]').forEach((campo) => {
         campo.addEventListener('blur', () => campo.classList.toggle('invalido', !campo.checkValidity()));
