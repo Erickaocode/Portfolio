@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>~*~ HoMePaGe Do ErIcK ~*~</title>
+    <meta name="description" content="Como seria o portfólio do Erick Silva se fosse feito no ano 2000.">
+    <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+    <script>try { if (sessionStorage.getItem('mt-chegada')) document.documentElement.classList.add('mt-chegando'); } catch (e) {}</script>
+    <link rel="stylesheet" href="tempo.css">
+    <style>
+        /* ===== ANO 2000: tabelas, <font>, Comic Sans e muito brilho ===== */
+        body {
+            margin: 0;
+            padding: 8px;
+            background-color: #000033;
+            /* "papel de parede" de estrelinhas em mosaico */
+            background-image:
+                radial-gradient(1px 1px at 12px 18px, #fff 99%, transparent),
+                radial-gradient(1px 1px at 47px 72px, #ffff99 99%, transparent),
+                radial-gradient(2px 2px at 83px 34px, #fff 99%, transparent),
+                radial-gradient(1px 1px at 66px 101px, #99ccff 99%, transparent),
+                radial-gradient(1px 1px at 104px 8px, #fff 99%, transparent);
+            background-size: 120px 120px;
+            color: #ffffff;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 16px;
+            cursor: crosshair;
+        }
+
+        a        { color: #00ff00; }
+        a:visited{ color: #ff66ff; }
+        a:hover  { color: #ffff00; background: #ff0000; }
+
+        .comic { font-family: 'Comic Sans MS', 'Comic Sans', 'Chalkboard SE', cursive; }
+
+        .marquee-topo {
+            background: #000080;
+            color: #ffff00;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bold;
+            border: 2px ridge #c0c0c0;
+            padding: 3px 0;
+        }
+
+        table.principal {
+            width: 100%;
+            max-width: 780px;
+            margin: 10px auto;
+            border: 4px ridge #c0c0c0;
+            background: rgba(0, 0, 40, 0.85);
+        }
+
+        /* WordArt */
+        .wordart {
+            font-family: 'Arial Black', Impact, sans-serif;
+            font-size: 40px;
+            line-height: 1.05;
+            text-align: center;
+            margin: 10px 0 2px;
+            background: linear-gradient(180deg, #ffff00 0%, #ff9900 50%, #ff0000 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            filter: drop-shadow(3px 3px 0 #000) drop-shadow(1px 1px 0 #6600cc);
+            transform: perspective(300px) rotateX(12deg) skewX(-6deg);
+            letter-spacing: 1px;
+        }
+
+        .subtitulo {
+            text-align: center;
+            color: #00ffff;
+            font-size: 20px;
+            font-style: italic;
+        }
+
+        .pisca { animation: pisca 1s steps(1) infinite; }
+        @keyframes pisca { 50% { visibility: hidden; } }
+
+        .novo {
+            display: inline-block;
+            background: #ff0000;
+            color: #ffff00;
+            font: bold 11px Arial, sans-serif;
+            padding: 1px 4px;
+            transform: rotate(-12deg);
+            border: 1px solid #ffff00;
+        }
+
+        .arco-iris {
+            height: 6px;
+            border: 0;
+            margin: 12px 0;
+            background: linear-gradient(90deg, red, orange, yellow, lime, cyan, blue, violet, red);
+            background-size: 200% 100%;
+            animation: arcoIris 3s linear infinite;
+        }
+        @keyframes arcoIris { to { background-position: -200% 0; } }
+
+        .construcao {
+            margin: 8px 0;
+            padding: 6px;
+            text-align: center;
+            color: #000;
+            font: bold 18px 'Arial Black', Arial, sans-serif;
+            background: repeating-linear-gradient(-45deg, #ffcc00 0 14px, #000 14px 28px);
+        }
+        .construcao span { background: #ffcc00; padding: 2px 10px; border: 2px solid #000; }
+
+        /* menu lateral com botões "3D" do Windows 98 */
+        td.menu { width: 170px; vertical-align: top; padding: 8px; background: #000066; }
+        .botao98 {
+            display: block;
+            margin-bottom: 6px;
+            padding: 5px 6px;
+            background: #c0c0c0;
+            color: #000 !important;
+            font: bold 13px Arial, sans-serif;
+            text-decoration: none;
+            text-align: center;
+            border: 2px outset #ffffff;
+        }
+        .botao98:hover  { background: #d4d0c8 !important; color: #000080 !important; }
+        .botao98:active { border-style: inset; }
+
+        td.conteudo { vertical-align: top; padding: 10px 14px; }
+
+        h2.secao {
+            font-family: 'Arial Black', Arial, sans-serif;
+            color: #ffff00;
+            font-size: 22px;
+            margin: 8px 0;
+            text-shadow: 2px 2px 0 #ff0000;
+        }
+
+        .estrela-gira { display: inline-block; color: #ffff00; animation: gira 2s linear infinite; }
+        @keyframes gira { to { transform: rotate(360deg); } }
+
+        .foto-2000 {
+            float: right;
+            margin: 0 0 8px 12px;
+            border: 4px ridge #ffcc00;
+            width: 120px;
+            height: 150px;
+            image-rendering: pixelated;
+            background: #333;
+        }
+
+        .skills-2000 li { margin: 4px 0; list-style: none; }
+        .skills-2000 li::before { content: '★ '; color: #ffff00; }
+        .skills-2000 small { color: #aaaaff; }
+
+        table.trabalhos { width: 100%; border-collapse: separate; }
+        table.trabalhos td, table.trabalhos th { border: 2px inset #808080; padding: 6px; vertical-align: top; }
+        table.trabalhos th { background: #000080; color: #ffff00; font-family: Arial, sans-serif; }
+        table.trabalhos img { width: 110px; border: 2px solid #00ffff; }
+
+        .recado { border: 1px dashed #00ffff; padding: 6px 8px; margin: 6px 0; background: rgba(0, 0, 0, 0.4); }
+        .recado b { color: #ff99ff; }
+        .recado small { color: #999; }
+
+        .selos { text-align: center; margin-top: 10px; }
+        .selo {
+            display: inline-block;
+            width: 88px; height: 31px;
+            margin: 2px;
+            vertical-align: middle;
+            border: 1px solid #fff;
+            font: bold 9px/1.1 Verdana, Arial, sans-serif;
+            text-align: center;
+            padding-top: 4px;
+            overflow: hidden;
+        }
+        .selo-ie  { background: linear-gradient(#0033cc, #000066); color: #fff; }
+        .selo-ns  { background: linear-gradient(#006666, #000); color: #ffcc00; }
+        .selo-htm { background: #fff; color: #000; }
+        .selo-blc { background: #000; color: #00ff00; font-family: 'Courier New', monospace; }
+
+        .contador {
+            display: inline-block;
+            background: #000;
+            border: 2px inset #808080;
+            padding: 2px 4px;
+            font: bold 18px 'Courier New', monospace;
+            color: #00ff00;
+            letter-spacing: 4px;
+            text-shadow: 0 0 6px #00ff00;
+        }
+
+        .midi {
+            margin-top: 10px;
+            background: #c0c0c0;
+            color: #000;
+            border: 2px outset #fff;
+            font: 11px Arial, sans-serif;
+            padding: 4px;
+        }
+        .midi button {
+            font: 11px Arial, sans-serif;
+            background: #c0c0c0;
+            border: 2px outset #fff;
+            padding: 1px 6px;
+            cursor: pointer;
+        }
+        .midi button:active { border-style: inset; }
+
+        .rodape-2000 { text-align: center; font-size: 13px; color: #c0c0c0; padding: 10px; }
+
+        /* janelinha de boas-vindas estilo Windows 98 */
+        .janela98 {
+            position: fixed;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            width: min(320px, calc(100% - 32px));
+            background: #c0c0c0;
+            color: #000;
+            border: 2px outset #fff;
+            box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.6);
+            font: 12px Tahoma, Arial, sans-serif;
+            z-index: 9000;
+        }
+        .janela98[hidden] { display: none; }
+        .janela98-titulo {
+            background: linear-gradient(90deg, #000080, #1084d0);
+            color: #fff;
+            font-weight: bold;
+            padding: 3px 4px 3px 6px;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .janela98-titulo button {
+            width: 18px; height: 16px; padding: 0;
+            font: bold 11px Arial, sans-serif; line-height: 12px;
+            background: #c0c0c0; border: 2px outset #fff; cursor: pointer;
+        }
+        .janela98-corpo { padding: 14px; display: flex; gap: 12px; align-items: center; }
+        .janela98-icone { font-size: 28px; }
+        .janela98-acoes { text-align: center; padding: 0 0 12px; }
+        .janela98-acoes button {
+            min-width: 76px; padding: 4px 10px;
+            font: 12px Tahoma, Arial, sans-serif;
+            background: #c0c0c0; border: 2px outset #fff; cursor: pointer;
+        }
+        .janela98-acoes button:focus { outline: 1px dotted #000; outline-offset: -5px; }
+
+        /* rastro de estrelinhas do cursor */
+        .rastro {
+            position: fixed;
+            pointer-events: none;
+            z-index: 8000;
+            font-size: 14px;
+            color: #ffff00;
+            animation: rastro 0.8s ease-out forwards;
+        }
+        @keyframes rastro {
+            to { transform: translateY(24px) scale(0.3) rotate(180deg); opacity: 0; }
+        }
+
+        /* em telas pequenas as colunas da tabela empilham (em 2000 isso não existia...) */
+        @media (max-width: 640px) {
+            .wordart { font-size: 28px; }
+            table.principal > tbody > tr > td { display: block; width: auto; }
+            td.menu { width: auto; }
+            .foto-2000 { float: none; display: block; margin: 0 auto 10px; }
+            table.trabalhos img { width: 70px; }
+        }
+
+        html.mt-embed .janela98 { display: none; }
+    </style>
+</head>
+
+<body data-era="2000">
+
+    <div class="marquee-topo">
+        <marquee scrollamount="6">*** BEM-VINDO(A) À MINHA HOMEPAGE!!! *** Assine meu Livro de Visitas *** Adicione aos Favoritos (Ctrl+D) *** Site otimizado para 800x600 *** Volte sempre!!! ***</marquee>
+    </div>
+
+    <table class="principal" cellpadding="0" cellspacing="0">
+        <tr>
+            <td colspan="2" align="center">
+                <div class="wordart">Erick Silva</div>
+                <div class="subtitulo comic">~ Desenvolvedor Web ~ <span class="novo pisca">NOVO!</span></div>
+                <div class="construcao"><span>🚧 SITE EM CONSTRUÇÃO 🚧</span></div>
+            </td>
+        </tr>
+        <tr>
+            <td class="menu">
+                <a class="botao98" href="#sobre">» Sobre Mim</a>
+                <a class="botao98" href="#skills">» Minhas Skills</a>
+                <a class="botao98" href="#trabalhos">» Meus Trabalhos</a>
+                <a class="botao98" href="#livro">» Livro de Visitas</a>
+                <a class="botao98" href="#links">» Links Legais</a>
+
+                <div class="midi" id="midi">
+                    🎵 <b>fundo.mid</b><br>
+                    <button type="button" id="midiPlay">▶ Tocar</button>
+                    <button type="button" id="midiStop">■ Parar</button>
+                </div>
+
+                <p align="center" style="font-size:12px;margin-top:14px;">
+                    Você é o visitante nº<br>
+                    <span class="contador" id="contador">000000</span>
+                </p>
+
+                <p align="center" style="font-size:11px;color:#aaa;">
+                    WebRing Devs BR<br>
+                    <a href="#links">&lt;&lt; Ant</a> | <a href="#links">Aleatório</a> | <a href="#links">Próx &gt;&gt;</a>
+                </p>
+            </td>
+
+            <td class="conteudo">
+                <h2 class="secao" id="sobre"><span class="estrela-gira">★</span> Sobre Mim</h2>
+                <canvas class="foto-2000" id="foto2000" width="40" height="50" aria-label="Foto do Erick (bem pixelada, é 2000!)" role="img"></canvas>
+                <p class="comic">
+                    Oiii!!! Seja muito bem-vindo(a) à minha página pessoal na <b>Internet</b>!! :-)<br><br>
+                    Meu nome é <font color="#ffff00"><b>Erick Silva</b></font> e eu sou apaixonado por tecnologia e desenvolvimento.
+                    Gosto de criar soluções modernas e funcionais e estou sempre aprendendo coisas novas pra fazer
+                    páginas cada vez mais legais!!!<br><br>
+                    Esse site foi feito <u>todinho no Bloco de Notas</u>. Demorou pra carregar? Calma, a conexão é discada... 📞
+                </p>
+                <br clear="all">
+
+                <hr class="arco-iris">
+
+                <h2 class="secao" id="skills"><span class="estrela-gira">★</span> Minhas Skills</h2>
+                <ul class="skills-2000 comic">
+                    <li>HTML 4.01 <small>— tabelas pra tudo!!!</small></li>
+                    <li>CSS <small>— às vezes... na maioria uso &lt;font&gt; mesmo</small></li>
+                    <li>JavaScript <small>— pra fazer o texto piscar e o rastro de estrelinhas</small></li>
+                    <li>PHP <small>— o contador de visitas é em PHP, juro</small></li>
+                    <li>C e C++ <small>— compilando até no Turbo C</small></li>
+                    <li>MySQL <small>— guardando o livro de visitas</small></li>
+                    <li>Linux e Windows 98 SE <small>— dual boot, claro</small></li>
+                    <li><font color="#ff9900">Em breve: React, Vue, Laravel, Docker, IA...</font> <small>(assim que inventarem 😉)</small></li>
+                </ul>
+
+                <hr class="arco-iris">
+
+                <h2 class="secao" id="trabalhos"><span class="estrela-gira">★</span> Meus Trabalhos</h2>
+                <table class="trabalhos" cellspacing="4">
+                    <tr><th>Foto</th><th>Projeto</th></tr>
+                    <tr>
+                        <td><img src="../assets/img/dep-low-preview.png" alt="Dep Low" loading="lazy"></td>
+                        <td><b>Dep Low</b><br><span class="comic">Loja de roupas streetwear minimalista.</span><br>
+                            <a href="https://dep-company.vercel.app" target="_blank" rel="noopener noreferrer">&gt;&gt; Clique aqui!!! &lt;&lt;</a></td>
+                    </tr>
+                    <tr>
+                        <td><img src="../assets/img/mini-portfolio-preview.png" alt="Mini Portfólio" loading="lazy"></td>
+                        <td><b>Mini Portfólio</b><br><span class="comic">Cartão com minhas redes e skills.</span><br>
+                            <a href="https://github.com/Erickaocode/Mini-Portfolio" target="_blank" rel="noopener noreferrer">&gt;&gt; Clique aqui!!! &lt;&lt;</a></td>
+                    </tr>
+                    <tr>
+                        <td><img src="../assets/img/falcon-burguer-preview.png" alt="Falcon Burguer" loading="lazy"></td>
+                        <td><b>Falcon Burguer</b><br><span class="comic">Site de hamburgueria com cardápio.</span><br>
+                            <a href="https://falcon-burguer.vercel.app" target="_blank" rel="noopener noreferrer">&gt;&gt; Clique aqui!!! &lt;&lt;</a></td>
+                    </tr>
+                    <tr>
+                        <td><img src="../assets/img/supergestao-preview.png" alt="SuperGestão" loading="lazy"></td>
+                        <td><b>SuperGestão</b><br><span class="comic">Sistema de gestão de projetos e tarefas.</span><br>
+                            <font color="#ff6666">(projeto secreto!!!)</font></td>
+                    </tr>
+                </table>
+
+                <hr class="arco-iris">
+
+                <h2 class="secao" id="livro"><span class="estrela-gira">★</span> Livro de Visitas</h2>
+                <div class="recado comic"><b>xX_DarkCoder_Xx</b> <small>— 28/10/2000 às 23:14</small><br>Mto massa teu site!!! Como q faz o texto piscar??? Passa o código!!</div>
+                <div class="recado comic"><b>Visitante</b> <small>— 27/10/2000 às 15:02</small><br>Gostei das estrelinhas no mouse. Visite minha página tb!</div>
+                <div class="recado comic"><b>WebMaster_BR</b> <small>— 25/10/2000 às 09:47</small><br>Parabéns pela página!! Entrou pro nosso WebRing :)</div>
+                <p class="comic" align="center">
+                    <a href="../index.html#contato" data-viagem="hoje"><b>✍️ Assine o Livro de Visitas</b></a><br>
+                    <small style="color:#aaa;">(o livro tá em manutenção... você vai assinar direto no futuro!)</small>
+                </p>
+
+                <hr class="arco-iris">
+
+                <h2 class="secao" id="links"><span class="estrela-gira">★</span> Links Legais</h2>
+                <ul class="comic">
+                    <li><a href="https://github.com/Erickaocode/" target="_blank" rel="noopener noreferrer">Meus códigos no GitHub</a> <span class="novo">HOT</span></li>
+                    <li><a href="https://www.linkedin.com/in/erick-silva-8579002b0/" target="_blank" rel="noopener noreferrer">Meu currículo no LinkedIn</a></li>
+                    <li><a href="https://www.instagram.com/_erickz77_/" target="_blank" rel="noopener noreferrer">Minhas fotos no Instagram</a></li>
+                    <li>📧 Me manda um e-mail: <a href="mailto:ericksilva112017@gmail.com">ericksilva112017@gmail.com</a></li>
+                </ul>
+
+                <div class="selos">
+                    <span class="selo selo-ie">Melhor visto no<br>Internet Explorer</span>
+                    <span class="selo selo-ns">NETSCAPE<br>NOW!</span>
+                    <span class="selo selo-htm">HTML 4.0<br>✓ VÁLIDO</span>
+                    <span class="selo selo-blc">&gt; feito no<br>Bloco de Notas</span>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" class="rodape-2000">
+                <hr class="arco-iris">
+                Última atualização: 29/10/2000 · Resolução recomendada: 800x600<br>
+                © 2000 Erick Silva · Todos os direitos reservados · <span class="pisca">PROIBIDO COPIAR!!!</span>
+            </td>
+        </tr>
+    </table>
+
+    <!-- janelinha de boas-vindas -->
+    <div class="janela98" id="janela98" role="dialog" aria-labelledby="janela98Titulo" hidden>
+        <div class="janela98-titulo">
+            <span id="janela98Titulo">Mensagem da página da Web</span>
+            <button type="button" data-fechar aria-label="Fechar">×</button>
+        </div>
+        <div class="janela98-corpo">
+            <span class="janela98-icone">⚠️</span>
+            <span>Bem-vindo(a) à HomePage do Erick!!!<br>Não esqueça de assinar o Livro de Visitas! :-)</span>
+        </div>
+        <div class="janela98-acoes"><button type="button" data-fechar>OK</button></div>
+    </div>
+
+    <script>
+        // ===== CONTADOR DE VISITAS =====
+        (function () {
+            var visitas = 427;
+            try {
+                visitas = Number(localStorage.getItem('visitas2000') || 427) + 1;
+                localStorage.setItem('visitas2000', visitas);
+            } catch (e) {}
+            document.getElementById('contador').textContent = String(visitas).padStart(6, '0');
+        })();
+
+        // ===== FOTO PIXELADA =====
+        (function () {
+            var canvas = document.getElementById('foto2000');
+            var img = new Image();
+            img.onload = function () {
+                var ctx = canvas.getContext('2d');
+                var lado = Math.min(img.width, img.height * 0.8);
+                ctx.drawImage(img, (img.width - lado) / 2, 0, lado, lado / 0.8, 0, 0, canvas.width, canvas.height);
+            };
+            img.src = '../assets/img/erickfoto.jpeg';
+        })();
+
+        // ===== RASTRO DE ESTRELINHAS =====
+        (function () {
+            if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+            var simbolos = ['★', '✦', '✧', '*'];
+            var ultimo = 0;
+            document.addEventListener('mousemove', function (e) {
+                var agora = Date.now();
+                if (agora - ultimo < 40) return;
+                ultimo = agora;
+                var s = document.createElement('span');
+                s.className = 'rastro';
+                s.textContent = simbolos[Math.floor(Math.random() * simbolos.length)];
+                s.style.left = (e.clientX + 6) + 'px';
+                s.style.top = (e.clientY + 6) + 'px';
+                s.style.color = ['#ffff00', '#00ffff', '#ff66ff', '#ffffff'][Math.floor(Math.random() * 4)];
+                document.body.appendChild(s);
+                setTimeout(function () { s.remove(); }, 800);
+            });
+        })();
+
+        // ===== "MIDI" DE FUNDO (Web Audio, onda quadrada) =====
+        (function () {
+            var ctx = null, timer = null;
+            // [nota MIDI, duração em colcheias]; 0 = pausa
+            var melodia = [
+                [72, 1], [76, 1], [79, 1], [84, 2], [79, 1], [76, 1], [72, 1],
+                [74, 1], [77, 1], [81, 1], [86, 2], [81, 1], [77, 1], [74, 1],
+                [76, 1], [79, 1], [83, 1], [88, 2], [83, 1], [79, 1], [76, 1],
+                [77, 1], [76, 1], [74, 1], [72, 3], [0, 1]
+            ];
+            var colcheia = 0.16;
+
+            function tocar() {
+                if (!ctx) ctx = new (window.AudioContext || window.webkitAudioContext)();
+                if (ctx.state === 'suspended') ctx.resume();
+                var t = ctx.currentTime + 0.05;
+                melodia.forEach(function (n) {
+                    var dur = n[1] * colcheia;
+                    if (n[0]) {
+                        var osc = ctx.createOscillator();
+                        var vol = ctx.createGain();
+                        osc.type = 'square';
+                        osc.frequency.value = 440 * Math.pow(2, (n[0] - 69) / 12);
+                        vol.gain.setValueAtTime(0.04, t);
+                        vol.gain.exponentialRampToValueAtTime(0.001, t + dur * 0.95);
+                        osc.connect(vol).connect(ctx.destination);
+                        osc.start(t);
+                        osc.stop(t + dur);
+                    }
+                    t += dur;
+                });
+                var total = melodia.reduce(function (s, n) { return s + n[1]; }, 0) * colcheia;
+                timer = setTimeout(tocar, total * 1000);
+            }
+
+            document.getElementById('midiPlay').addEventListener('click', function () {
+                if (timer) return;
+                tocar();
+            });
+            document.getElementById('midiStop').addEventListener('click', function () {
+                clearTimeout(timer);
+                timer = null;
+                if (ctx) { ctx.close(); ctx = null; }
+            });
+        })();
+
+        // ===== JANELA DE BOAS-VINDAS =====
+        (function () {
+            if (window.self !== window.top) return;
+            var janela = document.getElementById('janela98');
+            try { if (sessionStorage.getItem('janela2000')) return; } catch (e) {}
+            setTimeout(function () {
+                janela.hidden = false;
+                janela.querySelector('.janela98-acoes button').focus();
+            }, 1600);
+            janela.querySelectorAll('[data-fechar]').forEach(function (b) {
+                b.addEventListener('click', function () {
+                    janela.hidden = true;
+                    try { sessionStorage.setItem('janela2000', '1'); } catch (e) {}
+                });
+            });
+        })();
+    </script>
+
+    <script src="tempo.js"></script>
+</body>
+</html>
