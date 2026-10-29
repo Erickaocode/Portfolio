@@ -241,9 +241,8 @@ a { text-decoration: none; }
     transition: background 0.2s ease-out;
 }
 
-.container-inicio { position: relative; z-index: 1; }
-
 .container-inicio {
+    position: relative; z-index: 1;
     width: 100%; max-width: 1400px;
     color: var(--color-white);
     display: flex; flex-direction: column;
@@ -297,47 +296,6 @@ a { text-decoration: none; }
     color: var(--color-gray2);
     line-height: 1.6;
 }
-
-/* Botão CTA */
-.cta {
-    position: relative;
-    padding: 14px 24px;
-    transition: all 0.2s ease;
-    border: none;
-    background: none;
-    cursor: pointer;
-}
-
-.cta:before {
-    content: "";
-    position: absolute; top: 0; left: 0;
-    display: block;
-    border-radius: 50px;
-    background: var(--color-destaque2);
-    width: 45px; height: 45px;
-    transition: all 0.3s ease;
-}
-
-.cta span {
-    position: relative;
-    font-family: var(--font-pequena);
-    font-size: clamp(1rem, 1.5vw, 1.2rem);
-    font-weight: 700;
-    letter-spacing: 0.05em;
-    color: var(--color-white);
-}
-
-.cta svg {
-    position: relative; top: 0; margin-left: 10px;
-    fill: none; stroke-linecap: round; stroke-linejoin: round;
-    stroke: var(--color-destaque2); stroke-width: 2;
-    transform: translateX(-5px);
-    transition: all 0.3s ease;
-}
-
-.cta:hover:before { width: 100%; background: var(--color-destaque2); }
-.cta:hover svg { transform: translateX(0); stroke: var(--color-destaque1); }
-.cta:active { transform: scale(0.95); }
 
 /* badge scroll */
 .scroll-hint {
@@ -523,8 +481,6 @@ a { text-decoration: none; }
     z-index: 2;
     position: relative;
 }
-
-@keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
 
 /* ===== SKILLS ===== */
 .skills {
@@ -773,29 +729,6 @@ a { text-decoration: none; }
 .prev:hover, .next:hover { background: rgba(0,0,0,0.7); }
 .prev { left: 8px; }
 .next { right: 8px; }
-
-.em-breve-placeholder {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    background: hsla(0,0%,100%,0.03);
-    border: 1px dashed hsla(0,0%,100%,0.15);
-}
-
-.em-breve-placeholder i {
-    font-size: 3rem;
-    color: var(--color-gray1);
-}
-
-.em-breve-placeholder span {
-    font-family: var(--font-grande);
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    color: var(--color-gray2);
-    font-size: 0.9rem;
-}
 
 .textos-case {
     width: 50%;
@@ -1295,10 +1228,6 @@ a { text-decoration: none; }
     .box-skills { min-height: 140px; padding: 1.2rem 0.8rem; }
     .box-skills img { width: 55px; height: 55px; }
     .box-skills i { font-size: 2.2rem; }
-
-    /* Free your mind */
-    .free-your-mind { padding: 0.5rem 1rem; }
-    .fym-line { margin: 0 0.8rem; }
 
     /* Portfolio */
     .portfolio { padding: 4rem 1.2rem 5rem; }
