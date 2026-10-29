@@ -61,7 +61,9 @@
 
 .mt-barra-eras { display: flex; gap: 2px; }
 
-.mt-barra a {
+/* seletor mais forte: as páginas de época estilizam a, a:visited e a:hover */
+.mt-barra .mt-barra-eras a,
+.mt-barra .mt-barra-eras a:visited {
     display: block;
     padding: 8px 12px;
     border-radius: 999px;
@@ -73,10 +75,10 @@
     transition: background 0.2s ease, color 0.2s ease;
 }
 
-.mt-barra a:hover { background: rgba(255, 255, 255, 0.1); }
+.mt-barra .mt-barra-eras a:hover { background: rgba(255, 255, 255, 0.1); color: var(--mt-branco); }
 .mt-barra a:focus-visible { outline: 2px solid var(--mt-azul); outline-offset: 1px; }
 
-.mt-barra a[aria-current="page"] {
+.mt-barra .mt-barra-eras a[aria-current="page"] {
     background: var(--mt-azul);
     color: var(--mt-preto);
 }
@@ -84,7 +86,7 @@
 @media (max-width: 480px) {
     .mt-barra { padding-left: 6px; }
     .mt-barra-titulo span { display: none; }
-    .mt-barra a { padding: 8px 10px; }
+    .mt-barra .mt-barra-eras a { padding: 8px 10px; }
 }
 
 /* ===== OVERLAY DA VIAGEM ===== */
