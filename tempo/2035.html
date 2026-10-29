@@ -439,6 +439,161 @@
         .boot-linhas { min-height: 90px; font-size: 11px; letter-spacing: 2px; color: var(--apagado); text-align: center; line-height: 1.9; }
         .boot-linhas b { color: #4dff9a; font-weight: 500; }
 
+        /* ===== MODO SOBREPOSTO (Alt+E), inspirado no overlay do EKS AI ===== */
+        .sobreposto {
+            --eks: #ffc61a;
+            --eks-rgb: 255, 198, 26;
+            position: fixed; inset: 0;
+            z-index: 4500;
+            overflow-y: auto;
+            padding: 22px 16px 110px;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            font-family: 'Space Grotesk', system-ui, sans-serif;
+            color: #ececec;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.25s ease, visibility 0.25s;
+        }
+        .sobreposto.aberto { opacity: 1; visibility: visible; }
+        .sobreposto.aberto .widget { animation: entraWidget 0.4s cubic-bezier(0.16, 1, 0.3, 1) both; }
+        .sobreposto.aberto .widget:nth-child(2) { animation-delay: 0.04s; }
+        .sobreposto.aberto .widget:nth-child(3) { animation-delay: 0.08s; }
+        .sobreposto.aberto .widget:nth-child(4) { animation-delay: 0.12s; }
+        .sobreposto.aberto .widget:nth-child(5) { animation-delay: 0.16s; }
+        @keyframes entraWidget { from { opacity: 0; transform: translateY(14px) scale(0.97); } }
+
+        .sp-barra {
+            display: flex; align-items: center; gap: 8px;
+            width: fit-content;
+            max-width: 100%;
+            margin: 0 auto 24px;
+            padding: 8px 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 14px;
+            background: #0a0a0a;
+            box-shadow: 0 20px 50px -20px rgba(0, 0, 0, 0.9);
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .sp-logo { font-weight: 700; margin-right: 6px; }
+        .sp-logo span { color: var(--eks); }
+        .sp-icone {
+            width: 34px; height: 34px;
+            display: flex; align-items: center; justify-content: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 9px;
+            background: #121212;
+            color: var(--eks);
+            font-size: 15px;
+            box-shadow: inset 0 -2px 0 var(--eks);
+        }
+        .sp-hora { margin: 0 6px; font: 600 14px ui-monospace, Consolas, monospace; }
+        .sp-atalho { color: #6f6f6f; font: 11px ui-monospace, Consolas, monospace; }
+        .sp-atalho kbd { padding: 1px 5px; border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 4px; background: #151515; color: #bdbdbd; font: inherit; }
+        .sp-fechar-tudo {
+            margin-left: 4px;
+            padding: 6px 10px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 8px;
+            background: none;
+            color: #bdbdbd;
+            font: 12px 'Space Grotesk', sans-serif;
+            cursor: pointer;
+        }
+        .sp-fechar-tudo:hover { border-color: var(--eks); color: #fff; }
+
+        .sp-grade {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 340px));
+            justify-content: center;
+            align-items: start;
+            gap: 16px;
+            max-width: 1440px;
+            margin: 0 auto;
+        }
+
+        .widget {
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            background: rgba(10, 10, 10, 0.94);
+            box-shadow: 0 20px 50px -25px rgba(0, 0, 0, 0.9);
+            overflow: hidden;
+        }
+        .widget[hidden] { display: none; }
+        .w-topo {
+            display: flex; align-items: center; gap: 8px;
+            padding: 12px 14px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+        }
+        .w-topo h3 { font-size: 14px; padding-left: 9px; border-left: 3px solid var(--eks); }
+        .w-meta { margin-left: auto; color: #6f6f6f; font: 10px ui-monospace, Consolas, monospace; }
+        .w-x { border: 0; background: none; color: #7a7a7a; font-size: 16px; cursor: pointer; }
+        .w-x:hover { color: #fff; }
+        .w-corpo { padding: 12px 14px; }
+        .w-rotulo { color: #6f6f6f; font: 10px ui-monospace, Consolas, monospace; letter-spacing: 1px; margin: 4px 0 8px; }
+
+        .w-bolha { padding: 10px 12px; border: 1px solid rgba(255, 255, 255, 0.08); border-radius: 10px; background: #151515; font-size: 13px; line-height: 1.5; }
+        .w-chat-form { display: flex; gap: 8px; margin-top: 70px; }
+        .w-chat-form input {
+            flex: 1; min-width: 0;
+            padding: 9px 10px;
+            border: 1px solid rgba(var(--eks-rgb), 0.6);
+            border-radius: 8px;
+            background: #0c0c0c;
+            color: #fff;
+            font: 13px 'Space Grotesk', sans-serif;
+            outline: none;
+        }
+        .w-chat-form button { width: 36px; border: 0; border-radius: 8px; background: var(--eks); color: #000; font-weight: 700; cursor: pointer; }
+
+        .w-evento { display: flex; gap: 12px; padding: 9px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.06); }
+        .w-evento:last-child { border-bottom: 0; }
+        .w-evento time { color: #9a9a9a; font: 12px ui-monospace, Consolas, monospace; padding-top: 2px; }
+        .w-evento b { display: block; font-size: 13px; font-weight: 600; }
+        .w-tag { display: inline-block; margin: 5px 6px 0 0; padding: 1px 7px; border-radius: 4px; background: #1c1c1c; color: #9a9a9a; font-size: 11px; }
+        .w-tag.entrar { background: var(--eks); color: #000; font-weight: 700; }
+
+        .w-demanda { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid rgba(255, 255, 255, 0.06); font-size: 13px; }
+        .w-demanda:last-child { border-bottom: 0; }
+        .w-demanda::before { content: ''; width: 7px; height: 7px; flex-shrink: 0; border-radius: 50%; background: var(--eks); }
+        .w-demanda small { display: block; color: #7a7a7a; font-size: 11px; }
+        .w-demanda small.atrasada { color: #ff6b6b; }
+        .w-status { margin-left: auto; padding: 2px 7px; border-radius: 4px; background: #1c1c1c; color: #9a9a9a; font-size: 10px; white-space: nowrap; }
+        .w-status.atrasada { background: rgba(255, 107, 107, 0.12); color: #ff6b6b; }
+
+        .w-gemini { display: flex; align-items: center; gap: 14px; }
+        .w-anel { width: 62px; height: 62px; transform: rotate(-90deg); }
+        .w-anel circle { fill: none; stroke-width: 6; }
+        .w-anel .trilho { stroke: #1f1f1f; }
+        .w-anel .valor { stroke: var(--eks); stroke-linecap: round; stroke-dasharray: 163.4; stroke-dashoffset: 163.4; transition: stroke-dashoffset 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s; }
+        .w-gemini b { font-size: 18px; }
+        .w-gemini p { color: #9a9a9a; font-size: 12px; }
+
+        .w-musica { display: flex; gap: 12px; align-items: center; }
+        .w-capa {
+            width: 58px; height: 58px; flex-shrink: 0;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 8px;
+            background: linear-gradient(135deg, #2b2b2b, #0d0d0d);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: var(--eks);
+            font-size: 24px;
+        }
+        .w-musica b { display: block; font-size: 14px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .w-musica span { color: #9a9a9a; font-size: 12px; }
+        .w-progresso { height: 3px; margin: 12px 0 4px; border-radius: 3px; background: #1f1f1f; overflow: hidden; }
+        .w-progresso div { height: 100%; width: 0; background: var(--eks); }
+        .w-tempos { display: flex; justify-content: space-between; color: #6f6f6f; font: 10px ui-monospace, Consolas, monospace; }
+        .w-controles { display: flex; justify-content: center; align-items: center; gap: 22px; margin-top: 8px; }
+        .w-controles button { border: 0; background: none; color: #bdbdbd; font-size: 15px; cursor: pointer; }
+        .w-controles .w-play { width: 40px; height: 40px; border-radius: 50%; background: var(--eks); color: #000; font-size: 15px; }
+
+        .sp-nota { margin: 18px auto 0; text-align: center; color: #6f6f6f; font: 11px ui-monospace, Consolas, monospace; }
+
+        html.mt-embed .sobreposto { display: none; }
+
         html.mt-embed .boot { display: none; }
 
         @media (max-width: 1100px) {
@@ -599,6 +754,80 @@
 
         <p class="rodape35 hud">© 2035 ERICK SILVA · transmitido via <em>rede quântica</em> · o CSS finalmente centraliza div sozinho</p>
     </main>
+
+    <!-- modo sobreposto (Alt+E): amostra do overlay do EKS AI, com dados fictícios -->
+    <div class="sobreposto" id="sobreposto" role="dialog" aria-modal="true" aria-label="EKS AI: modo sobreposto">
+        <div class="sp-barra">
+            <span class="sp-logo">EKS <span>AI</span></span>
+            <span class="sp-icone" title="Chat" aria-hidden="true">💬</span>
+            <span class="sp-icone" title="Agenda" aria-hidden="true">📅</span>
+            <span class="sp-icone" title="Demandas" aria-hidden="true">☰</span>
+            <span class="sp-icone" title="Uso do Gemini" aria-hidden="true">◔</span>
+            <span class="sp-icone" title="Música" aria-hidden="true">♫</span>
+            <span class="sp-hora" id="spHora">--:--</span>
+            <span class="sp-atalho"><kbd>Alt</kbd>+<kbd>E</kbd> · <kbd>Esc</kbd></span>
+            <button type="button" class="sp-fechar-tudo" id="spFechar">fechar</button>
+        </div>
+
+        <div class="sp-grade">
+            <section class="widget" aria-label="Chat">
+                <div class="w-topo"><h3>Chat</h3><button type="button" class="w-x" aria-label="Fechar widget">×</button></div>
+                <div class="w-corpo">
+                    <div class="w-bolha">Oi! Tô aqui por cima de tudo. Pergunta o que quiser sobre o Erick.</div>
+                    <form class="w-chat-form" id="spChat">
+                        <input type="text" placeholder="Diz o que precisa..." aria-label="Mensagem para o EKS AI" autocomplete="off">
+                        <button type="submit" aria-label="Enviar">→</button>
+                    </form>
+                </div>
+            </section>
+
+            <section class="widget" aria-label="Agenda">
+                <div class="w-topo"><h3>Agenda</h3><span class="w-meta">exemplo · hoje</span><button type="button" class="w-x" aria-label="Fechar widget">×</button></div>
+                <div class="w-corpo">
+                    <div class="w-rotulo">HOJE</div>
+                    <div class="w-evento"><time>09:30</time><div><b>Daily do time</b><span class="w-tag">trabalho</span><span class="w-tag entrar">Entrar</span></div></div>
+                    <div class="w-evento"><time>14:00</time><div><b>Revisão do novo layout</b><span class="w-tag">trabalho</span><span class="w-tag entrar">Entrar</span></div></div>
+                    <div class="w-evento"><time>16:30</time><div><b>Café com cliente</b><span class="w-tag">pessoal</span></div></div>
+                </div>
+            </section>
+
+            <section class="widget" aria-label="Demandas">
+                <div class="w-topo"><h3>Demandas</h3><span class="w-meta">3 abertas · exemplo</span><button type="button" class="w-x" aria-label="Fechar widget">×</button></div>
+                <div class="w-corpo">
+                    <div class="w-demanda"><div>Ajustar animação da home<small class="atrasada">atrasada há 2 dias</small></div><span class="w-status atrasada">atrasada</span></div>
+                    <div class="w-demanda"><div>Publicar nova versão do site<small>sem prazo</small></div><span class="w-status">aberta</span></div>
+                    <div class="w-demanda"><div>Responder feedback do cliente<small>sem prazo</small></div><span class="w-status">aberta</span></div>
+                </div>
+            </section>
+
+            <section class="widget" aria-label="Uso do Gemini">
+                <div class="w-topo"><h3>Uso do Gemini</h3><span class="w-meta">hoje</span><button type="button" class="w-x" aria-label="Fechar widget">×</button></div>
+                <div class="w-corpo w-gemini">
+                    <svg class="w-anel" viewBox="0 0 62 62" aria-hidden="true"><circle class="trilho" cx="31" cy="31" r="26"/><circle class="valor" id="spAnel" cx="31" cy="31" r="26"/></svg>
+                    <div><b id="spGeminiPct">0%</b><p><span id="spGeminiUso">0</span> de 50 mensagens usadas hoje</p></div>
+                </div>
+            </section>
+
+            <section class="widget" aria-label="Tocando agora">
+                <div class="w-topo"><h3>Tocando agora</h3><span class="w-meta">EKS Radio</span><button type="button" class="w-x" aria-label="Fechar widget">×</button></div>
+                <div class="w-corpo">
+                    <div class="w-musica">
+                        <div class="w-capa" aria-hidden="true">♪</div>
+                        <div style="min-width:0"><b id="spFaixa">lo-fi pra codar no futuro</b><span id="spArtista">EKS Radio</span></div>
+                    </div>
+                    <div class="w-progresso"><div id="spProgresso"></div></div>
+                    <div class="w-tempos"><span id="spAtual">0:00</span><span id="spTotal">2:32</span></div>
+                    <div class="w-controles">
+                        <button type="button" id="spAnt" aria-label="Faixa anterior">⏮</button>
+                        <button type="button" class="w-play" id="spPlay" aria-label="Pausar">❚❚</button>
+                        <button type="button" id="spProx" aria-label="Próxima faixa">⏭</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <p class="sp-nota">amostra do modo sobreposto do EKS AI · dados fictícios · no app de verdade ele fica por cima de qualquer janela do Windows</p>
+    </div>
 
     <script>
         var embutido = window.self !== window.top;
@@ -806,6 +1035,8 @@
                 responder(escolher(texto));
             }
 
+            window.eksPerguntar = perguntar;
+
             form.addEventListener('submit', function (e) {
                 e.preventDefault();
                 perguntar(input.value);
@@ -882,6 +1113,109 @@
                     try { rec.start(); setGravando(true); } catch (e) { setGravando(false); }
                 });
             }
+        })();
+
+        // ===== MODO SOBREPOSTO (Alt+E) =====
+        (function () {
+            if (embutido) return;
+            var sp = document.getElementById('sobreposto');
+            var anel = document.getElementById('spAnel');
+            var hora = document.getElementById('spHora');
+            var ultimoFoco = null;
+            var USO = 12;
+
+            function pad(n) { return String(n).padStart(2, '0'); }
+            function relogio() { var d = new Date(); hora.textContent = pad(d.getHours()) + ':' + pad(d.getMinutes()); }
+
+            function abrir() {
+                ultimoFoco = document.activeElement;
+                relogio();
+                sp.querySelectorAll('.widget').forEach(function (w) { w.hidden = false; });
+                sp.classList.add('aberto');
+                document.body.style.overflow = 'hidden';
+                // anel do Gemini enche ao abrir
+                anel.style.strokeDashoffset = 163.4;
+                requestAnimationFrame(function () {
+                    anel.style.strokeDashoffset = 163.4 * (1 - USO / 50);
+                });
+                document.getElementById('spGeminiPct').textContent = Math.round(USO / 50 * 100) + '%';
+                document.getElementById('spGeminiUso').textContent = USO;
+                document.getElementById('spFechar').focus();
+                tocar(true);
+            }
+
+            function fechar() {
+                sp.classList.remove('aberto');
+                document.body.style.overflow = '';
+                tocar(false);
+                if (ultimoFoco) ultimoFoco.focus();
+            }
+
+            function alternar() { sp.classList.contains('aberto') ? fechar() : abrir(); }
+
+            document.addEventListener('keydown', function (e) {
+                if (e.altKey && (e.code === 'KeyE' || e.key.toLowerCase() === 'e')) { e.preventDefault(); alternar(); }
+                else if (e.key === 'Escape' && sp.classList.contains('aberto')) fechar();
+            });
+            document.getElementById('abrirSobreposto').addEventListener('click', abrir);
+            document.getElementById('spFechar').addEventListener('click', fechar);
+            sp.addEventListener('click', function (e) { if (e.target === sp) fechar(); });
+            sp.querySelectorAll('.w-x').forEach(function (x) {
+                x.addEventListener('click', function () {
+                    x.closest('.widget').hidden = true;
+                    if (!sp.querySelector('.widget:not([hidden])')) fechar();
+                });
+            });
+
+            // chat do overlay manda a pergunta para a janela principal do EKS AI
+            document.getElementById('spChat').addEventListener('submit', function (e) {
+                e.preventDefault();
+                var campo = e.target.querySelector('input');
+                var texto = campo.value.trim();
+                if (!texto) return;
+                campo.value = '';
+                USO = Math.min(USO + 1, 50);
+                fechar();
+                window.eksPerguntar(texto);
+                document.getElementById('eko').scrollIntoView({ behavior: 'smooth', block: 'center' });
+            });
+
+            // ===== player fictício =====
+            var FAIXAS = [
+                { nome: 'lo-fi pra codar no futuro', artista: 'EKS Radio', dur: 152 },
+                { nome: 'deploy de sexta-feira (slowed)', artista: 'Os Commits', dur: 187 },
+                { nome: 'synthwave 2035', artista: 'Neon Stack', dur: 203 }
+            ];
+            var faixa = 0, pos = 0, timer = null;
+            var play = document.getElementById('spPlay');
+
+            function mmss(t) { return Math.floor(t / 60) + ':' + pad(Math.floor(t % 60)); }
+            function render() {
+                var f = FAIXAS[faixa];
+                document.getElementById('spFaixa').textContent = f.nome;
+                document.getElementById('spArtista').textContent = f.artista;
+                document.getElementById('spTotal').textContent = mmss(f.dur);
+                document.getElementById('spAtual').textContent = mmss(pos);
+                document.getElementById('spProgresso').style.width = (pos / f.dur * 100) + '%';
+            }
+            function tocar(sim) {
+                clearInterval(timer);
+                timer = null;
+                if (sim) timer = setInterval(function () {
+                    pos++;
+                    if (pos >= FAIXAS[faixa].dur) { faixa = (faixa + 1) % FAIXAS.length; pos = 0; }
+                    render();
+                }, 1000);
+                play.textContent = sim ? '❚❚' : '▶';
+                play.setAttribute('aria-label', sim ? 'Pausar' : 'Tocar');
+            }
+            function trocar(d) { faixa = (faixa + d + FAIXAS.length) % FAIXAS.length; pos = 0; render(); }
+
+            play.addEventListener('click', function () { tocar(!timer); });
+            document.getElementById('spAnt').addEventListener('click', function () { trocar(-1); });
+            document.getElementById('spProx').addEventListener('click', function () { trocar(1); });
+            pos = 58;
+            render();
         })();
     </script>
 
