@@ -666,6 +666,8 @@ a { text-decoration: none; }
     width: 100%;
     color: var(--color-white);
     padding: 5rem 2rem 7rem;
+    /* os cases entram com fade-left/right do AOS e criavam scroll horizontal no iOS */
+    overflow-x: clip;
 }
 
 .container-portfolio {
