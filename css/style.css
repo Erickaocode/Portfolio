@@ -366,6 +366,8 @@ a { text-decoration: none; }
     width: 100vw;
     margin-left: calc(-50vw + 50%);
     overflow: hidden;
+    /* lado a lado: a faixa original e o clone (main.js) formam um loop contínuo */
+    display: flex;
     -webkit-mask-image: linear-gradient(90deg, transparent, black 12%, black 88%, transparent);
     mask-image: linear-gradient(90deg, transparent, black 12%, black 88%, transparent);
 }
@@ -374,12 +376,14 @@ a { text-decoration: none; }
     display: flex;
     align-items: center;
     white-space: nowrap;
-    animation: scroll-marquee 20s linear infinite;
+    width: max-content;
+    flex-shrink: 0;
+    animation: scroll-marquee 40s linear infinite;
 }
 
 @keyframes scroll-marquee {
     0%   { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
+    100% { transform: translateX(-100%); }
 }
 
 .headline-scroll span {

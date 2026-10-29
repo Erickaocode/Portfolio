@@ -257,5 +257,6 @@ scrambleOnVisible('scrambleContato');
     if (!hs) return;
     const clone = hs.cloneNode(true);
     clone.id = '';
+    clone.setAttribute('aria-hidden', 'true');
     hs.parentNode.appendChild(clone);
 })();
