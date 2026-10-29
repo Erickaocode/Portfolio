@@ -205,23 +205,98 @@ scrambleOnVisible('scrambleContato');
     });
 })();
 
-// ===== FORMULÁRIO DE CONTATO (mailto) =====
+// ===== FORMULÁRIO DE CONTATO =====
+// Envia pelo FormSubmit (sem backend). Se o envio falhar, oferece mailto e WhatsApp.
 (function () {
     const form = document.getElementById('formContato');
     if (!form) return;
-    form.addEventListener('submit', function (e) {
-        e.preventDefault();
-        const nome = form.nome.value.trim();
-        const telefone = form.telefone.value.trim();
-        const email = form.email.value.trim();
-        const mensagem = form.mensagem.value.trim();
 
-        const assunto = encodeURIComponent(`Contato via portfólio - ${nome}`);
+    const EMAIL    = 'ericksilva112017@gmail.com';
+    const ENDPOINT = 'https://formsubmit.co/ajax/' + EMAIL;
+    const status   = document.getElementById('contatoStatus');
+    const botao    = document.getElementById('contatoEnviar');
+    const label    = botao.querySelector('.btn-label');
+    const icone    = botao.querySelector('i');
+
+    function setStatus(tipo, html) {
+        status.className = 'form-status' + (tipo ? ' ' + tipo : '');
+        status.innerHTML = html;
+    }
+
+    function setLoading(loading) {
+        botao.disabled = loading;
+        botao.classList.toggle('loading', loading);
+        label.textContent = loading ? 'Enviando...' : 'Enviar mensagem';
+        icone.className = loading ? 'bi bi-arrow-repeat' : 'bi bi-arrow-right';
+    }
+
+    function linkMailto(dados) {
+        const assunto = encodeURIComponent(`Contato via portfólio - ${dados.nome}`);
         const corpo = encodeURIComponent(
-            `Nome: ${nome}\nTelefone: ${telefone || 'não informado'}\nEmail: ${email}\n\nMensagem:\n${mensagem}`
-        );
+            `Nome: ${dados.nome}
+Telefone: ${dados.telefone || 'não informado'}
+Email: ${dados.email}
 
-        window.location.href = `mailto:ericksilva112017@gmail.com?subject=${assunto}&body=${corpo}`;
+Mensagem:
+${dados.mensagem}`
+        );
+        return `mailto:${EMAIL}?subject=${assunto}&body=${corpo}`;
+    }
+
+    // marca o campo inválido só depois que a pessoa sai dele
+    form.querySelectorAll('input[required], textarea[required]').forEach((campo) => {
+        campo.addEventListener('blur', () => campo.classList.toggle('invalido', !campo.checkValidity()));
+        campo.addEventListener('input', () => campo.classList.remove('invalido'));
+    });
+
+    form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        if (form._honey.value) return;
+
+        const dados = {
+            nome: form.nome.value.trim(),
+            telefone: form.telefone.value.trim(),
+            email: form.email.value.trim(),
+            mensagem: form.mensagem.value.trim()
+        };
+
+        if (!dados.nome || !dados.mensagem) {
+            setStatus('erro', 'Preencha seu nome e a mensagem antes de enviar.');
+            return;
+        }
+
+        setLoading(true);
+        setStatus('', '');
+
+        try {
+            const resposta = await fetch(ENDPOINT, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+                body: JSON.stringify({
+                    nome: dados.nome,
+                    telefone: dados.telefone || 'não informado',
+                    email: dados.email,
+                    mensagem: dados.mensagem,
+                    _subject: `Contato via portfólio - ${dados.nome}`,
+                    _replyto: dados.email,
+                    _template: 'table',
+                    _captcha: 'false'
+                })
+            });
+            const json = await resposta.json().catch(() => ({}));
+            if (!resposta.ok || String(json.success) !== 'true') throw new Error(json.message || 'falha no envio');
+
+            form.reset();
+            setStatus('sucesso', `Valeu, ${dados.nome.split(' ')[0]}! Sua mensagem chegou, logo te respondo. 🚀`);
+        } catch (err) {
+            setStatus('erro',
+                'Não consegui enviar agora. Você pode mandar por ' +
+                `<a href="${linkMailto(dados)}">e-mail</a> ou pelo ` +
+                '<a href="https://wa.me/5511994842434" target="_blank" rel="noopener noreferrer">WhatsApp</a>.'
+            );
+        } finally {
+            setLoading(false);
+        }
     });
 })();
 
