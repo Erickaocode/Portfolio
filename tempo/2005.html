@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>.:: ERICK SILVA ::. web developer - v2.0</title>
+    <meta name="description" content="Como seria o portfólio do Erick Silva se fosse feito em 2005, na era do Flash e das redes sociais.">
+    <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+    <script>try { if (sessionStorage.getItem('mt-chegada')) document.documentElement.classList.add('mt-chegando'); } catch (e) {}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Silkscreen&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="tempo.css">
+    <style>
+        /* ===== 2005: era do Flash — intro com preloader, fonte pixel, Tahoma 11px e laranja/verde-limão ===== */
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            padding: 24px 12px 30px;
+            font: 11px/1.6 Tahoma, Verdana, Geneva, sans-serif;
+            color: #cfcfcf;
+            background-color: #141414;
+            background-image: repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.025) 0 1px, transparent 1px 4px);
+        }
+
+        a { color: #ff9900; text-decoration: none; }
+        a:hover { color: #99cc00; text-decoration: underline; }
+
+        .pixel { font-family: 'Silkscreen', 'Courier New', monospace; font-weight: normal; letter-spacing: 1px; }
+
+        /* ===== INTRO / PRELOADER ===== */
+        .intro {
+            position: fixed; inset: 0;
+            z-index: 5000;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            gap: 18px;
+            background: #000;
+            color: #fff;
+            transition: opacity 0.6s ease;
+        }
+        .intro.saindo { opacity: 0; pointer-events: none; }
+        .intro[hidden] { display: none; }
+
+        .intro-logo { font-size: 34px; color: #fff; text-shadow: 0 0 12px rgba(255, 153, 0, 0.7); }
+        .intro-logo span { color: #ff9900; }
+
+        .intro-barra { width: 220px; height: 9px; border: 1px solid #555; padding: 1px; }
+        .intro-barra div { height: 100%; width: 0; background: repeating-linear-gradient(90deg, #ff9900 0 6px, #cc7a00 6px 8px); }
+        .intro-pct { font-size: 10px; color: #888; }
+
+        .intro-entrar {
+            display: none;
+            padding: 6px 22px;
+            border: 1px solid #ff9900;
+            background: transparent;
+            color: #ff9900;
+            font-size: 12px;
+            cursor: pointer;
+            animation: piscaSuave 1.2s ease-in-out infinite;
+        }
+        .intro-entrar:hover { background: #ff9900; color: #000; }
+        @keyframes piscaSuave { 50% { opacity: 0.4; } }
+
+        .intro-pular { position: absolute; right: 22px; bottom: 90px; font-size: 10px; color: #777; }
+        .intro-requer { position: absolute; bottom: 90px; left: 22px; font-size: 9px; color: #555; }
+
+        /* ===== "FILME FLASH" ===== */
+        .filme {
+            max-width: 800px;
+            margin: 0 auto;
+            border: 1px solid #000;
+            outline: 1px solid #3a3a3a;
+            background: #222;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
+        }
+
+        .cabecalho {
+            position: relative;
+            height: 130px;
+            padding: 22px 24px;
+            background:
+                radial-gradient(circle at 85% 30%, rgba(255, 153, 0, 0.35), transparent 40%),
+                linear-gradient(180deg, #4a4a4a 0%, #2a2a2a 50%, #1c1c1c 51%, #262626 100%);
+            border-bottom: 1px solid #000;
+            overflow: hidden;
+        }
+        /* "scanlines" de tela */
+        .cabecalho::after {
+            content: '';
+            position: absolute; inset: 0;
+            background: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.18) 0 1px, transparent 1px 3px);
+            pointer-events: none;
+        }
+
+        .logo05 { font-size: 30px; color: #fff; margin: 0; line-height: 1; text-shadow: 2px 2px 0 #000; }
+        .logo05 span { color: #ff9900; }
+        .logo05-sub { margin-top: 8px; font-size: 9px; color: #99cc00; letter-spacing: 3px; }
+
+        .versao {
+            position: absolute; right: 24px; top: 24px;
+            padding: 2px 6px;
+            border: 1px solid #99cc00;
+            color: #99cc00;
+            font-size: 9px;
+        }
+
+        /* círculos decorativos "vetoriais" */
+        .circulos { position: absolute; right: 40px; bottom: -40px; width: 160px; height: 160px; }
+        .circulos i {
+            position: absolute; inset: 0;
+            border: 1px solid rgba(255, 153, 0, 0.35);
+            border-radius: 50%;
+            animation: giraCirculo 12s linear infinite;
+        }
+        .circulos i:nth-child(2) { inset: 20px; border-style: dashed; border-color: rgba(153, 204, 0, 0.4); animation-duration: 8s; animation-direction: reverse; }
+        .circulos i:nth-child(3) { inset: 45px; border-color: rgba(255, 255, 255, 0.15); }
+        @keyframes giraCirculo { to { transform: rotate(360deg); } }
+
+        /* menu de abas */
+        .menu05 {
+            display: flex;
+            flex-wrap: wrap;
+            background: linear-gradient(#3c3c3c, #1e1e1e);
+            border-bottom: 2px solid #ff9900;
+        }
+        .menu05 button {
+            flex: 1 1 auto;
+            padding: 9px 12px;
+            border: 0;
+            border-right: 1px solid #111;
+            background: transparent;
+            color: #bbb;
+            font-family: 'Silkscreen', 'Courier New', monospace;
+            font-size: 11px;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: background 0.15s, color 0.15s;
+        }
+        .menu05 button:last-child { border-right: 0; }
+        .menu05 button:hover { background: #ff9900; color: #000; }
+        .menu05 button[aria-selected="true"] { background: #111; color: #ff9900; }
+
+        .corpo05 { display: grid; grid-template-columns: 1fr 220px; min-height: 380px; }
+
+        .palco05 { padding: 18px 22px; border-right: 1px solid #111; position: relative; }
+        .painel { display: none; }
+        .painel.ativo { display: block; animation: entraFlash 0.35s ease-out; }
+        @keyframes entraFlash {
+            from { opacity: 0; transform: translateX(-14px); filter: blur(2px); }
+            to   { opacity: 1; transform: none; filter: none; }
+        }
+
+        h2.titulo05 {
+            margin: 0 0 12px;
+            padding-bottom: 5px;
+            font-size: 14px;
+            color: #ff9900;
+            border-bottom: 1px dotted #555;
+        }
+        h2.titulo05::before { content: '» '; color: #99cc00; }
+
+        .noticia { margin-bottom: 10px; padding: 6px 8px; background: #1a1a1a; border-left: 3px solid #99cc00; }
+        .noticia b { color: #fff; }
+        .data05 { color: #777; font-size: 10px; }
+
+        .foto05 {
+            float: left;
+            width: 110px;
+            margin: 0 14px 8px 0;
+            padding: 3px;
+            border: 1px solid #555;
+            background: #111;
+            filter: saturate(0.6) contrast(1.1);
+        }
+
+        /* selos 80x15 */
+        .selos05 { display: flex; flex-wrap: wrap; gap: 5px; }
+        .selo05 {
+            display: inline-flex;
+            width: 80px; height: 15px;
+            border: 1px solid #000;
+            font: 8px/13px Verdana, sans-serif;
+            text-transform: uppercase;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        .selo05 b { padding: 0 3px; color: #fff; background: #555; font-weight: normal; }
+        .selo05 span { flex: 1; padding: 0 3px; color: #000; text-align: center; }
+
+        .grade05 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+        .thumb05 {
+            display: block;
+            padding: 4px;
+            border: 1px solid #444;
+            background: #1a1a1a;
+            color: #ccc;
+            text-align: left;
+            font: inherit;
+            cursor: pointer;
+            transition: border-color 0.15s;
+        }
+        .thumb05:hover { border-color: #ff9900; }
+        .thumb05 img { width: 100%; height: 95px; object-fit: cover; display: block; filter: grayscale(0.5); transition: filter 0.2s; }
+        .thumb05:hover img { filter: none; }
+        .thumb05 b { display: block; margin-top: 4px; color: #ff9900; }
+
+        /* perfil de rede social */
+        .perfil-topo { display: flex; gap: 12px; margin-bottom: 14px; }
+        .perfil-topo img { width: 70px; height: 70px; object-fit: cover; object-position: center 20%; border: 1px solid #555; }
+        .perfil-topo dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 1px 8px; }
+        .perfil-topo dt { color: #888; }
+        .perfil-topo dd { margin: 0; color: #fff; }
+        .caixa05 { margin-bottom: 12px; border: 1px solid #333; }
+        .caixa05 h3 { margin: 0; padding: 4px 8px; font-size: 11px; color: #000; background: linear-gradient(#ffb340, #ff9900); }
+        .caixa05 .dentro { padding: 6px 8px; }
+        .recado05 { padding: 5px 0; border-bottom: 1px dotted #333; }
+        .recado05:last-child { border-bottom: 0; }
+        .recado05 b { color: #99cc00; }
+        .comunidades { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+        .comunidade { text-align: center; font-size: 10px; color: #bbb; }
+        .comunidade i {
+            display: flex; align-items: center; justify-content: center;
+            height: 48px;
+            margin-bottom: 3px;
+            border: 1px solid #444;
+            background: #1a1a1a;
+            font-style: normal;
+            font-size: 22px;
+        }
+
+        /* lateral */
+        .lateral05 { padding: 14px; background: #1b1b1b; }
+        .bloco05 { margin-bottom: 16px; }
+        .bloco05 h4 { margin: 0 0 6px; font-size: 10px; color: #99cc00; }
+
+        .enquete label { display: block; cursor: pointer; }
+        .enquete button, .btn05 {
+            margin-top: 6px;
+            padding: 2px 10px;
+            border: 1px solid #ff9900;
+            background: #2a2a2a;
+            color: #ff9900;
+            font: 10px Tahoma, sans-serif;
+            cursor: pointer;
+        }
+        .enquete button:hover, .btn05:hover { background: #ff9900; color: #000; text-decoration: none; }
+        .resultado { margin: 3px 0; }
+        .resultado div { height: 6px; background: #99cc00; margin-top: 1px; }
+
+        .musica { padding: 6px; border: 1px solid #333; background: #111; font-size: 10px; }
+        .equalizador { display: flex; gap: 2px; align-items: flex-end; height: 16px; margin-top: 4px; }
+        .equalizador i { flex: 1; background: #99cc00; animation: eq 0.8s ease-in-out infinite alternate; }
+        .equalizador i:nth-child(2n) { animation-duration: 0.6s; background: #ff9900; }
+        .equalizador i:nth-child(3n) { animation-duration: 1.1s; }
+        @keyframes eq { from { height: 15%; } to { height: 100%; } }
+
+        .rodape05 {
+            padding: 8px 14px;
+            border-top: 1px solid #000;
+            background: #1a1a1a;
+            color: #666;
+            font-size: 10px;
+            display: flex; justify-content: space-between; flex-wrap: wrap; gap: 6px;
+        }
+
+        /* ===== LIGHTBOX ===== */
+        .lightbox {
+            position: fixed; inset: 0;
+            z-index: 4000;
+            display: flex; align-items: center; justify-content: center;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.85);
+        }
+        .lightbox[hidden] { display: none; }
+        .lightbox-caixa { max-width: 640px; width: 100%; padding: 10px 10px 8px; background: #fff; color: #333; animation: abreLightbox 0.3s ease-out; }
+        @keyframes abreLightbox { from { transform: scale(0.85); opacity: 0; } }
+        .lightbox-caixa img { width: 100%; display: block; }
+        .lightbox-legenda { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-top: 8px; font-size: 12px; }
+        .lightbox-legenda button { border: 0; background: none; color: #666; font: bold 11px Tahoma, sans-serif; cursor: pointer; }
+
+        /* ===== MESSENGER ===== */
+        .messenger {
+            position: fixed;
+            right: 16px; bottom: 80px;
+            z-index: 3000;
+            width: 230px;
+            border: 1px solid #0a246a;
+            border-radius: 6px 6px 0 0;
+            background: #fff;
+            color: #000;
+            font: 11px Tahoma, sans-serif;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6);
+            animation: sobeMessenger 0.5s ease-out 2.5s both;
+        }
+        @keyframes sobeMessenger { from { transform: translateY(30px); opacity: 0; } }
+        .messenger[hidden] { display: none; }
+        .messenger-titulo {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 4px 6px;
+            border-radius: 5px 5px 0 0;
+            background: linear-gradient(#3d95ff, #0a5bd6 60%, #0846b0);
+            color: #fff;
+            font-weight: bold;
+        }
+        .messenger-titulo button {
+            width: 16px; height: 16px; padding: 0;
+            border: 1px solid #fff; border-radius: 3px;
+            background: #d7573c; color: #fff;
+            font: bold 10px/12px Arial, sans-serif;
+            cursor: pointer;
+        }
+        .messenger-corpo { padding: 8px; background: linear-gradient(#eaf2ff, #fff); }
+        .contato-msn { display: flex; gap: 8px; align-items: center; }
+        .contato-msn img { width: 36px; height: 36px; object-fit: cover; object-position: center 20%; border: 2px solid #7fba00; border-radius: 4px; }
+        .contato-msn small { display: block; color: #666; font-style: italic; }
+        .online { color: #3a8a00; font-weight: bold; }
+        .messenger-corpo .btn05 { width: 100%; margin-top: 8px; padding: 4px; border-color: #0a5bd6; background: #fff; color: #0a5bd6; }
+        .messenger-corpo .btn05:hover { background: #0a5bd6; color: #fff; }
+        .messenger-msg { margin-top: 6px; color: #555; min-height: 1.2em; }
+
+        /* "chamar atenção": a tela treme */
+        .tremendo { animation: treme 0.5s linear; }
+        @keyframes treme {
+            0%, 100% { transform: translate(0, 0); }
+            10% { transform: translate(-8px, 4px); }  20% { transform: translate(7px, -5px); }
+            30% { transform: translate(-6px, -3px); } 40% { transform: translate(8px, 5px); }
+            50% { transform: translate(-7px, 2px); }  60% { transform: translate(6px, -4px); }
+            70% { transform: translate(-5px, 5px); }  80% { transform: translate(4px, -2px); }
+            90% { transform: translate(-3px, 2px); }
+        }
+
+        html.mt-embed .intro, html.mt-embed .messenger { display: none; }
+
+        @media (max-width: 700px) {
+            .corpo05 { grid-template-columns: 1fr; }
+            .palco05 { border-right: 0; }
+            .lateral05 { border-top: 1px solid #111; }
+            .logo05 { font-size: 22px; }
+            .versao { display: none; }
+            .menu05 button { flex-basis: 33%; border-bottom: 1px solid #111; }
+            .grade05 { grid-template-columns: 1fr; }
+            .messenger { right: 8px; left: 8px; width: auto; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .circulos i, .equalizador i, .intro-entrar { animation: none; }
+            .tremendo { animation: none; }
+        }
+    </style>
+</head>
+
+<body data-era="2005">
+
+    <!-- intro em "Flash" -->
+    <div class="intro" id="intro" aria-label="Carregando o site">
+        <div class="intro-logo pixel">ERICK<span>.</span>SILVA</div>
+        <div class="intro-barra"><div id="introBarra"></div></div>
+        <div class="intro-pct pixel" id="introPct">carregando... 0%</div>
+        <button type="button" class="intro-entrar pixel" id="introEntrar">[ entrar ]</button>
+        <span class="intro-requer pixel">requer flash player 8</span>
+        <a href="#" class="intro-pular pixel" id="introPular">pular intro »</a>
+    </div>
+
+    <div class="filme" id="filme">
+        <div class="cabecalho">
+            <h1 class="logo05 pixel">ERICK<span>.</span>SILVA</h1>
+            <div class="logo05-sub pixel">web developer // design // code</div>
+            <span class="versao pixel">v2.0</span>
+            <div class="circulos" aria-hidden="true"><i></i><i></i><i></i></div>
+        </div>
+
+        <nav class="menu05" role="tablist" aria-label="Menu">
+            <button type="button" role="tab" aria-selected="true" data-painel="home">home</button>
+            <button type="button" role="tab" aria-selected="false" data-painel="sobre">sobre</button>
+            <button type="button" role="tab" aria-selected="false" data-painel="skills">skills</button>
+            <button type="button" role="tab" aria-selected="false" data-painel="projetos">projetos</button>
+            <button type="button" role="tab" aria-selected="false" data-painel="perfil">perfil</button>
+            <button type="button" role="tab" aria-selected="false" data-painel="contato">contato</button>
+        </nav>
+
+        <div class="corpo05">
+            <div class="palco05">
+                <section class="painel ativo" id="painel-home" role="tabpanel">
+                    <h2 class="titulo05 pixel">bem-vindo</h2>
+                    <p>E aí, beleza? Seja bem-vindo à <b style="color:#fff">versão 2.0</b> do meu site! Agora todo animado, com som nos botões e muito mais estilo. Use o menu acima pra navegar. ;)</p>
+                    <h2 class="titulo05 pixel">novidades</h2>
+                    <div class="noticia"><span class="data05">29.10.2005</span><br><b>Site novo no ar!</b> Layout todo refeito, agora com abas animadas e intro.</div>
+                    <div class="noticia"><span class="data05">14.09.2005</span><br><b>Novos projetos</b> adicionados na seção de projetos. Confere lá!</div>
+                    <div class="noticia"><span class="data05">02.08.2005</span><br><b>Me adiciona!</b> Agora eu tenho perfil em rede social, tá na aba "perfil".</div>
+                </section>
+
+                <section class="painel" id="painel-sobre" role="tabpanel">
+                    <h2 class="titulo05 pixel">sobre mim</h2>
+                    <img class="foto05" src="../assets/img/erickfoto.jpeg" alt="Foto do Erick">
+                    <p>Meu nome é <b style="color:#fff">Erick Silva</b> e sou apaixonado por tecnologia e desenvolvimento.</p>
+                    <p>Gosto de criar soluções modernas e funcionais, sempre buscando evoluir e aprender coisas novas. Meu objetivo é transformar ideias em sites que unem desempenho, estética e usabilidade.</p>
+                    <p>Quando não tô codando, provavelmente tô trocando ideia no messenger. :P</p>
+                </section>
+
+                <section class="painel" id="painel-skills" role="tabpanel">
+                    <h2 class="titulo05 pixel">skills</h2>
+                    <p>Tecnologias que eu uso (em selinhos 80x15, claro):</p>
+                    <div class="selos05">
+                        <span class="selo05"><b>xhtml</b><span style="background:#ffcc66">1.0 ✓</span></span>
+                        <span class="selo05"><b>css</b><span style="background:#99ccff">2.1 ✓</span></span>
+                        <span class="selo05"><b>js</b><span style="background:#ffff66">ajax!</span></span>
+                        <span class="selo05"><b>php</b><span style="background:#b3a6ff">powered</span></span>
+                        <span class="selo05"><b>mysql</b><span style="background:#66cccc">inside</span></span>
+                        <span class="selo05"><b>c#</b><span style="background:#cc99ff">.net 2.0</span></span>
+                        <span class="selo05"><b>c/c++</b><span style="background:#ff9999">compila</span></span>
+                        <span class="selo05"><b>sql</b><span style="background:#99ff99">server</span></span>
+                        <span class="selo05"><b>linux</b><span style="background:#ffcc00">user</span></span>
+                        <span class="selo05"><b>bash</b><span style="background:#cccccc">#!/bin</span></span>
+                        <span class="selo05"><b>flash</b><span style="background:#ff6666">8 pro</span></span>
+                        <span class="selo05"><b>rss</b><span style="background:#ff9933">feed</span></span>
+                    </div>
+                    <p style="margin-top:14px;color:#888;">E tô de olho nessas coisas novas que tão surgindo: AJAX, Web 2.0, um tal de "Ruby on Rails"...</p>
+                </section>
+
+                <section class="painel" id="painel-projetos" role="tabpanel">
+                    <h2 class="titulo05 pixel">projetos</h2>
+                    <div class="grade05">
+                        <button type="button" class="thumb05" data-img="../assets/img/dep-low-preview.png" data-titulo="Dep Low — marca de roupas streetwear minimalista" data-link="https://dep-company.vercel.app">
+                            <img src="../assets/img/dep-low-preview.png" alt="" loading="lazy"><b>Dep Low</b>loja streetwear
+                        </button>
+                        <button type="button" class="thumb05" data-img="../assets/img/mini-portfolio-preview.png" data-titulo="Mini Portfólio — link-in-bio com redes e skills" data-link="https://github.com/Erickaocode/Mini-Portfolio">
+                            <img src="../assets/img/mini-portfolio-preview.png" alt="" loading="lazy"><b>Mini Portfólio</b>cartão pessoal
+                        </button>
+                        <button type="button" class="thumb05" data-img="../assets/img/falcon-burguer-preview.png" data-titulo="Falcon Burguer — site de hamburgueria com cardápio" data-link="https://falcon-burguer.vercel.app">
+                            <img src="../assets/img/falcon-burguer-preview.png" alt="" loading="lazy"><b>Falcon Burguer</b>hamburgueria
+                        </button>
+                        <button type="button" class="thumb05" data-img="../assets/img/supergestao-preview.png" data-titulo="SuperGestão — gestão de projetos e tarefas em .NET (privado)" data-link="">
+                            <img src="../assets/img/supergestao-preview.png" alt="" loading="lazy"><b>SuperGestão</b>sistema .net
+                        </button>
+                    </div>
+                </section>
+
+                <section class="painel" id="painel-perfil" role="tabpanel">
+                    <h2 class="titulo05 pixel">meu perfil</h2>
+                    <div class="perfil-topo">
+                        <img src="../assets/img/erickfoto.jpeg" alt="Foto do Erick">
+                        <dl>
+                            <dt>nome:</dt><dd>Erick Silva</dd>
+                            <dt>país:</dt><dd>Brasil</dd>
+                            <dt>interesses:</dt><dd>tecnologia, código, design</dd>
+                            <dt>fãs:</dt><dd>★ 42</dd>
+                        </dl>
+                    </div>
+                    <div class="caixa05">
+                        <h3>recados (3)</h3>
+                        <div class="dentro">
+                            <div class="recado05"><b>Visitante:</b> passando pra deixar um recado!! teu site tá mto show <span class="data05">— ontem</span></div>
+                            <div class="recado05"><b>Amigo do curso:</b> me ensina a fazer essa intro em flash?? <span class="data05">— 3 dias atrás</span></div>
+                            <div class="recado05"><b>Cliente:</b> adorei o site que vc fez, valeu!!! <span class="data05">— 1 semana atrás</span></div>
+                        </div>
+                    </div>
+                    <div class="caixa05">
+                        <h3>comunidades (6)</h3>
+                        <div class="dentro comunidades">
+                            <div class="comunidade"><i>💻</i>Eu amo programar</div>
+                            <div class="comunidade"><i>😴</i>Eu odeio acordar cedo</div>
+                            <div class="comunidade"><i>☕</i>Café é vida</div>
+                            <div class="comunidade"><i>🐛</i>Funciona na minha máquina</div>
+                            <div class="comunidade"><i>🖥️</i>Eu nunca fecho o messenger</div>
+                            <div class="comunidade"><i>🎨</i>Tabelas? Agora é CSS!</div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="painel" id="painel-contato" role="tabpanel">
+                    <h2 class="titulo05 pixel">contato</h2>
+                    <p>Quer um site? Tem uma ideia? Manda uma mensagem!</p>
+                    <p>📧 <a href="mailto:ericksilva112017@gmail.com">ericksilva112017@gmail.com</a></p>
+                    <p>
+                        <a href="https://github.com/Erickaocode/" target="_blank" rel="noopener noreferrer">github</a> ·
+                        <a href="https://www.linkedin.com/in/erick-silva-8579002b0/" target="_blank" rel="noopener noreferrer">linkedin</a> ·
+                        <a href="https://www.instagram.com/_erickz77_/" target="_blank" rel="noopener noreferrer">instagram</a>
+                    </p>
+                    <a class="btn05 pixel" href="../index.html#contato" data-viagem="hoje">enviar mensagem »</a>
+                    <p class="data05" style="margin-top:8px;">(o formulário fica no futuro, é só clicar!)</p>
+                </section>
+            </div>
+
+            <aside class="lateral05">
+                <div class="bloco05">
+                    <h4 class="pixel">» enquete</h4>
+                    <form class="enquete" id="enquete">
+                        <p style="margin:0 0 4px;color:#fff;">O que você achou do site novo?</p>
+                        <label><input type="radio" name="voto" value="0"> Muito show!</label>
+                        <label><input type="radio" name="voto" value="1"> Legal</label>
+                        <label><input type="radio" name="voto" value="2"> Cadê o pular intro?</label>
+                        <button type="submit">votar</button>
+                    </form>
+                    <div id="enqueteResultado" hidden></div>
+                </div>
+
+                <div class="bloco05">
+                    <h4 class="pixel">» tocando agora</h4>
+                    <div class="musica">
+                        ♪ trilha_do_site.mp3
+                        <div class="equalizador" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+                    </div>
+                </div>
+
+                <div class="bloco05">
+                    <h4 class="pixel">» links</h4>
+                    <a href="https://github.com/Erickaocode/" target="_blank" rel="noopener noreferrer">» meus códigos</a><br>
+                    <a href="https://www.linkedin.com/in/erick-silva-8579002b0/" target="_blank" rel="noopener noreferrer">» meu currículo</a><br>
+                    <a href="https://www.instagram.com/_erickz77_/" target="_blank" rel="noopener noreferrer">» minhas fotos</a>
+                </div>
+            </aside>
+        </div>
+
+        <div class="rodape05">
+            <span>© 2005 Erick Silva · todos os direitos reservados</span>
+            <span>melhor visualizado em 1024x768 · flash player 8</span>
+        </div>
+    </div>
+
+    <!-- lightbox dos projetos -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-label="Projeto ampliado" hidden>
+        <div class="lightbox-caixa">
+            <img id="lightboxImg" src="" alt="">
+            <div class="lightbox-legenda">
+                <span id="lightboxTitulo"></span>
+                <span>
+                    <a id="lightboxLink" href="#" target="_blank" rel="noopener noreferrer">ver site »</a>
+                    <button type="button" id="lightboxFechar">FECHAR ✕</button>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <!-- janelinha do messenger -->
+    <div class="messenger" id="messenger" role="complementary" aria-label="Messenger">
+        <div class="messenger-titulo">
+            <span>💬 Messenger</span>
+            <button type="button" id="messengerFechar" aria-label="Fechar messenger">×</button>
+        </div>
+        <div class="messenger-corpo">
+            <div class="contato-msn">
+                <img src="../assets/img/erickfoto.jpeg" alt="">
+                <div>
+                    <b>Erick ~ codando ~ ♪</b>
+                    <small>"transformando ideias em sites"</small>
+                    <span class="online">● Disponível</span>
+                </div>
+            </div>
+            <button type="button" class="btn05" id="chamarAtencao">⚡ Chamar a atenção</button>
+            <div class="messenger-msg" id="messengerMsg"></div>
+        </div>
+    </div>
+
+    <script>
+        // ===== SONS (Web Audio): clique dos botões e "chamar atenção" =====
+        var audio = null;
+        function som(freq, dur, tipo, vol) {
+            try {
+                if (!audio) audio = new (window.AudioContext || window.webkitAudioContext)();
+                var t = audio.currentTime;
+                var osc = audio.createOscillator();
+                var g = audio.createGain();
+                osc.type = tipo || 'square';
+                osc.frequency.setValueAtTime(freq, t);
+                osc.frequency.exponentialRampToValueAtTime(freq * 1.6, t + dur);
+                g.gain.setValueAtTime(vol || 0.03, t);
+                g.gain.exponentialRampToValueAtTime(0.001, t + dur);
+                osc.connect(g).connect(audio.destination);
+                osc.start(t);
+                osc.stop(t + dur);
+            } catch (e) {}
+        }
+
+        // ===== INTRO COM PRELOADER =====
+        (function () {
+            var intro = document.getElementById('intro');
+            if (window.self !== window.top) { intro.hidden = true; return; }
+            var barra = document.getElementById('introBarra');
+            var pct = document.getElementById('introPct');
+            var entrar = document.getElementById('introEntrar');
+            var p = 0;
+
+            function sair() {
+                som(660, 0.12);
+                intro.classList.add('saindo');
+                setTimeout(function () { intro.hidden = true; }, 600);
+            }
+
+            var timer = setInterval(function () {
+                // trava em 87% por um tempinho, como todo preloader que se preze
+                p += p > 85 && p < 90 ? 0.4 : Math.random() * 9;
+                if (p >= 100) {
+                    p = 100;
+                    clearInterval(timer);
+                    pct.textContent = 'pronto!';
+                    entrar.style.display = 'block';
+                    entrar.focus();
+                } else {
+                    pct.textContent = 'carregando... ' + Math.floor(p) + '%';
+                }
+                barra.style.width = p + '%';
+            }, 90);
+
+            entrar.addEventListener('click', sair);
+            document.getElementById('introPular').addEventListener('click', function (e) {
+                e.preventDefault();
+                clearInterval(timer);
+                sair();
+            });
+        })();
+
+        // ===== ABAS =====
+        (function () {
+            var abas = document.querySelectorAll('.menu05 button');
+            abas.forEach(function (aba) {
+                aba.addEventListener('mouseenter', function () { som(1200, 0.04, 'sine', 0.015); });
+                aba.addEventListener('click', function () {
+                    som(520, 0.1);
+                    abas.forEach(function (a) { a.setAttribute('aria-selected', a === aba); });
+                    document.querySelectorAll('.painel').forEach(function (p) {
+                        p.classList.toggle('ativo', p.id === 'painel-' + aba.dataset.painel);
+                    });
+                });
+            });
+        })();
+
+        // ===== LIGHTBOX =====
+        (function () {
+            var box = document.getElementById('lightbox');
+            var img = document.getElementById('lightboxImg');
+            var titulo = document.getElementById('lightboxTitulo');
+            var link = document.getElementById('lightboxLink');
+
+            function fechar() { box.hidden = true; }
+
+            document.querySelectorAll('.thumb05').forEach(function (t) {
+                t.addEventListener('click', function () {
+                    som(440, 0.12);
+                    img.src = t.dataset.img;
+                    img.alt = t.dataset.titulo;
+                    titulo.textContent = t.dataset.titulo;
+                    link.hidden = !t.dataset.link;
+                    if (t.dataset.link) link.href = t.dataset.link;
+                    box.hidden = false;
+                    document.getElementById('lightboxFechar').focus();
+                });
+            });
+            document.getElementById('lightboxFechar').addEventListener('click', fechar);
+            box.addEventListener('click', function (e) { if (e.target === box) fechar(); });
+            document.addEventListener('keydown', function (e) { if (e.key === 'Escape') fechar(); });
+        })();
+
+        // ===== ENQUETE =====
+        (function () {
+            var form = document.getElementById('enquete');
+            var resultado = document.getElementById('enqueteResultado');
+            var opcoes = ['Muito show!', 'Legal', 'Cadê o pular intro?'];
+            var votos = [61, 27, 12];
+
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                var marcado = form.querySelector('input:checked');
+                if (!marcado) return;
+                votos[marcado.value]++;
+                var total = votos.reduce(function (a, b) { return a + b; }, 0);
+                resultado.innerHTML = opcoes.map(function (o, i) {
+                    var pct = Math.round(votos[i] / total * 100);
+                    return '<div class="resultado">' + o + ' — ' + pct + '%<div style="width:' + pct + '%"></div></div>';
+                }).join('') + '<p class="data05">' + total + ' votos · obrigado!</p>';
+                form.hidden = true;
+                resultado.hidden = false;
+            });
+        })();
+
+        // ===== MESSENGER: "CHAMAR A ATENÇÃO" =====
+        (function () {
+            var msn = document.getElementById('messenger');
+            var msg = document.getElementById('messengerMsg');
+            var parado = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            document.getElementById('chamarAtencao').addEventListener('click', function () {
+                som(180, 0.35, 'sawtooth', 0.05);
+                if (!parado) {
+                    document.body.classList.remove('tremendo');
+                    void document.body.offsetWidth;
+                    document.body.classList.add('tremendo');
+                }
+                msg.textContent = 'Você chamou a atenção! Erick vai responder lá no futuro...';
+            });
+            document.body.addEventListener('animationend', function (e) {
+                if (e.animationName === 'treme') document.body.classList.remove('tremendo');
+            });
+            document.getElementById('messengerFechar').addEventListener('click', function () { msn.hidden = true; });
+        })();
+    </script>
+
+    <script src="tempo.js"></script>
+</body>
+</html>
