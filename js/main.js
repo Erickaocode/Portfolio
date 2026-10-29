@@ -233,12 +233,7 @@ scrambleOnVisible('scrambleContato');
     function linkMailto(dados) {
         const assunto = encodeURIComponent(`Contato via portfólio - ${dados.nome}`);
         const corpo = encodeURIComponent(
-            `Nome: ${dados.nome}
-Telefone: ${dados.telefone || 'não informado'}
-Email: ${dados.email}
-
-Mensagem:
-${dados.mensagem}`
+            `Nome: ${dados.nome}\nTelefone: ${dados.telefone || 'não informado'}\nEmail: ${dados.email}\n\nMensagem:\n${dados.mensagem}`
         );
         return `mailto:${EMAIL}?subject=${assunto}&body=${corpo}`;
     }
