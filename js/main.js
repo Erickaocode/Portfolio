@@ -169,23 +169,18 @@ scrambleOnVisible('scrambleContato');
     const menuToggle = document.getElementById('menuToggle');
     const menuAberto = document.querySelector('.menu-aberto');
     const navLinks   = document.querySelectorAll('.nav-menu a');
+    if (!menuToggle || !menuAberto) return;
 
-    menuToggle.addEventListener('change', function () {
-        if (menuToggle.checked) {
-            menuAberto.classList.add('active');
-            document.body.classList.add('no-scroll');
-        } else {
-            menuAberto.classList.remove('active');
-            document.body.classList.remove('no-scroll');
-        }
-    });
+    function setMenu(open) {
+        menuToggle.checked = open;
+        menuAberto.classList.toggle('active', open);
+        document.body.classList.toggle('no-scroll', open);
+    }
 
-    navLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            menuToggle.checked = false;
-            menuAberto.classList.remove('active');
-            document.body.classList.remove('no-scroll');
-        });
+    menuToggle.addEventListener('change', () => setMenu(menuToggle.checked));
+    navLinks.forEach(link => link.addEventListener('click', () => setMenu(false)));
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && menuToggle.checked) setMenu(false);
     });
 })();
 
