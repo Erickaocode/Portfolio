@@ -432,6 +432,7 @@
                     <button type="button" class="chip35">Mostre os projetos</button>
                     <button type="button" class="chip35">Quais as skills?</button>
                     <button type="button" class="chip35">Como falar com ele?</button>
+                    <button type="button" class="chip35">O que o EKS AI faz?</button>
                 </div>
                 <form class="entrada" id="entrada">
                     <input type="text" id="pergunta" placeholder="Pergunte qualquer coisa pro EKS AI..." autocomplete="off" aria-label="Sua pergunta">
@@ -604,8 +605,12 @@
                     texto: 'Curioso pelo passado? Use a barra da Máquina do Tempo aqui embaixo e visite as versões de 2000, 2005, 2010 e 2017. Recomendo começar por 2000. 🕹️'
                 },
                 {
-                    chaves: ['ia', 'inteligencia', 'inteligência', 'real', 'robo', 'robô', 'chatgpt', 'claude'],
-                    texto: 'Confissão: eu sou um assistente roteirizado, feito com algumas respostas prontas, não uma IA de verdade. Mas o Erick trabalha com IA de verdade, com agents, n8n e modelos generativos!'
+                    chaves: ['eks', 'faz', 'funciona', 'app', 'aplicativo', 'desktop', 'agenda', 'reuniao', 'reunião', 'windows', 'baixar', 'instalar'],
+                    texto: 'O EKS AI existe de verdade! 🤖 É um assistente de desktop para Windows criado pelo Erick. Ele:\n• mostra sua agenda do Google (só leitura);\n• avisa quando uma reunião está pra começar;\n• monta um resumo diário dos compromissos;\n• responde por voz sobre a agenda, com IA rodando no próprio computador (Ollama);\n• conversa pelo chat usando o Google Gemini.\n\nEsta janela de 2035 é só uma prévia roteirizada. Quer saber como ele trata seus dados? <a href="../privacidade-eks.html">Veja a política de privacidade →</a>'
+                },
+                {
+                    chaves: ['ia', 'inteligencia', 'inteligência', 'real', 'robo', 'robô', 'chatgpt', 'claude', 'gemini', 'ollama'],
+                    texto: 'Aqui no 2035 eu sou uma prévia roteirizada, com respostas prontas. Mas o EKS AI de verdade é o app de desktop do Erick: usa o Google Gemini no chat e o Ollama pra responder sobre a agenda direto no computador. E o Erick também trabalha com agents, n8n e IA generativa!'
                 },
                 {
                     chaves: ['quem', 'erick', 'sobre', 'ele', 'voce', 'você'],
@@ -617,7 +622,7 @@
                 }
             ];
 
-            var PADRAO = 'Hmm, ainda estou treinando para essa pergunta. (Sou um assistente roteirizado, não uma IA de verdade 😉)\n\nTente perguntar sobre o Erick, os projetos, as skills ou como falar com ele.';
+            var PADRAO = 'Hmm, essa eu ainda não sei responder. (Aqui no 2035 eu sou uma prévia roteirizada do EKS AI 😉)\n\nTente perguntar sobre o Erick, os projetos, as skills, como falar com ele ou o que o EKS AI faz.';
 
             function normalizar(t) { return t.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, ''); }
 
