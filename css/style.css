@@ -1104,6 +1104,9 @@ a { text-decoration: none; }
     .linha-tempo { padding: 4rem 1.2rem 5rem; }
     .lt-nome { display: none; }
     .lt-info-ano { font-size: 3.5rem; }
+    /* com 5 épocas, os anos precisam caber lado a lado em telas de ~360px */
+    .lt-ano { font-size: 1.05rem; }
+    .lt-marco { padding: 0 2px; }
 }
 
 /* ===== TRANSIÇÃO CONTATO ===== */
