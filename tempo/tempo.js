@@ -8,7 +8,8 @@
 
     const ERAS = [
         { id: '2000', nome: '2000', frase: 'A era da internet discada', href: new URL('2000.html', base).href },
-        { id: '2010', nome: '2010', frase: 'A era da Web 2.0',          href: new URL('2010.html', base).href },
+        { id: '2005', nome: '2005', frase: 'A era do Flash',            href: new URL('2005.html', base).href },
+        { id: '2010', nome: '2010', frase: 'A era da Web 2.0',         href: new URL('2010.html', base).href },
         { id: '2017', nome: '2017', frase: 'A era do flat design',      href: new URL('2017.html', base).href },
         { id: 'hoje', nome: 'Hoje', frase: 'De volta ao presente',      href: new URL('../index.html#linha-do-tempo', base).href }
     ];
