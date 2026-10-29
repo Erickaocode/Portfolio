@@ -328,7 +328,7 @@ scrambleOnVisible('scrambleContato');
     hs.parentNode.appendChild(clone);
 })();
 
-/// ===== LINHA DO TEMPO =====
+// ===== LINHA DO TEMPO =====
 (function () {
     const trilho = document.querySelector('.lt-trilho');
     if (!trilho) return;
