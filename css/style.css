@@ -851,6 +851,8 @@ a { text-decoration: none; }
 .contato-ticker-track {
     display: flex;
     white-space: nowrap;
+    /* sem max-content o -50% é calculado sobre a largura do container e o loop "pula" */
+    width: max-content;
     animation: ticker-scroll 18s linear infinite;
     gap: 0;
 }
