@@ -311,6 +311,8 @@
             font: bold 10px/12px Arial, sans-serif;
             cursor: pointer;
         }
+        .messenger-titulo .messenger-abrir { flex: 1; width: auto; height: auto; border-radius: 0; border: 0; background: none; color: inherit; font: inherit; text-align: left; cursor: pointer; padding: 0; }
+        .messenger.minimizado .messenger-corpo { display: none; }
         .messenger-corpo { padding: 8px; background: linear-gradient(#eaf2ff, #fff); }
         .contato-msn { display: flex; gap: 8px; align-items: center; }
         .contato-msn img { width: 36px; height: 36px; object-fit: cover; object-position: center 20%; border: 2px solid #7fba00; border-radius: 4px; }
@@ -342,6 +344,7 @@
             .menu05 button { flex-basis: 33%; border-bottom: 1px solid #111; }
             .grade05 { grid-template-columns: 1fr; }
             .messenger { right: 8px; left: 8px; width: auto; }
+            .messenger.minimizado { left: auto; width: 150px; }
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -536,7 +539,7 @@
     <!-- janelinha do messenger -->
     <div class="messenger" id="messenger" role="complementary" aria-label="Messenger">
         <div class="messenger-titulo">
-            <span>💬 Messenger</span>
+            <button type="button" class="messenger-abrir" id="messengerAbrir" aria-expanded="true">💬 Messenger</button>
             <button type="button" id="messengerFechar" aria-label="Fechar messenger">×</button>
         </div>
         <div class="messenger-corpo">
@@ -693,6 +696,15 @@
                 if (e.animationName === 'treme') document.body.classList.remove('tremendo');
             });
             document.getElementById('messengerFechar').addEventListener('click', function () { msn.hidden = true; });
+
+            // no celular começa minimizado para não cobrir o conteúdo; clicar no título abre/fecha
+            var abrir = document.getElementById('messengerAbrir');
+            function minimizar(sim) {
+                msn.classList.toggle('minimizado', sim);
+                abrir.setAttribute('aria-expanded', !sim);
+            }
+            abrir.addEventListener('click', function () { minimizar(!msn.classList.contains('minimizado')); });
+            minimizar(window.matchMedia('(max-width: 700px)').matches);
         })();
     </script>
 
