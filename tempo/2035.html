@@ -195,7 +195,7 @@
         }
         .chip35:hover, .chip35:focus-visible { background: rgba(var(--ciano-rgb), 0.15); border-color: var(--ciano); box-shadow: 0 0 16px rgba(var(--ciano-rgb), 0.35); outline: none; }
 
-        /* ===== EKO, O ASSISTENTE ===== */
+        /* ===== EKS AI, O ASSISTENTE ===== */
         .eko { display: flex; flex-direction: column; min-height: 520px; }
         .eko-topo { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
         .eko-orb {
@@ -417,12 +417,12 @@
                 </div>
             </section>
 
-            <section class="painel35 eko" id="eko" aria-label="Assistente EKO">
+            <section class="painel35 eko" id="eko" aria-label="Assistente EKS AI">
                 <div class="eko-topo">
                     <div class="eko-orb" aria-hidden="true"></div>
                     <div>
-                        <h2 class="hud">EKO</h2>
-                        <p>assistente pessoal do Erick · online</p>
+                        <h2 class="hud">EKS AI</h2>
+                        <p>assistente do Erick · online</p>
                     </div>
                     <button type="button" class="voz" id="voz" aria-pressed="false">🔈 voz desligada</button>
                 </div>
@@ -434,7 +434,7 @@
                     <button type="button" class="chip35">Como falar com ele?</button>
                 </div>
                 <form class="entrada" id="entrada">
-                    <input type="text" id="pergunta" placeholder="Pergunte qualquer coisa pro EKO..." autocomplete="off" aria-label="Sua pergunta">
+                    <input type="text" id="pergunta" placeholder="Pergunte qualquer coisa pro EKS AI..." autocomplete="off" aria-label="Sua pergunta">
                     <button type="submit">ENVIAR</button>
                 </form>
             </section>
@@ -506,7 +506,7 @@
             var boot = document.getElementById('boot');
             if (embutido || parado) { boot.hidden = true; return; }
             var linhas = document.getElementById('bootLinhas');
-            var etapas = ['inicializando interface neural...', 'sincronizando holograma...', 'carregando EKO...', '<b>sistema pronto</b>'];
+            var etapas = ['inicializando interface neural...', 'sincronizando holograma...', 'carregando EKS AI...', '<b>sistema pronto</b>'];
             etapas.forEach(function (t, i) {
                 setTimeout(function () { linhas.innerHTML += t + '<br>'; }, 250 + i * 330);
             });
@@ -571,7 +571,7 @@
             });
         })();
 
-        // ===== EKO: assistente roteirizado =====
+        // ===== EKS AI: prévia roteirizada do assistente =====
         (function () {
             var eko = document.getElementById('eko');
             var conversa = document.getElementById('conversa');
@@ -613,7 +613,7 @@
                 },
                 {
                     chaves: ['oi', 'ola', 'olá', 'eae', 'e ai', 'bom dia', 'boa tarde', 'boa noite', 'hey'],
-                    texto: 'Olá, humano do passado! 👋 Sou o EKO. Posso te contar sobre o Erick, os projetos, as skills ou como falar com ele.'
+                    texto: 'Olá, humano do passado! 👋 Sou o EKS AI. Posso te contar sobre o Erick, os projetos, as skills ou como falar com ele.'
                 }
             ];
 
@@ -710,7 +710,7 @@
 
             // mensagem de boas-vindas (depois do boot)
             setTimeout(function () {
-                responder({ texto: 'Bem-vindo a 2035! Eu sou o EKO, assistente do Erick. Pergunte o que quiser ou toque numa sugestão abaixo. ✨' });
+                responder({ texto: 'Bem-vindo a 2035! Eu sou o EKS AI, assistente do Erick. Pergunte o que quiser ou toque numa sugestão abaixo. ✨' });
             }, embutido || parado ? 0 : 1900);
         })();
     </script>
