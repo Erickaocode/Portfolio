@@ -1108,6 +1108,33 @@ a { text-decoration: none; }
 
 .btn:active { transform: scale(0.97); }
 
+.btn:disabled { opacity: 0.7; cursor: wait; transform: none; box-shadow: none; }
+.btn.loading i { animation: btnSpin 0.8s linear infinite; }
+
+@keyframes btnSpin { to { transform: rotate(360deg); } }
+
+.form-honey {
+    position: absolute;
+    left: -9999px;
+    width: 1px; height: 1px;
+    opacity: 0;
+}
+
+.form-status {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    color: var(--color-gray2);
+    min-height: 1.5em;
+}
+
+.form-status:empty { display: none; }
+.form-status.sucesso { color: #3ddc84; }
+.form-status.erro    { color: #ff6b6b; }
+.form-status a { color: var(--color-destaque1); text-decoration: underline; }
+
+.form-group input.invalido,
+.form-group textarea.invalido { border-color: #ff6b6b; }
+
 /* Mobile contato */
 @media (max-width: 900px) {
     .contato-grid { grid-template-columns: 1fr; gap: 2.5rem; }
