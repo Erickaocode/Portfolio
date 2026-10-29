@@ -199,8 +199,9 @@ scrambleOnVisible('scrambleContato');
         if (next) next.addEventListener('click', () => { current = (current + 1) % images.length; showSlide(current); });
         if (prev) prev.addEventListener('click', () => { current = (current - 1 + images.length) % images.length; showSlide(current); });
 
-        setInterval(() => { current = (current + 1) % images.length; showSlide(current); }, 3500);
         showSlide(0);
+        if (images.length < 2) return;
+        setInterval(() => { current = (current + 1) % images.length; showSlide(current); }, 3500);
     });
 })();
 
