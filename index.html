@@ -374,6 +374,57 @@
         </div>
     </section>
 
+    <!-- Linha do tempo -->
+    <section id="linha-do-tempo" class="linha-tempo">
+        <div class="blob" style="width:420px;height:420px;top:120px;left:40px;background:radial-gradient(circle, rgba(47,129,255,0.25), transparent 70%); animation-delay: -5s;"></div>
+        <div class="container-linha-tempo">
+            <div class="headline-linha-tempo" data-aos="fade-up" data-aos-duration="1000">
+                <span class="lt-tag"><i class="bi bi-clock-history"></i>Máquina do tempo</span>
+                <h1 id="scrambleTempo">E se este site fosse de outra época?</h1>
+                <p>Recriei meu portfólio do jeito que ele seria em 2000, 2010 e 2017. Escolha um ano e embarque na viagem.</p>
+            </div>
+
+            <div class="lt-trilho" role="tablist" aria-label="Escolha uma época" data-aos="fade-up" data-aos-delay="100">
+                <div class="lt-linha" aria-hidden="true"><div class="lt-linha-fill" id="ltFill"></div></div>
+                <button type="button" class="lt-marco" role="tab" data-era="2000" aria-selected="true" aria-controls="ltPainel">
+                    <span class="lt-ponto"></span><span class="lt-ano">2000</span><span class="lt-nome">Internet discada</span>
+                </button>
+                <button type="button" class="lt-marco" role="tab" data-era="2010" aria-selected="false" aria-controls="ltPainel" tabindex="-1">
+                    <span class="lt-ponto"></span><span class="lt-ano">2010</span><span class="lt-nome">Web 2.0</span>
+                </button>
+                <button type="button" class="lt-marco" role="tab" data-era="2017" aria-selected="false" aria-controls="ltPainel" tabindex="-1">
+                    <span class="lt-ponto"></span><span class="lt-ano">2017</span><span class="lt-nome">Flat design</span>
+                </button>
+                <button type="button" class="lt-marco" role="tab" data-era="hoje" aria-selected="false" aria-controls="ltPainel" tabindex="-1">
+                    <span class="lt-ponto"></span><span class="lt-ano">Hoje</span><span class="lt-nome">Este site</span>
+                </button>
+            </div>
+
+            <div class="lt-palco" id="ltPainel" role="tabpanel" data-aos="fade-up" data-aos-delay="150">
+                <div class="lt-janela" id="ltJanela" data-era="2000">
+                    <div class="lt-janela-barra">
+                        <span class="lt-bolinhas" aria-hidden="true"><i></i><i></i><i></i></span>
+                        <span class="lt-url" id="ltUrl">~*~ HoMePaGe Do ErIcK ~*~ - Internet Explorer</span>
+                    </div>
+                    <a class="lt-tela carregando" id="ltTela" href="tempo/2000.html" data-viagem="2000" aria-label="Viajar para 2000">
+                        <iframe id="ltFrame" title="Prévia do portfólio na época escolhida" tabindex="-1" aria-hidden="true"></iframe>
+                        <span class="lt-tela-dica"><i class="bi bi-rocket-takeoff"></i>Clique para viajar</span>
+                    </a>
+                </div>
+
+                <div class="lt-info" id="ltInfo" aria-live="polite">
+                    <span class="lt-info-ano" id="ltAno">2000</span>
+                    <h3 id="ltTitulo">A era da internet discada</h3>
+                    <p id="ltDescricao">Página pessoal feita no Bloco de Notas, com tudo que a web tinha de mais "moderno" na virada do milênio.</p>
+                    <ul class="lt-tracos" id="ltTracos"></ul>
+                    <a class="btn" id="ltViajar" href="tempo/2000.html" data-viagem="2000">
+                        <span id="ltViajarTexto">Viajar para 2000</span> <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Transição para Contato -->
     <div class="contato-transicao" aria-hidden="true">
         <svg viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
