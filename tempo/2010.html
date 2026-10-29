@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Erick Silva :: Web Developer 2.0 (beta)</title>
+    <meta name="description" content="Como seria o portfólio do Erick Silva se fosse feito em 2010, na era da Web 2.0.">
+    <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+    <script>try { if (sessionStorage.getItem('mt-chegada')) document.documentElement.classList.add('mt-chegando'); } catch (e) {}</script>
+    <link rel="stylesheet" href="tempo.css">
+    <style>
+        /* ===== 2010: Web 2.0 — gradientes glossy, reflexos, cantos arredondados e BETA em tudo ===== */
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            padding: 0 12px 30px;
+            font-family: 'Lucida Grande', 'Trebuchet MS', Verdana, sans-serif;
+            font-size: 13px;
+            line-height: 1.55;
+            color: #333;
+            background-color: #bfe0f5;
+            background-image:
+                repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.18) 0 2px, transparent 2px 9px),
+                linear-gradient(180deg, #5fb0e5 0%, #bfe0f5 380px, #e9f5fc 100%);
+            background-attachment: fixed;
+        }
+
+        a { color: #1f6fc5; }
+        a:hover { color: #ff6600; }
+
+        /* aviso clássico do IE6 */
+        .aviso-ie {
+            margin: 0 -12px;
+            padding: 8px 40px 8px 12px;
+            background: #fff7c2;
+            border-bottom: 1px solid #e6cf5c;
+            color: #6b5a00;
+            text-align: center;
+            font-size: 12px;
+            position: relative;
+        }
+        .aviso-ie[hidden] { display: none; }
+        .aviso-ie button {
+            position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+            border: 0; background: none; font-size: 16px; color: #8a7a20; cursor: pointer;
+        }
+
+        .pagina {
+            max-width: 960px;
+            margin: 24px auto 0;
+            background: #fff;
+            border-radius: 12px;
+            box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.08), 0 8px 30px rgba(0, 40, 80, 0.35);
+            overflow: hidden;
+        }
+
+        /* gloss: metade de cima mais clara */
+        .gloss { position: relative; }
+        .gloss::before {
+            content: '';
+            position: absolute;
+            left: 0; right: 0; top: 0; height: 50%;
+            background: linear-gradient(rgba(255, 255, 255, 0.45), rgba(255, 255, 255, 0.12));
+            border-radius: inherit;
+            pointer-events: none;
+        }
+
+        /* ===== HEADER ===== */
+        .topo {
+            background: linear-gradient(#4a4a4a, #151515);
+            padding: 22px 28px 0;
+            border-bottom: 3px solid #ff6600;
+        }
+
+        .topo-linha {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            position: relative;
+            font-family: Georgia, 'Times New Roman', serif;
+            font-size: 42px;
+            font-weight: bold;
+            letter-spacing: -1px;
+            color: #fff;
+            line-height: 1;
+            margin: 0;
+            text-shadow: 0 1px 0 #000, 0 0 12px rgba(95, 176, 229, 0.6);
+            -webkit-box-reflect: below 0 linear-gradient(transparent 55%, rgba(255, 255, 255, 0.28));
+        }
+        .logo span { color: #6fc3ff; }
+
+        .slogan { color: #aaa; font-size: 12px; margin: 6px 0 18px; font-style: italic; }
+
+        /* selo "BETA" em estrela */
+        .logo .beta {
+            position: absolute;
+            top: -16px; right: -64px;
+            width: 58px; height: 58px;
+            display: flex; align-items: center; justify-content: center;
+            background: radial-gradient(circle at 35% 30%, #ffd54a, #ff6600 70%);
+            clip-path: polygon(50% 0, 61% 18%, 82% 10%, 80% 32%, 100% 40%, 85% 56%, 96% 76%, 74% 78%, 68% 100%, 50% 86%, 32% 100%, 26% 78%, 4% 76%, 15% 56%, 0 40%, 20% 32%, 18% 10%, 39% 18%);
+            transform: rotate(14deg);
+            font: bold 12px Arial, sans-serif;
+            color: #fff;
+            text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+            letter-spacing: 0;
+            animation: betaPulsa 2.4s ease-in-out infinite;
+        }
+        @keyframes betaPulsa { 50% { transform: rotate(14deg) scale(1.1); } }
+
+        .rss {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 5px 10px;
+            border-radius: 5px;
+            background: linear-gradient(#ffa64d, #e85d00);
+            color: #fff !important;
+            font: bold 11px Arial, sans-serif;
+            text-decoration: none;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 0 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .abas { display: flex; gap: 4px; flex-wrap: wrap; }
+        .abas a {
+            display: block;
+            padding: 9px 18px 8px;
+            border-radius: 8px 8px 0 0;
+            background: linear-gradient(#6a6a6a, #3a3a3a);
+            color: #eee;
+            font-weight: bold;
+            font-size: 12px;
+            text-decoration: none;
+            text-shadow: 0 -1px 0 #000;
+        }
+        .abas a:hover { background: linear-gradient(#7fbff0, #2a7fd0); color: #fff; }
+        .abas a.ativa { background: linear-gradient(#ff9a3d, #ff6600); color: #fff; }
+
+        /* ===== SLIDER ===== */
+        .slider {
+            position: relative;
+            height: 300px;
+            background: linear-gradient(#e7f3fb, #c9e3f5);
+            border-bottom: 1px solid #b4d2e8;
+            overflow: hidden;
+        }
+        .slide10 {
+            position: absolute; inset: 0;
+            display: flex; align-items: center; gap: 30px;
+            padding: 0 70px;
+            opacity: 0;
+            transition: opacity 0.6s ease;
+        }
+        .slide10.ativo { opacity: 1; z-index: 1; }
+        .slide10 img {
+            width: 380px; max-width: 45%;
+            border: 5px solid #fff;
+            border-radius: 6px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.3);
+            -webkit-box-reflect: below 2px linear-gradient(transparent 72%, rgba(255, 255, 255, 0.35));
+            transform: rotate(-2deg);
+        }
+        .slide10 h2 {
+            font-family: Georgia, serif;
+            font-size: 30px;
+            color: #144a7c;
+            margin: 0 0 8px;
+            text-shadow: 0 1px 0 #fff;
+        }
+        .slide10 p { font-size: 14px; color: #4b6377; margin: 0 0 14px; }
+
+        .seta {
+            position: absolute; top: 50%; z-index: 2;
+            width: 36px; height: 36px; margin-top: -18px;
+            border: 0; border-radius: 50%;
+            background: linear-gradient(#5a5a5a, #1a1a1a);
+            color: #fff; font-size: 18px; line-height: 36px; text-align: center;
+            cursor: pointer;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+        }
+        .seta.esq { left: 16px; }
+        .seta.dir { right: 16px; }
+
+        .bolinhas { position: absolute; bottom: 12px; left: 0; right: 0; z-index: 2; text-align: center; }
+        .bolinhas button {
+            width: 11px; height: 11px; margin: 0 3px; padding: 0;
+            border: 1px solid #7aa7c9; border-radius: 50%;
+            background: #fff; cursor: pointer;
+        }
+        .bolinhas button.ativo { background: #ff6600; border-color: #c44f00; }
+
+        /* ===== BOTÃO GLOSSY ===== */
+        .botao {
+            display: inline-block;
+            padding: 9px 20px;
+            border-radius: 20px;
+            border: 1px solid #1a5aa0;
+            background: linear-gradient(#6cb8f5, #2276d2);
+            color: #fff !important;
+            font: bold 13px 'Lucida Grande', Verdana, sans-serif;
+            text-decoration: none;
+            text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.35);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25);
+            cursor: pointer;
+        }
+        .botao:hover { background: linear-gradient(#85c7fa, #2e86e6); }
+        .botao.laranja { border-color: #b84a00; background: linear-gradient(#ffad5c, #f06000); }
+        .botao.verde   { border-color: #3d7a12; background: linear-gradient(#9be15d, #4e9a1d); }
+
+        /* ===== CONTEÚDO ===== */
+        .colunas {
+            display: grid;
+            grid-template-columns: 1fr 280px;
+            gap: 24px;
+            padding: 24px 28px;
+        }
+
+        .caixa {
+            border: 1px solid #d5e3ee;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            background: linear-gradient(#fff, #f6fafd);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+        }
+        .caixa h3 {
+            margin: 0;
+            padding: 9px 14px;
+            font-size: 14px;
+            color: #fff;
+            text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3);
+            border-radius: 7px 7px 0 0;
+            background: linear-gradient(#5aa9f0, #1f6fc5);
+        }
+        .caixa .corpo { padding: 14px; }
+
+        .sobre10 { display: flex; gap: 16px; align-items: flex-start; }
+        .sobre10 img {
+            width: 120px;
+            border-radius: 10px;
+            border: 3px solid #fff;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+            -webkit-box-reflect: below 2px linear-gradient(transparent 70%, rgba(255, 255, 255, 0.4));
+        }
+
+        .projetos10 { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+        .projeto10 {
+            border: 1px solid #dde7ef;
+            border-radius: 8px;
+            padding: 8px;
+            background: #fff;
+            transition: box-shadow 0.2s;
+        }
+        .projeto10:hover { box-shadow: 0 4px 14px rgba(31, 111, 197, 0.25); }
+        .projeto10 img { width: 100%; height: 120px; object-fit: cover; border-radius: 5px; display: block; }
+        .projeto10 h4 { margin: 8px 0 2px; color: #144a7c; font-size: 14px; }
+        .projeto10 p { margin: 0 0 8px; font-size: 12px; color: #666; }
+        .projeto10 a { font-weight: bold; font-size: 12px; }
+
+        /* sidebar */
+        .tweet { display: flex; gap: 8px; padding: 8px 0; border-bottom: 1px dotted #c8d8e4; font-size: 12px; }
+        .tweet:last-child { border-bottom: 0; }
+        .tweet-avatar {
+            width: 34px; height: 34px; flex-shrink: 0;
+            border-radius: 4px;
+            background: url('../assets/img/erickfoto.jpeg') center 20% / cover;
+        }
+        .tweet small { color: #999; display: block; }
+        .tweet .hash { color: #1f6fc5; }
+
+        .nuvem { text-align: center; line-height: 1.9; }
+        .nuvem span { display: inline-block; margin: 0 4px; color: #1f6fc5; cursor: default; }
+        .nuvem span:hover { color: #ff6600; text-decoration: underline; }
+        .t1 { font-size: 11px; } .t2 { font-size: 13px; } .t3 { font-size: 16px; font-weight: bold; }
+        .t4 { font-size: 20px; font-weight: bold; } .t5 { font-size: 25px; font-weight: bold; color: #ff6600 !important; }
+
+        .curtir {
+            display: inline-flex; align-items: center; gap: 5px;
+            padding: 3px 8px;
+            border: 1px solid #cad4e7;
+            border-radius: 3px;
+            background: linear-gradient(#fff, #e9ecf3);
+            color: #3b5998;
+            font: bold 11px 'Lucida Grande', Tahoma, sans-serif;
+            cursor: pointer;
+        }
+        .curtir.curtido { background: #dbe4f5; }
+        .curtir-total {
+            display: inline-block;
+            margin-left: 6px;
+            padding: 2px 6px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            background: #fff;
+            font-size: 11px;
+            color: #333;
+        }
+
+        /* aba de feedback grudada na lateral */
+        .feedback {
+            position: fixed;
+            right: 0; top: 40%;
+            transform-origin: bottom right;
+            transform: rotate(-90deg) translateY(-100%);
+            padding: 7px 16px;
+            border-radius: 7px 7px 0 0;
+            background: linear-gradient(#ffad5c, #f06000);
+            color: #fff !important;
+            font: bold 12px Arial, sans-serif;
+            letter-spacing: 1px;
+            text-decoration: none;
+            box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.3);
+            z-index: 50;
+        }
+
+        .rodape10 {
+            padding: 18px 28px;
+            background: linear-gradient(#3a3a3a, #151515);
+            color: #999;
+            font-size: 11px;
+            display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px;
+        }
+        .rodape10 a { color: #6fc3ff; }
+        .selo10 {
+            display: inline-block;
+            padding: 2px 6px;
+            margin-left: 4px;
+            border: 1px solid #555;
+            border-radius: 3px;
+            background: linear-gradient(#555, #2a2a2a);
+            color: #ddd;
+            font-size: 10px;
+        }
+
+        @media (max-width: 760px) {
+            .colunas { grid-template-columns: 1fr; padding: 18px; }
+            .slider { height: 360px; }
+            .slide10 { flex-direction: column; justify-content: center; padding: 20px 56px; gap: 12px; text-align: center; }
+            .slide10 img { max-width: 100%; width: 240px; -webkit-box-reflect: unset; }
+            .slide10 h2 { font-size: 22px; }
+            .logo .beta { right: -48px; width: 48px; height: 48px; font-size: 10px; }
+            .logo { font-size: 32px; }
+            .feedback { display: none; }
+        }
+
+        @media (max-width: 480px) {
+            .projetos10 { grid-template-columns: 1fr; }
+            .sobre10 { flex-direction: column; align-items: center; text-align: center; }
+        }
+    </style>
+</head>
+
+<body data-era="2010">
+
+    <div class="aviso-ie" id="avisoIE">
+        ⚠️ Você está usando um navegador desatualizado. <b>Atualize seu Internet Explorer 6</b> para ver este site com todos os cantos arredondados!
+        <button type="button" aria-label="Fechar aviso" id="fecharAviso">×</button>
+    </div>
+
+    <div class="pagina">
+        <div class="topo">
+            <div class="topo-linha">
+                <div>
+                    <h1 class="logo">Erick<span>Silva</span><span class="beta">BETA!</span></h1>
+                    <p class="slogan">web developer 2.0 · apaixonado por tecnologia</p>
+                </div>
+                <a class="rss gloss" href="#blog">📡 Assine o RSS</a>
+            </div>
+            <nav class="abas" aria-label="Menu">
+                <a class="ativa gloss" href="#inicio10">Home</a>
+                <a class="gloss" href="#sobre10">Sobre</a>
+                <a class="gloss" href="#projetos10">Portfolio</a>
+                <a class="gloss" href="#blog">Blog</a>
+                <a class="gloss" href="../index.html#contato" data-viagem="hoje">Contato</a>
+            </nav>
+        </div>
+
+        <!-- slider "em jQuery" -->
+        <div class="slider" id="inicio10">
+            <button type="button" class="seta esq gloss" id="slideAnt" aria-label="Anterior">‹</button>
+            <div class="slide10 ativo">
+                <img src="../assets/img/dep-low-preview.png" alt="Dep Low">
+                <div>
+                    <h2>Dep Low</h2>
+                    <p>Loja de streetwear minimalista com visual urbano e estética limpa.</p>
+                    <a class="botao laranja gloss" href="https://dep-company.vercel.app" target="_blank" rel="noopener noreferrer">Ver projeto »</a>
+                </div>
+            </div>
+            <div class="slide10">
+                <img src="../assets/img/falcon-burguer-preview.png" alt="Falcon Burguer" loading="lazy">
+                <div>
+                    <h2>Falcon Burguer</h2>
+                    <p>Site de hamburgueria com cardápio e chamadas para delivery.</p>
+                    <a class="botao laranja gloss" href="https://falcon-burguer.vercel.app" target="_blank" rel="noopener noreferrer">Ver projeto »</a>
+                </div>
+            </div>
+            <div class="slide10">
+                <img src="../assets/img/supergestao-preview.png" alt="SuperGestão" loading="lazy">
+                <div>
+                    <h2>SuperGestão</h2>
+                    <p>Gestão de projetos e tarefas em .NET com dashboard de progresso.</p>
+                    <span class="botao gloss">Projeto privado</span>
+                </div>
+            </div>
+            <button type="button" class="seta dir gloss" id="slideProx" aria-label="Próximo">›</button>
+            <div class="bolinhas" id="bolinhas"></div>
+        </div>
+
+        <div class="colunas">
+            <div>
+                <div class="caixa" id="sobre10">
+                    <h3 class="gloss">Sobre mim</h3>
+                    <div class="corpo sobre10">
+                        <img src="../assets/img/erickfoto.jpeg" alt="Foto do Erick">
+                        <div>
+                            <p><b>Olá! Eu sou o Erick Silva</b>, desenvolvedor web apaixonado por tecnologia.</p>
+                            <p>Crio sites modernos, funcionais e com cantos arredondados de verdade (sem imagens nos cantos!). Estou sempre aprendendo pra entregar interfaces intuitivas, rápidas e bonitas — até no IE.</p>
+                            <a class="botao verde gloss" href="../index.html#contato" data-viagem="hoje">Fale comigo »</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="caixa" id="projetos10">
+                    <h3 class="gloss">Portfolio</h3>
+                    <div class="corpo projetos10">
+                        <div class="projeto10">
+                            <img src="../assets/img/dep-low-preview.png" alt="Dep Low" loading="lazy">
+                            <h4>Dep Low</h4>
+                            <p>Marca de roupas streetwear minimalista.</p>
+                            <a href="https://dep-company.vercel.app" target="_blank" rel="noopener noreferrer">Ver online »</a>
+                        </div>
+                        <div class="projeto10">
+                            <img src="../assets/img/mini-portfolio-preview.png" alt="Mini Portfólio" loading="lazy">
+                            <h4>Mini Portfólio</h4>
+                            <p>Link-in-bio com redes, skills e Spotify.</p>
+                            <a href="https://github.com/Erickaocode/Mini-Portfolio" target="_blank" rel="noopener noreferrer">Ver no GitHub »</a>
+                        </div>
+                        <div class="projeto10">
+                            <img src="../assets/img/falcon-burguer-preview.png" alt="Falcon Burguer" loading="lazy">
+                            <h4>Falcon Burguer</h4>
+                            <p>Site institucional de hamburgueria.</p>
+                            <a href="https://falcon-burguer.vercel.app" target="_blank" rel="noopener noreferrer">Ver online »</a>
+                        </div>
+                        <div class="projeto10">
+                            <img src="../assets/img/supergestao-preview.png" alt="SuperGestão" loading="lazy">
+                            <h4>SuperGestão</h4>
+                            <p>Sistema de gestão em .NET + Docker.</p>
+                            <span style="color:#999;font-size:12px;">🔒 Privado</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="caixa" id="blog">
+                    <h3 class="gloss">Últimos posts do blog</h3>
+                    <div class="corpo">
+                        <p><a href="#blog"><b>10 plugins jQuery que você PRECISA conhecer</b></a><br><small style="color:#999;">postado em 12/10/2010 · 23 comentários</small></p>
+                        <p><a href="#blog"><b>HTML5 vai matar o Flash? Minha opinião</b></a><br><small style="color:#999;">postado em 28/09/2010 · 41 comentários</small></p>
+                        <p style="margin:0"><a href="#blog"><b>Como fazer cantos arredondados que funcionam no IE</b></a><br><small style="color:#999;">postado em 03/09/2010 · 17 comentários</small></p>
+                    </div>
+                </div>
+            </div>
+
+            <aside>
+                <div class="caixa">
+                    <h3 class="gloss">🐦 Últimos tweets</h3>
+                    <div class="corpo">
+                        <div class="tweet"><span class="tweet-avatar"></span><div>Layout novo no ar! Tudo em grid de 960px <span class="hash">#webdesign</span><small>há 2 horas via web</small></div></div>
+                        <div class="tweet"><span class="tweet-avatar"></span><div>Alguém mais animado com o &lt;video&gt; do HTML5? Adeus plugin! <span class="hash">#html5</span><small>há 1 dia via TweetDeck</small></div></div>
+                        <div class="tweet"><span class="tweet-avatar"></span><div>Testando o site no IE6... me desejem sorte 🙏<small>há 3 dias via web</small></div></div>
+                    </div>
+                </div>
+
+                <div class="caixa">
+                    <h3 class="gloss">Nuvem de tags</h3>
+                    <div class="corpo nuvem">
+                        <span class="t5">JavaScript</span> <span class="t2">C#</span> <span class="t4">HTML</span>
+                        <span class="t1">Bash</span> <span class="t3">PHP</span> <span class="t4">CSS</span>
+                        <span class="t2">MySQL</span> <span class="t1">C</span> <span class="t3">Laravel</span>
+                        <span class="t2">SQL Server</span> <span class="t1">C++</span> <span class="t3">Git</span>
+                        <span class="t2">ASP.NET</span> <span class="t1">PowerShell</span> <span class="t3">Linux</span>
+                        <span class="t2">jQuery</span> <span class="t1">Photoshop</span> <span class="t2">AJAX</span>
+                    </div>
+                </div>
+
+                <div class="caixa">
+                    <h3 class="gloss">Curtiu?</h3>
+                    <div class="corpo">
+                        <button type="button" class="curtir" id="curtir">👍 Curtir</button>
+                        <span class="curtir-total" id="curtirTotal">128</span>
+                        <p style="margin:10px 0 0;font-size:12px;">
+                            <a href="https://github.com/Erickaocode/" target="_blank" rel="noopener noreferrer">GitHub</a> ·
+                            <a href="https://www.linkedin.com/in/erick-silva-8579002b0/" target="_blank" rel="noopener noreferrer">LinkedIn</a> ·
+                            <a href="https://www.instagram.com/_erickz77_/" target="_blank" rel="noopener noreferrer">Instagram</a>
+                        </p>
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+        <div class="rodape10">
+            <span>© 2010 Erick Silva · Feito com ♥ e jQuery 1.4.2</span>
+            <span><span class="selo10">XHTML 1.0 ✓</span><span class="selo10">CSS3 ✓</span><span class="selo10">Web 2.0</span></span>
+        </div>
+    </div>
+
+    <a class="feedback" href="../index.html#contato" data-viagem="hoje">FEEDBACK</a>
+
+    <script>
+        // ===== AVISO DO IE =====
+        document.getElementById('fecharAviso').addEventListener('click', function () {
+            document.getElementById('avisoIE').hidden = true;
+        });
+
+        // ===== SLIDER =====
+        (function () {
+            var slides = document.querySelectorAll('.slide10');
+            var bolinhas = document.getElementById('bolinhas');
+            var atual = 0, timer;
+
+            slides.forEach(function (_, i) {
+                var b = document.createElement('button');
+                b.type = 'button';
+                b.setAttribute('aria-label', 'Slide ' + (i + 1));
+                b.addEventListener('click', function () { mostrar(i); });
+                bolinhas.appendChild(b);
+            });
+
+            function mostrar(i) {
+                atual = (i + slides.length) % slides.length;
+                slides.forEach(function (s, j) { s.classList.toggle('ativo', j === atual); });
+                bolinhas.querySelectorAll('button').forEach(function (b, j) { b.classList.toggle('ativo', j === atual); });
+                clearInterval(timer);
+                timer = setInterval(function () { mostrar(atual + 1); }, 4500);
+            }
+
+            document.getElementById('slideAnt').addEventListener('click', function () { mostrar(atual - 1); });
+            document.getElementById('slideProx').addEventListener('click', function () { mostrar(atual + 1); });
+            mostrar(0);
+        })();
+
+        // ===== CURTIR =====
+        (function () {
+            var botao = document.getElementById('curtir');
+            var total = document.getElementById('curtirTotal');
+            var curtido = false;
+            try { curtido = localStorage.getItem('curtiu2010') === '1'; } catch (e) {}
+
+            function render() {
+                total.textContent = 128 + (curtido ? 1 : 0);
+                botao.classList.toggle('curtido', curtido);
+                botao.textContent = curtido ? '👍 Você curtiu isso' : '👍 Curtir';
+            }
+
+            botao.addEventListener('click', function () {
+                curtido = !curtido;
+                try { localStorage.setItem('curtiu2010', curtido ? '1' : '0'); } catch (e) {}
+                render();
+            });
+            render();
+        })();
+    </script>
+
+    <script src="tempo.js"></script>
+</body>
+</html>
