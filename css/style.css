@@ -826,8 +826,8 @@ a { text-decoration: none; }
 .lt-trilho {
     position: relative;
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    max-width: 1000px;
+    grid-template-columns: repeat(6, 1fr);
+    max-width: 1100px;
     width: 100%;
     margin: 0 auto;
 }
@@ -835,8 +835,8 @@ a { text-decoration: none; }
 .lt-linha {
     position: absolute;
     top: 11px;
-    /* do centro do primeiro marco ao centro do último (5 colunas) */
-    left: 10%; right: 10%;
+    /* do centro do primeiro marco ao centro do último (6 colunas) */
+    left: calc(100% / 12); right: calc(100% / 12);
     height: 2px;
     background: hsla(0,0%,100%,0.12);
     border-radius: 2px;
@@ -906,6 +906,9 @@ a { text-decoration: none; }
 }
 .lt-marco[aria-selected="true"] .lt-ponto::after { background: var(--color-destaque1); }
 
+/* o futuro ainda não aconteceu: ponto tracejado */
+.lt-futuro .lt-ponto { border-style: dashed; }
+
 /* Palco: janela do navegador + informações */
 .lt-palco {
     display: grid;
@@ -971,6 +974,20 @@ a { text-decoration: none; }
 .lt-janela[data-era="2005"] .lt-bolinhas i { width: 15px; height: 15px; border-radius: 3px; border: 1px solid #fff; background: #3d7bea; }
 .lt-janela[data-era="2005"] .lt-bolinhas i:nth-child(3) { background: #d7573c; }
 .lt-janela[data-era="2005"] .lt-url { background: none; text-align: left; padding: 0; border-radius: 0; }
+
+.lt-janela[data-era="2035"] {
+    border-radius: 18px;
+    border-color: rgba(62,242,255,0.45);
+    box-shadow: 0 0 40px -6px rgba(62,242,255,0.45), 0 30px 80px -30px rgba(255,62,200,0.35);
+}
+.lt-janela[data-era="2035"] .lt-janela-barra {
+    background: linear-gradient(90deg, rgba(62,242,255,0.12), rgba(255,62,200,0.12));
+    color: #3ef2ff;
+    letter-spacing: 2px;
+}
+.lt-janela[data-era="2035"] .lt-bolinhas i { width: 9px; height: 9px; background: #3ef2ff; box-shadow: 0 0 8px #3ef2ff; }
+.lt-janela[data-era="2035"] .lt-bolinhas i:nth-child(2) { background: #ff3ec8; box-shadow: 0 0 8px #ff3ec8; }
+.lt-janela[data-era="2035"] .lt-bolinhas i:nth-child(3) { background: #fff; box-shadow: 0 0 8px #fff; }
 
 .lt-janela[data-era="2010"] { border-radius: 8px; }
 .lt-janela[data-era="2010"] .lt-janela-barra {
@@ -1104,8 +1121,8 @@ a { text-decoration: none; }
     .linha-tempo { padding: 4rem 1.2rem 5rem; }
     .lt-nome { display: none; }
     .lt-info-ano { font-size: 3.5rem; }
-    /* com 5 épocas, os anos precisam caber lado a lado em telas de ~360px */
-    .lt-ano { font-size: 1.05rem; }
+    /* com 6 épocas, os anos precisam caber lado a lado em telas de ~360px */
+    .lt-ano { font-size: 0.9rem; }
     .lt-marco { padding: 0 2px; }
 }
 
