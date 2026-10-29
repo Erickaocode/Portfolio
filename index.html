@@ -431,19 +431,21 @@
                 <!-- Card formulário -->
                 <form class="card-formulario" id="formContato" data-aos="fade-left" data-aos-delay="150">
                     <span class="card-formulario-tag">&lt;contato/&gt;</span>
+                    <!-- honeypot: invisível para pessoas, bots costumam preencher -->
+                    <input type="text" name="_honey" class="form-honey" tabindex="-1" autocomplete="off" aria-hidden="true">
                     <div class="form-row">
                         <div class="form-group">
                             <label for="contatoNome">Nome</label>
                             <div class="input-wrap">
                                 <i class="bi bi-person-fill"></i>
-                                <input type="text" id="contatoNome" name="nome" placeholder="Seu nome completo" required>
+                                <input type="text" id="contatoNome" name="nome" placeholder="Seu nome completo" autocomplete="name" required>
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="contatoTelefone">Telefone</label>
                             <div class="input-wrap">
                                 <i class="bi bi-telephone-fill"></i>
-                                <input type="tel" id="contatoTelefone" name="telefone" placeholder="(11) 99999-9999">
+                                <input type="tel" id="contatoTelefone" name="telefone" placeholder="(11) 99999-9999" autocomplete="tel" inputmode="tel" maxlength="15">
                             </div>
                         </div>
                     </div>
@@ -451,7 +453,7 @@
                         <label for="contatoEmail">Email</label>
                         <div class="input-wrap">
                             <i class="bi bi-envelope-fill"></i>
-                            <input type="email" id="contatoEmail" name="email" placeholder="seu@email.com" required>
+                            <input type="email" id="contatoEmail" name="email" placeholder="seu@email.com" autocomplete="email" required>
                         </div>
                     </div>
                     <div class="form-group">
@@ -467,10 +469,11 @@
                             <a href="https://github.com/Erickaocode/" target="_blank" rel="noopener noreferrer" class="form-social-btn" aria-label="GitHub"><i class="bi bi-github"></i></a>
                             <a href="https://www.linkedin.com/in/erick-silva-8579002b0/" target="_blank" rel="noopener noreferrer" class="form-social-btn" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
                         </div>
-                        <button type="submit" class="btn">
-                            Enviar mensagem <i class="bi bi-arrow-right"></i>
+                        <button type="submit" class="btn" id="contatoEnviar">
+                            <span class="btn-label">Enviar mensagem</span> <i class="bi bi-arrow-right"></i>
                         </button>
                     </div>
+                    <p class="form-status" id="contatoStatus" role="status" aria-live="polite"></p>
                 </form>
             </div>
 
