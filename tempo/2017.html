@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Erick Silva | Web Developer & Designer</title>
+    <meta name="description" content="Como seria o portfólio do Erick Silva se fosse feito em 2017, na era do flat design.">
+    <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+    <script>try { if (sessionStorage.getItem('mt-chegada')) document.documentElement.classList.add('mt-chegando'); } catch (e) {}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="tempo.css">
+    <style>
+        /* ===== 2017: flat design, gradiente roxo/rosa, particles.js e barras de skill em % ===== */
+        :root {
+            --roxo: #6a3093;
+            --rosa: #e94e77;
+            --gradiente: linear-gradient(135deg, #6a3093 0%, #a044ff 50%, #e94e77 100%);
+            --escuro: #1e1e2f;
+            --texto: #5f6377;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+            color: var(--texto);
+            font-size: 15px;
+            line-height: 1.7;
+            background: #fff;
+        }
+
+        h1, h2, h3, h4, .nav17 a, .btn17 { font-family: 'Montserrat', sans-serif; }
+        a { text-decoration: none; color: inherit; }
+
+        .container17 { width: 100%; max-width: 1140px; margin: 0 auto; padding: 0 20px; }
+
+        /* ===== NAVBAR ===== */
+        .nav17 {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            padding: 24px 0;
+            transition: background 0.3s, padding 0.3s, box-shadow 0.3s;
+        }
+        .nav17.solida { background: #fff; padding: 14px 0; box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08); }
+        .nav17 .container17 { display: flex; align-items: center; justify-content: space-between; }
+
+        .logo17 { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 24px; color: #fff; letter-spacing: 1px; }
+        .logo17 span { color: var(--rosa); }
+        .nav17.solida .logo17 { color: var(--escuro); }
+
+        .links17 { display: flex; gap: 32px; }
+        .links17 a {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: color 0.2s;
+        }
+        .links17 a:hover { color: #fff; }
+        .nav17.solida .links17 a { color: var(--escuro); }
+        .nav17.solida .links17 a:hover { color: var(--rosa); }
+
+        .burger17 { display: none; background: none; border: 0; color: #fff; font-size: 28px; cursor: pointer; }
+        .nav17.solida .burger17 { color: var(--escuro); }
+
+        /* ===== HERO ===== */
+        .hero17 {
+            position: relative;
+            min-height: 100vh;
+            display: flex; align-items: center; justify-content: center;
+            text-align: center;
+            color: #fff;
+            background: var(--gradiente);
+            overflow: hidden;
+            clip-path: polygon(0 0, 100% 0, 100% 92%, 0 100%);
+            padding: 120px 20px 100px;
+        }
+
+        #particulas { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+        .hero17-conteudo { position: relative; z-index: 1; }
+
+        .avatar17 {
+            width: 130px; height: 130px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center 20%;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            margin-bottom: 24px;
+        }
+
+        .hero17 h1 { font-size: clamp(32px, 6vw, 58px); font-weight: 800; line-height: 1.15; margin-bottom: 14px; }
+        .hero17 p.digitando { font-size: clamp(18px, 2.6vw, 24px); font-weight: 300; min-height: 1.6em; margin-bottom: 36px; }
+        .cursor17 { display: inline-block; width: 2px; height: 1.1em; background: #fff; vertical-align: -0.15em; margin-left: 3px; animation: caret 0.8s steps(1) infinite; }
+        @keyframes caret { 50% { opacity: 0; } }
+
+        .btn17 {
+            display: inline-block;
+            padding: 15px 38px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: transform 0.25s, box-shadow 0.25s, background 0.25s, color 0.25s;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+        .btn17:hover { transform: translateY(-3px); box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2); }
+        .btn17.branco { background: #fff; color: var(--roxo); }
+        .btn17.contorno { border-color: #fff; color: #fff; margin-left: 12px; }
+        .btn17.contorno:hover { background: #fff; color: var(--roxo); }
+        .btn17.gradiente { background: var(--gradiente); color: #fff; }
+
+        .mouse17 {
+            position: absolute; bottom: 70px; left: 50%; margin-left: -13px; z-index: 1;
+            width: 26px; height: 42px;
+            border: 2px solid rgba(255, 255, 255, 0.7);
+            border-radius: 15px;
+        }
+        .mouse17::before {
+            content: '';
+            position: absolute; top: 8px; left: 50%; margin-left: -2px;
+            width: 4px; height: 8px; border-radius: 2px; background: #fff;
+            animation: rodinha 1.6s ease-in-out infinite;
+        }
+        @keyframes rodinha { to { transform: translateY(12px); opacity: 0; } }
+
+        /* ===== SEÇÕES ===== */
+        section.secao17 { padding: 100px 0; }
+        .titulo17 { text-align: center; margin-bottom: 60px; }
+        .titulo17 h2 { color: var(--escuro); font-size: clamp(26px, 4vw, 36px); font-weight: 800; text-transform: uppercase; letter-spacing: 2px; }
+        .titulo17 h2::after {
+            content: '';
+            display: block;
+            width: 60px; height: 4px;
+            margin: 16px auto 0;
+            border-radius: 2px;
+            background: var(--gradiente);
+        }
+        .titulo17 p { margin-top: 14px; }
+
+        .servicos17 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+        .servico17 { text-align: center; padding: 40px 28px; border-radius: 6px; transition: box-shadow 0.3s, transform 0.3s; }
+        .servico17:hover { box-shadow: 0 20px 40px rgba(106, 48, 147, 0.12); transform: translateY(-6px); }
+        .servico17 .icone {
+            width: 84px; height: 84px;
+            margin: 0 auto 22px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            background: var(--gradiente);
+            color: #fff;
+            font-size: 34px;
+        }
+        .servico17 h3 { color: var(--escuro); font-size: 17px; margin-bottom: 10px; }
+
+        .sobre17 { background: #f7f7fb; }
+        .sobre17-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .sobre17-grid h3 { color: var(--escuro); font-size: 24px; margin-bottom: 16px; }
+        .sobre17-grid p { margin-bottom: 16px; }
+
+        .barra17 { margin-bottom: 22px; }
+        .barra17-topo { display: flex; justify-content: space-between; font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 13px; color: var(--escuro); margin-bottom: 8px; letter-spacing: 1px; text-transform: uppercase; }
+        .barra17-trilho { height: 8px; background: #e6e6ef; border-radius: 4px; overflow: hidden; }
+        .barra17-fill { height: 100%; width: 0; background: var(--gradiente); border-radius: 4px; transition: width 1.4s cubic-bezier(0.16, 1, 0.3, 1); }
+        .nota17 { font-size: 12px; color: #9a9db0; font-style: italic; }
+
+        .numeros17 { background: var(--gradiente); color: #fff; padding: 70px 0; }
+        .numeros17-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; text-align: center; }
+        .numero17 strong { display: block; font-family: 'Montserrat', sans-serif; font-size: 46px; font-weight: 800; line-height: 1.1; }
+        .numero17 span { font-size: 13px; letter-spacing: 2px; text-transform: uppercase; opacity: 0.85; }
+
+        .filtros17 { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin-bottom: 40px; }
+        .filtros17 button {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+            padding: 10px 22px;
+            border-radius: 50px;
+            border: 2px solid #e3e3ee;
+            background: #fff;
+            color: var(--texto);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .filtros17 button.ativo, .filtros17 button:hover { background: var(--gradiente); border-color: transparent; color: #fff; }
+
+        .grid17 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+        .item17 {
+            position: relative;
+            border-radius: 6px;
+            overflow: hidden;
+            aspect-ratio: 16 / 10;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: opacity 0.4s, transform 0.4s;
+        }
+        .item17.oculto { display: none; }
+        .item17 img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s; }
+        .item17-overlay {
+            position: absolute; inset: 0;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            gap: 6px;
+            background: linear-gradient(135deg, rgba(106, 48, 147, 0.92), rgba(233, 78, 119, 0.92));
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.35s;
+        }
+        .item17:hover .item17-overlay, .item17:focus-within .item17-overlay { opacity: 1; }
+        .item17:hover img { transform: scale(1.1); }
+        .item17-overlay h4 { font-size: 22px; }
+        .item17-overlay span { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; opacity: 0.85; }
+        .item17-overlay a {
+            margin-top: 10px;
+            width: 46px; height: 46px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            background: #fff; color: var(--roxo); font-size: 18px;
+        }
+
+        .cta17 { background: var(--escuro); color: #fff; text-align: center; padding: 90px 20px; }
+        .cta17 h2 { font-size: clamp(24px, 4vw, 36px); font-weight: 800; margin-bottom: 12px; }
+        .cta17 p { color: #b9bbd0; margin-bottom: 30px; }
+
+        .rodape17 { background: #151522; color: #8a8ca3; text-align: center; padding: 40px 20px; font-size: 13px; }
+        .sociais17 { display: flex; justify-content: center; gap: 12px; margin-bottom: 18px; }
+        .sociais17 a {
+            width: 42px; height: 42px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            background: rgba(255, 255, 255, 0.06); color: #fff; font-size: 17px;
+            transition: background 0.25s, transform 0.25s;
+        }
+        .sociais17 a:hover { background: var(--gradiente); transform: translateY(-3px); }
+
+        .cookies17 {
+            position: fixed;
+            left: 20px; bottom: 84px;
+            z-index: 200;
+            max-width: 340px;
+            display: flex; align-items: center; gap: 14px;
+            padding: 16px 18px;
+            background: #fff;
+            border-radius: 6px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+            font-size: 13px;
+            line-height: 1.5;
+        }
+        .cookies17[hidden] { display: none; }
+        .cookies17 button { flex-shrink: 0; padding: 9px 16px; font-size: 11px; }
+
+        .topo17 {
+            position: fixed;
+            right: 20px; bottom: 84px;
+            z-index: 150;
+            width: 48px; height: 48px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            background: var(--gradiente); color: #fff; font-size: 20px;
+            box-shadow: 0 8px 20px rgba(106, 48, 147, 0.4);
+            opacity: 0; visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+        }
+        .topo17.visivel { opacity: 1; visibility: visible; }
+
+        /* revelar ao rolar (estilo WOW.js) */
+        .revela { opacity: 0; transform: translateY(40px); transition: opacity 0.8s, transform 0.8s; }
+        .revela.visivel { opacity: 1; transform: none; }
+
+        html.mt-embed .cookies17 { display: none; }
+
+        @media (max-width: 900px) {
+            .servicos17 { grid-template-columns: 1fr; }
+            .sobre17-grid { grid-template-columns: 1fr; gap: 30px; }
+            .numeros17-grid { grid-template-columns: repeat(2, 1fr); gap: 36px; }
+        }
+
+        @media (max-width: 720px) {
+            .burger17 { display: block; }
+            .links17 {
+                position: absolute; top: 100%; left: 0; right: 0;
+                flex-direction: column; gap: 0;
+                background: #fff;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+                display: none;
+            }
+            .links17.aberto { display: flex; }
+            .links17 a { color: var(--escuro) !important; padding: 14px 20px; border-top: 1px solid #eee; }
+            .grid17 { grid-template-columns: 1fr; }
+            .btn17.contorno { margin: 12px 0 0; }
+            .cookies17 { left: 16px; right: 16px; max-width: none; }
+            .item17-overlay { opacity: 1; background: linear-gradient(180deg, transparent 40%, rgba(106, 48, 147, 0.92)); justify-content: flex-end; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .revela { opacity: 1; transform: none; transition: none; }
+        }
+    </style>
+</head>
+
+<body data-era="2017">
+
+    <nav class="nav17" id="nav17" aria-label="Menu">
+        <div class="container17">
+            <a href="#home17" class="logo17">ERICK<span>.</span></a>
+            <button type="button" class="burger17" id="burger17" aria-label="Abrir menu" aria-expanded="false"><i class="bi bi-list"></i></button>
+            <div class="links17" id="links17">
+                <a href="#home17">Home</a>
+                <a href="#servicos17">Serviços</a>
+                <a href="#sobre17">Sobre</a>
+                <a href="#portfolio17">Portfólio</a>
+                <a href="../index.html#contato" data-viagem="hoje">Contato</a>
+            </div>
+        </div>
+    </nav>
+
+    <header class="hero17" id="home17">
+        <canvas id="particulas" aria-hidden="true"></canvas>
+        <div class="hero17-conteudo">
+            <img class="avatar17" src="../assets/img/erickfoto.jpeg" alt="Foto do Erick">
+            <h1>Olá, eu sou o Erick Silva</h1>
+            <p class="digitando">Eu crio <span id="digitado"></span><span class="cursor17"></span></p>
+            <a class="btn17 branco" href="../index.html#contato" data-viagem="hoje">Contrate-me</a>
+            <a class="btn17 contorno" href="#portfolio17">Ver portfólio</a>
+        </div>
+        <a class="mouse17" href="#servicos17" aria-label="Rolar para baixo"></a>
+    </header>
+
+    <section class="secao17" id="servicos17">
+        <div class="container17">
+            <div class="titulo17 revela">
+                <h2>O que eu faço</h2>
+                <p>Soluções digitais pensadas pra todos os dispositivos</p>
+            </div>
+            <div class="servicos17">
+                <div class="servico17 revela">
+                    <div class="icone"><i class="bi bi-phone"></i></div>
+                    <h3>Design Responsivo</h3>
+                    <p>Sites que funcionam lindamente do celular ao desktop. Mobile first, sempre.</p>
+                </div>
+                <div class="servico17 revela">
+                    <div class="icone"><i class="bi bi-code-slash"></i></div>
+                    <h3>Desenvolvimento Web</h3>
+                    <p>Do front ao back: HTML, CSS, JavaScript, PHP, Laravel e .NET.</p>
+                </div>
+                <div class="servico17 revela">
+                    <div class="icone"><i class="bi bi-speedometer2"></i></div>
+                    <h3>Performance & SEO</h3>
+                    <p>Código limpo e rápido pra ficar bem no Google (e no PageSpeed).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="secao17 sobre17" id="sobre17">
+        <div class="container17">
+            <div class="titulo17 revela"><h2>Sobre mim</h2></div>
+            <div class="sobre17-grid">
+                <div class="revela">
+                    <h3>Transformando ideias em experiências digitais</h3>
+                    <p>Sou apaixonado por tecnologia e desenvolvimento, sempre buscando evoluir minhas habilidades e criar soluções modernas e funcionais.</p>
+                    <p>Meu objetivo é unir desempenho, estética e usabilidade em interfaces intuitivas, responsivas e bem estruturadas.</p>
+                    <a class="btn17 gradiente" href="../index.html#contato" data-viagem="hoje">Vamos conversar</a>
+                </div>
+                <div class="revela" id="barras17">
+                    <div class="barra17"><div class="barra17-topo"><span>HTML5 & CSS3</span><span>95%</span></div><div class="barra17-trilho"><div class="barra17-fill" data-valor="95"></div></div></div>
+                    <div class="barra17"><div class="barra17-topo"><span>JavaScript</span><span>88%</span></div><div class="barra17-trilho"><div class="barra17-fill" data-valor="88"></div></div></div>
+                    <div class="barra17"><div class="barra17-topo"><span>PHP & Laravel</span><span>80%</span></div><div class="barra17-trilho"><div class="barra17-fill" data-valor="80"></div></div></div>
+                    <div class="barra17"><div class="barra17-topo"><span>C# & .NET</span><span>75%</span></div><div class="barra17-trilho"><div class="barra17-fill" data-valor="75"></div></div></div>
+                    <div class="barra17"><div class="barra17-topo"><span>MySQL & SQL Server</span><span>78%</span></div><div class="barra17-trilho"><div class="barra17-fill" data-valor="78"></div></div></div>
+                    <p class="nota17">* porcentagens 100% científicas, como em todo portfólio de 2017 😄</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="numeros17" aria-label="Números">
+        <div class="container17 numeros17-grid">
+            <div class="numero17"><strong data-contar="4">0</strong><span>Projetos</span></div>
+            <div class="numero17"><strong data-contar="29">0</strong><span>Tecnologias</span></div>
+            <div class="numero17"><strong data-contar="1000" data-sufixo="+">0</strong><span>Cafés</span></div>
+            <div class="numero17"><strong data-contar="100" data-sufixo="%">0</strong><span>Dedicação</span></div>
+        </div>
+    </section>
+
+    <section class="secao17" id="portfolio17">
+        <div class="container17">
+            <div class="titulo17 revela">
+                <h2>Portfólio</h2>
+                <p>Alguns trabalhos recentes</p>
+            </div>
+            <div class="filtros17" role="group" aria-label="Filtrar projetos">
+                <button type="button" class="ativo" data-filtro="todos">Todos</button>
+                <button type="button" data-filtro="site">Sites</button>
+                <button type="button" data-filtro="sistema">Sistemas</button>
+            </div>
+            <div class="grid17">
+                <div class="item17" data-tipo="site">
+                    <img src="../assets/img/dep-low-preview.png" alt="Dep Low" loading="lazy">
+                    <div class="item17-overlay"><h4>Dep Low</h4><span>E-commerce · Streetwear</span>
+                        <a href="https://dep-company.vercel.app" target="_blank" rel="noopener noreferrer" aria-label="Abrir Dep Low"><i class="bi bi-link-45deg"></i></a></div>
+                </div>
+                <div class="item17" data-tipo="site">
+                    <img src="../assets/img/falcon-burguer-preview.png" alt="Falcon Burguer" loading="lazy">
+                    <div class="item17-overlay"><h4>Falcon Burguer</h4><span>Site institucional</span>
+                        <a href="https://falcon-burguer.vercel.app" target="_blank" rel="noopener noreferrer" aria-label="Abrir Falcon Burguer"><i class="bi bi-link-45deg"></i></a></div>
+                </div>
+                <div class="item17" data-tipo="site">
+                    <img src="../assets/img/mini-portfolio-preview.png" alt="Mini Portfólio" loading="lazy">
+                    <div class="item17-overlay"><h4>Mini Portfólio</h4><span>Link in bio</span>
+                        <a href="https://github.com/Erickaocode/Mini-Portfolio" target="_blank" rel="noopener noreferrer" aria-label="Abrir Mini Portfólio no GitHub"><i class="bi bi-github"></i></a></div>
+                </div>
+                <div class="item17" data-tipo="sistema">
+                    <img src="../assets/img/supergestao-preview.png" alt="SuperGestão" loading="lazy">
+                    <div class="item17-overlay"><h4>SuperGestão</h4><span>Sistema .NET · Projeto privado</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta17">
+        <h2>Tem um projeto em mente?</h2>
+        <p>Vamos transformar sua ideia em realidade.</p>
+        <a class="btn17 gradiente" href="../index.html#contato" data-viagem="hoje">Fale comigo</a>
+    </section>
+
+    <footer class="rodape17">
+        <div class="sociais17">
+            <a href="https://www.instagram.com/_erickz77_/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+            <a href="https://github.com/Erickaocode/" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="bi bi-github"></i></a>
+            <a href="https://www.linkedin.com/in/erick-silva-8579002b0/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+        </div>
+        © 2017 Erick Silva · Made with <span style="color:var(--rosa)">❤</span> in Brazil
+    </footer>
+
+    <div class="cookies17" id="cookies17" role="region" aria-label="Aviso de cookies" hidden>
+        <span>🍪 Este site usa cookies para melhorar sua experiência. Ao continuar navegando, você concorda.</span>
+        <button type="button" class="btn17 gradiente" id="aceitarCookies">Aceitar</button>
+    </div>
+
+    <a class="topo17" id="topo17" href="#home17" aria-label="Voltar ao topo"><i class="bi bi-arrow-up"></i></a>
+
+    <script>
+        // ===== NAVBAR SÓLIDA AO ROLAR + BOTÃO TOPO =====
+        (function () {
+            var nav = document.getElementById('nav17');
+            var topo = document.getElementById('topo17');
+            function aoRolar() {
+                nav.classList.toggle('solida', window.scrollY > 60);
+                topo.classList.toggle('visivel', window.scrollY > 500);
+            }
+            window.addEventListener('scroll', aoRolar, { passive: true });
+            aoRolar();
+
+            var burger = document.getElementById('burger17');
+            var links = document.getElementById('links17');
+            burger.addEventListener('click', function () {
+                var aberto = links.classList.toggle('aberto');
+                burger.setAttribute('aria-expanded', aberto);
+                nav.classList.add('solida');
+            });
+            links.querySelectorAll('a').forEach(function (a) {
+                a.addEventListener('click', function () { links.classList.remove('aberto'); burger.setAttribute('aria-expanded', 'false'); });
+            });
+        })();
+
+        // ===== TEXTO DIGITANDO (estilo typed.js) =====
+        (function () {
+            var el = document.getElementById('digitado');
+            var frases = ['sites responsivos.', 'experiências digitais.', 'sistemas web.', 'soluções com IA.'];
+            var f = 0, i = 0, apagando = false;
+            function passo() {
+                var frase = frases[f];
+                i += apagando ? -1 : 1;
+                el.textContent = frase.slice(0, i);
+                var espera = apagando ? 40 : 85;
+                if (!apagando && i === frase.length) { apagando = true; espera = 1600; }
+                else if (apagando && i === 0) { apagando = false; f = (f + 1) % frases.length; espera = 300; }
+                setTimeout(passo, espera);
+            }
+            passo();
+        })();
+
+        // ===== PARTÍCULAS (estilo particles.js) =====
+        (function () {
+            var canvas = document.getElementById('particulas');
+            var ctx = canvas.getContext('2d');
+            var pontos = [], w, h, dpr = Math.min(window.devicePixelRatio || 1, 2);
+            var parado = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+            function redimensionar() {
+                w = canvas.offsetWidth; h = canvas.offsetHeight;
+                canvas.width = w * dpr; canvas.height = h * dpr;
+                ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+                var qtd = Math.round(Math.min(80, (w * h) / 14000));
+                pontos = [];
+                for (var i = 0; i < qtd; i++) {
+                    pontos.push({ x: Math.random() * w, y: Math.random() * h, vx: (Math.random() - 0.5) * 0.6, vy: (Math.random() - 0.5) * 0.6 });
+                }
+            }
+
+            function desenhar() {
+                ctx.clearRect(0, 0, w, h);
+                for (var i = 0; i < pontos.length; i++) {
+                    var p = pontos[i];
+                    if (!parado) {
+                        p.x += p.vx; p.y += p.vy;
+                        if (p.x < 0 || p.x > w) p.vx *= -1;
+                        if (p.y < 0 || p.y > h) p.vy *= -1;
+                    }
+                    ctx.fillStyle = 'rgba(255,255,255,0.7)';
+                    ctx.beginPath(); ctx.arc(p.x, p.y, 2, 0, Math.PI * 2); ctx.fill();
+                    for (var j = i + 1; j < pontos.length; j++) {
+                        var q = pontos[j];
+                        var d = Math.hypot(p.x - q.x, p.y - q.y);
+                        if (d < 130) {
+                            ctx.strokeStyle = 'rgba(255,255,255,' + (0.25 * (1 - d / 130)) + ')';
+                            ctx.beginPath(); ctx.moveTo(p.x, p.y); ctx.lineTo(q.x, q.y); ctx.stroke();
+                        }
+                    }
+                }
+                if (!parado) requestAnimationFrame(desenhar);
+            }
+
+            window.addEventListener('resize', redimensionar);
+            redimensionar();
+            desenhar();
+        })();
+
+        // ===== REVELAR AO ROLAR, BARRAS E CONTADORES =====
+        (function () {
+            var obs = new IntersectionObserver(function (entradas) {
+                entradas.forEach(function (e) {
+                    if (!e.isIntersecting) return;
+                    e.target.classList.add('visivel');
+                    obs.unobserve(e.target);
+                });
+            }, { threshold: 0.15 });
+            document.querySelectorAll('.revela').forEach(function (el) { obs.observe(el); });
+
+            var obsBarras = new IntersectionObserver(function (entradas) {
+                if (!entradas[0].isIntersecting) return;
+                document.querySelectorAll('.barra17-fill').forEach(function (b) { b.style.width = b.dataset.valor + '%'; });
+                obsBarras.disconnect();
+            }, { threshold: 0.3 });
+            obsBarras.observe(document.getElementById('barras17'));
+
+            var obsNumeros = new IntersectionObserver(function (entradas) {
+                if (!entradas[0].isIntersecting) return;
+                obsNumeros.disconnect();
+                document.querySelectorAll('[data-contar]').forEach(function (el) {
+                    var alvo = Number(el.dataset.contar), sufixo = el.dataset.sufixo || '';
+                    var inicio = performance.now();
+                    (function contar(agora) {
+                        var t = Math.min((agora - inicio) / 1600, 1);
+                        el.textContent = Math.round(alvo * (1 - Math.pow(1 - t, 3))) + sufixo;
+                        if (t < 1) requestAnimationFrame(contar);
+                    })(inicio);
+                });
+            }, { threshold: 0.4 });
+            obsNumeros.observe(document.querySelector('.numeros17'));
+        })();
+
+        // ===== FILTRO DO PORTFÓLIO =====
+        (function () {
+            var botoes = document.querySelectorAll('[data-filtro]');
+            botoes.forEach(function (b) {
+                b.addEventListener('click', function () {
+                    botoes.forEach(function (x) { x.classList.toggle('ativo', x === b); });
+                    document.querySelectorAll('.item17').forEach(function (item) {
+                        item.classList.toggle('oculto', b.dataset.filtro !== 'todos' && item.dataset.tipo !== b.dataset.filtro);
+                    });
+                });
+            });
+        })();
+
+        // ===== AVISO DE COOKIES =====
+        (function () {
+            var aviso = document.getElementById('cookies17');
+            try { if (localStorage.getItem('cookies2017')) return; } catch (e) {}
+            setTimeout(function () { aviso.hidden = false; }, 1200);
+            document.getElementById('aceitarCookies').addEventListener('click', function () {
+                aviso.hidden = true;
+                try { localStorage.setItem('cookies2017', '1'); } catch (e) {}
+            });
+        })();
+    </script>
+
+    <script src="tempo.js"></script>
+</body>
+</html>
