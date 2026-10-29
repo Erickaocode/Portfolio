@@ -1,0 +1,177 @@
+/* ===== MÁQUINA DO TEMPO: barra de navegação entre eras + animação de viagem =====
+   Usado pelo site atual e pelas páginas de cada era. Tudo prefixado com .mt-
+   para não colidir com o CSS "de época" de cada página. */
+
+.mt-barra,
+.mt-warp {
+    --mt-azul: #2f81ff;
+    --mt-preto: #080808;
+    --mt-branco: #f6f6f6;
+    --mt-cinza: #9c9d9d;
+    font-family: 'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    box-sizing: border-box;
+}
+
+.mt-barra *,
+.mt-warp * { box-sizing: border-box; }
+
+/* ===== BARRA FLUTUANTE ===== */
+.mt-barra {
+    position: fixed;
+    left: 50%;
+    bottom: 16px;
+    transform: translateX(-50%);
+    z-index: 2147483000;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 6px 6px 14px;
+    max-width: calc(100% - 32px);
+    background: rgba(8, 8, 8, 0.82);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 999px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 12px 40px -10px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(47, 129, 255, 0.08);
+    color: var(--mt-branco);
+    font-size: 13px;
+    line-height: 1;
+    animation: mtSobe 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes mtSobe {
+    from { opacity: 0; transform: translate(-50%, 20px); }
+    to   { opacity: 1; transform: translate(-50%, 0); }
+}
+
+.mt-barra-titulo {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--mt-cinza);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    padding-right: 4px;
+}
+
+.mt-barra-titulo svg { width: 14px; height: 14px; color: var(--mt-azul); }
+
+.mt-barra-eras { display: flex; gap: 2px; }
+
+.mt-barra a {
+    display: block;
+    padding: 8px 12px;
+    border-radius: 999px;
+    color: var(--mt-branco);
+    font-weight: 600;
+    font-size: 13px;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.mt-barra a:hover { background: rgba(255, 255, 255, 0.1); }
+.mt-barra a:focus-visible { outline: 2px solid var(--mt-azul); outline-offset: 1px; }
+
+.mt-barra a[aria-current="page"] {
+    background: var(--mt-azul);
+    color: var(--mt-preto);
+}
+
+@media (max-width: 480px) {
+    .mt-barra { padding-left: 6px; }
+    .mt-barra-titulo span { display: none; }
+    .mt-barra a { padding: 8px 10px; }
+}
+
+/* ===== OVERLAY DA VIAGEM ===== */
+.mt-warp {
+    position: fixed;
+    inset: 0;
+    z-index: 2147483600;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    background: var(--mt-preto);
+    color: var(--mt-branco);
+    overflow: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s ease;
+}
+
+.mt-warp.ativo { opacity: 1; pointer-events: auto; }
+
+/* túnel de "riscos de luz" girando e se aproximando */
+.mt-warp-tunel {
+    position: absolute;
+    inset: -50%;
+    background:
+        repeating-conic-gradient(from 0deg,
+            rgba(47, 129, 255, 0) 0deg 6deg,
+            rgba(47, 129, 255, 0.35) 6deg 7deg,
+            rgba(47, 129, 255, 0) 7deg 13deg,
+            rgba(255, 255, 255, 0.18) 13deg 13.6deg);
+    -webkit-mask-image: radial-gradient(circle, transparent 6%, #000 30%, transparent 70%);
+    mask-image: radial-gradient(circle, transparent 6%, #000 30%, transparent 70%);
+    animation: mtTunel 1.6s cubic-bezier(0.55, 0, 0.45, 1) infinite;
+}
+
+@keyframes mtTunel {
+    from { transform: scale(0.6) rotate(0deg); opacity: 0.4; }
+    50%  { opacity: 1; }
+    to   { transform: scale(1.6) rotate(40deg); opacity: 0.4; }
+}
+
+.mt-warp-brilho {
+    position: absolute;
+    width: 60vmin; height: 60vmin;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(47, 129, 255, 0.35), transparent 65%);
+    filter: blur(20px);
+}
+
+.mt-warp-label {
+    position: relative;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--mt-cinza);
+}
+
+.mt-warp-ano {
+    position: relative;
+    font-family: 'Syne', 'DM Sans', system-ui, sans-serif;
+    font-size: clamp(5rem, 22vw, 14rem);
+    font-weight: 800;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -2px;
+    background: linear-gradient(180deg, #fff 30%, var(--mt-azul));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 60px rgba(47, 129, 255, 0.35);
+}
+
+.mt-warp-destino {
+    position: relative;
+    font-size: 14px;
+    color: var(--mt-cinza);
+    min-height: 1.2em;
+}
+
+/* chegada: a página nasce escondida (classe colocada no <head>) e o overlay sai */
+html.mt-chegando body { opacity: 0; animation: mtRevela 0s 1.5s forwards; }
+@keyframes mtRevela { to { opacity: 1; } }
+
+@media (prefers-reduced-motion: reduce) {
+    .mt-warp-tunel { animation: none; }
+    .mt-barra { animation: none; }
+}
