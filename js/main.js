@@ -373,6 +373,14 @@ scrambleOnVisible('scrambleContato');
             descricao: 'Este site que você está vendo agora: escuro, minimalista e cheio de pequenos detalhes.',
             tracos: ['Dark mode com glow e blobs animados', 'Efeito scramble nos títulos', 'Tipografia expressiva com Syne', 'Formulário que envia de verdade'],
             botao: 'Voltar ao início'
+        },
+        '2035': {
+            href: 'tempo/2035.html',
+            janela: 'ERICK.OS — interface 2035',
+            titulo: 'Uma espiada no futuro',
+            descricao: 'Uma interface holográfica em vidro e neon, com um assistente que responde perguntas sobre mim.',
+            tracos: ['Holograma e chão em grade sci-fi', 'EKO, assistente com voz opcional', 'Skills orbitando um núcleo', 'Cards de projeto com inclinação 3D'],
+            botao: 'Viajar para 2035'
         }
     };
 
