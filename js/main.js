@@ -99,6 +99,7 @@ function scrambleOnVisible(id) {
 
 scrambleOnVisible('scrambleSobre');
 scrambleOnVisible('scrambleProjetos');
+scrambleOnVisible('scrambleTempo');
 scrambleOnVisible('scrambleContato');
 
 // ===== GLOW DE CURSOR GLOBAL =====
@@ -325,6 +326,161 @@ scrambleOnVisible('scrambleContato');
     clone.id = '';
     clone.setAttribute('aria-hidden', 'true');
     hs.parentNode.appendChild(clone);
+})();
+
+/// ===== LINHA DO TEMPO =====
+(function () {
+    const trilho = document.querySelector('.lt-trilho');
+    if (!trilho) return;
+
+    const ERAS = {
+        '2000': {
+            href: 'tempo/2000.html',
+            janela: '~*~ HoMePaGe Do ErIcK ~*~ - Internet Explorer',
+            titulo: 'A era da internet discada',
+            descricao: 'Página pessoal feita no Bloco de Notas, com tudo que a web tinha de mais "moderno" na virada do milênio.',
+            tracos: ['Layout em tabelas, <font> e WordArt', 'Texto piscando e <marquee> no topo', 'Contador de visitas e livro de visitas', 'Rastro de estrelinhas e MIDI de fundo'],
+            botao: 'Viajar para 2000'
+        },
+        '2010': {
+            href: 'tempo/2010.html',
+            janela: 'Erick Silva :: Web Developer 2.0 (beta)',
+            titulo: 'A era da Web 2.0',
+            descricao: 'Tudo brilhando: gradientes glossy, reflexos, cantos arredondados e um selo BETA que nunca sai.',
+            tracos: ['Botões glossy e logo com reflexo', 'Slider "em jQuery" e nuvem de tags', 'Widget de tweets e botão Curtir', 'Layout fixo em 960px'],
+            botao: 'Viajar para 2010'
+        },
+        '2017': {
+            href: 'tempo/2017.html',
+            janela: 'Erick Silva | Web Developer & Designer',
+            titulo: 'A era do flat design',
+            descricao: 'Landing page de uma página só, gradiente roxo e rosa e uma animação pra cada scroll.',
+            tracos: ['Partículas conectadas no hero', 'Texto digitando estilo typed.js', 'Barras de skill em porcentagem', 'Aviso de cookies e contadores animados'],
+            botao: 'Viajar para 2017'
+        },
+        'hoje': {
+            href: 'index.html',
+            janela: 'Portfólio Erick│Dev',
+            titulo: 'O presente',
+            descricao: 'Este site que você está vendo agora: escuro, minimalista e cheio de pequenos detalhes.',
+            tracos: ['Dark mode com glow e blobs animados', 'Efeito scramble nos títulos', 'Tipografia expressiva com Syne', 'Formulário que envia de verdade'],
+            botao: 'Voltar ao início'
+        }
+    };
+
+    const marcos    = Array.from(trilho.querySelectorAll('.lt-marco'));
+    const fill      = document.getElementById('ltFill');
+    const janela    = document.getElementById('ltJanela');
+    const url       = document.getElementById('ltUrl');
+    const tela      = document.getElementById('ltTela');
+    const frame     = document.getElementById('ltFrame');
+    const info      = document.getElementById('ltInfo');
+    const ano       = document.getElementById('ltAno');
+    const titulo    = document.getElementById('ltTitulo');
+    const descricao = document.getElementById('ltDescricao');
+    const tracos    = document.getElementById('ltTracos');
+    const viajar    = document.getElementById('ltViajar');
+    const viajarTxt = document.getElementById('ltViajarTexto');
+
+    // dentro de uma prévia (iframe) o site não carrega prévias de novo
+    const embutido = window.self !== window.top;
+    let visivel = false;
+    let eraAtual = '2000';
+
+    function ajustarEscala() {
+        frame.style.transform = 'scale(' + (tela.clientWidth / 1280) + ')';
+    }
+
+    function carregarPrevia() {
+        if (embutido || !visivel) return;
+        const src = ERAS[eraAtual].href;
+        if (frame.getAttribute('src') === src) return;
+        tela.classList.add('carregando');
+        frame.setAttribute('src', src);
+    }
+
+    frame.addEventListener('load', () => {
+        if (frame.getAttribute('src')) tela.classList.remove('carregando');
+    });
+
+    function setLink(link, id) {
+        const era = ERAS[id];
+        if (id === 'hoje') {
+            link.setAttribute('href', '#inicio');
+            link.removeAttribute('data-viagem');
+        } else {
+            link.setAttribute('href', era.href);
+            link.dataset.viagem = id;
+        }
+    }
+
+    function selecionar(id, foco) {
+        const era = ERAS[id];
+        const indice = marcos.findIndex(m => m.dataset.era === id);
+        eraAtual = id;
+
+        marcos.forEach((m, i) => {
+            const ativo = i === indice;
+            m.setAttribute('aria-selected', ativo);
+            m.tabIndex = ativo ? 0 : -1;
+            m.classList.toggle('passado', i < indice);
+        });
+        if (foco) marcos[indice].focus();
+        fill.style.width = (indice / (marcos.length - 1)) * 100 + '%';
+
+        janela.dataset.era = id;
+        url.textContent = era.janela;
+        ano.textContent = id === 'hoje' ? new Date().getFullYear() : id;
+        titulo.textContent = era.titulo;
+        descricao.textContent = era.descricao;
+        tracos.innerHTML = '';
+        era.tracos.forEach(t => {
+            const li = document.createElement('li');
+            li.innerHTML = '<i class="bi bi-check2-circle"></i>';
+            li.appendChild(document.createTextNode(t));
+            tracos.appendChild(li);
+        });
+        viajarTxt.textContent = era.botao;
+        setLink(viajar, id);
+        setLink(tela, id);
+        tela.setAttribute('aria-label', era.botao);
+
+        // reinicia a animação de entrada do painel
+        info.classList.remove('trocando');
+        void info.offsetWidth;
+        info.classList.add('trocando');
+
+        carregarPrevia();
+    }
+
+    marcos.forEach(m => m.addEventListener('click', () => selecionar(m.dataset.era)));
+
+    trilho.addEventListener('keydown', (e) => {
+        const atual = marcos.findIndex(m => m.dataset.era === eraAtual);
+        let proximo = null;
+        if (e.key === 'ArrowRight') proximo = (atual + 1) % marcos.length;
+        if (e.key === 'ArrowLeft')  proximo = (atual - 1 + marcos.length) % marcos.length;
+        if (e.key === 'Home')       proximo = 0;
+        if (e.key === 'End')        proximo = marcos.length - 1;
+        if (proximo === null) return;
+        e.preventDefault();
+        selecionar(marcos[proximo].dataset.era, true);
+    });
+
+    // só carrega a prévia quando a seção chega perto da tela
+    const obs = new IntersectionObserver((entries) => {
+        if (!entries[0].isIntersecting) return;
+        visivel = true;
+        carregarPrevia();
+        obs.disconnect();
+    }, { rootMargin: '300px' });
+    obs.observe(tela);
+
+    if ('ResizeObserver' in window) new ResizeObserver(ajustarEscala).observe(tela);
+    window.addEventListener('resize', ajustarEscala);
+    ajustarEscala();
+
+    selecionar('2000');
 })();
 
 // ===== ANO DO FOOTER =====
