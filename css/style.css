@@ -826,8 +826,8 @@ a { text-decoration: none; }
 .lt-trilho {
     position: relative;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    max-width: 900px;
+    grid-template-columns: repeat(5, 1fr);
+    max-width: 1000px;
     width: 100%;
     margin: 0 auto;
 }
@@ -835,7 +835,8 @@ a { text-decoration: none; }
 .lt-linha {
     position: absolute;
     top: 11px;
-    left: 12.5%; right: 12.5%;
+    /* do centro do primeiro marco ao centro do último (5 colunas) */
+    left: 10%; right: 10%;
     height: 2px;
     background: hsla(0,0%,100%,0.12);
     border-radius: 2px;
@@ -959,6 +960,17 @@ a { text-decoration: none; }
 .lt-janela[data-era="2000"] .lt-bolinhas { order: 2; }
 .lt-janela[data-era="2000"] .lt-bolinhas i { border-radius: 0; width: 14px; height: 12px; background: #c0c0c0; border: 1px outset #fff; }
 .lt-janela[data-era="2000"] .lt-url { background: none; text-align: left; padding: 0; border-radius: 0; }
+
+.lt-janela[data-era="2005"] { border-radius: 8px 8px 0 0; border: 1px solid #0831d9; }
+.lt-janela[data-era="2005"] .lt-janela-barra {
+    background: linear-gradient(#3d95ff, #0a5bd6 45%, #0846b0);
+    color: #fff;
+    font: bold 12px Tahoma, Arial, sans-serif;
+}
+.lt-janela[data-era="2005"] .lt-bolinhas { order: 2; }
+.lt-janela[data-era="2005"] .lt-bolinhas i { width: 15px; height: 15px; border-radius: 3px; border: 1px solid #fff; background: #3d7bea; }
+.lt-janela[data-era="2005"] .lt-bolinhas i:nth-child(3) { background: #d7573c; }
+.lt-janela[data-era="2005"] .lt-url { background: none; text-align: left; padding: 0; border-radius: 0; }
 
 .lt-janela[data-era="2010"] { border-radius: 8px; }
 .lt-janela[data-era="2010"] .lt-janela-barra {
