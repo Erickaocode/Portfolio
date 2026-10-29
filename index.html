@@ -33,6 +33,10 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
 
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="tempo/tempo.css">
+
+    <!-- Máquina do tempo: esconde a página até o overlay de chegada assumir -->
+    <script>try { if (sessionStorage.getItem('mt-chegada')) document.documentElement.classList.add('mt-chegando'); } catch (e) {}</script>
 </head>
 
 <body>
@@ -565,6 +569,7 @@
     <script>AOS.init({ once: true });</script>
 
     <script src="js/main.js"></script>
+    <script src="tempo/tempo.js"></script>
 
 </body>
 </html>
