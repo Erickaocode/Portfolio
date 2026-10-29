@@ -292,12 +292,16 @@
             background: rgba(2, 4, 10, 0.85);
             font-size: 10px; font-weight: 500;
             white-space: nowrap;
-            animation: gira 40s linear infinite reverse;
+            animation: contraGira 40s linear infinite;
         }
-        .orbita.interna span b { animation-duration: 26s; animation-direction: normal; border-color: rgba(var(--magenta-rgb), 0.4); }
+        .orbita.interna span b { animation-duration: 26s; animation-direction: reverse; border-color: rgba(var(--magenta-rgb), 0.4); }
         @keyframes gira { to { transform: rotate(360deg); } }
-        /* o texto gira ao contrário da órbita para continuar de pé */
-        .orbita span b { transform-origin: center; }
+        /* o texto gira ao contrário da órbita para continuar de pé; o translate precisa
+           estar nos dois quadros, senão a animação substitui a centralização do rótulo */
+        @keyframes contraGira {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to   { transform: translate(-50%, -50%) rotate(-360deg); }
+        }
 
         .metricas { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
         .metrica { padding: 10px; border: 1px solid var(--borda); border-radius: 12px; background: rgba(0, 0, 0, 0.2); }
