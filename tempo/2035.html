@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ERICK.OS — interface 2035</title>
+    <meta name="description" content="Como seria o portfólio do Erick Silva em 2035: interface holográfica com assistente de IA.">
+    <link rel="icon" type="image/svg+xml" href="../assets/img/favicon.svg">
+    <script>try { if (sessionStorage.getItem('mt-chegada')) document.documentElement.classList.add('mt-chegando'); } catch (e) {}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="tempo.css">
+    <style>
+        /* ===== 2035: interface holográfica — vidro, ciano/magenta, HUD e um assistente que conversa ===== */
+        :root {
+            --ciano: #3ef2ff;
+            --ciano-rgb: 62, 242, 255;
+            --magenta: #ff3ec8;
+            --magenta-rgb: 255, 62, 200;
+            --fundo: #02040a;
+            --texto: #d8f7ff;
+            --apagado: #7d97a8;
+            --vidro: rgba(120, 220, 255, 0.06);
+            --borda: rgba(var(--ciano-rgb), 0.22);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            min-height: 100vh;
+            font-family: 'Space Grotesk', system-ui, sans-serif;
+            color: var(--texto);
+            background:
+                radial-gradient(ellipse 60% 50% at 15% 10%, rgba(var(--magenta-rgb), 0.14), transparent 70%),
+                radial-gradient(ellipse 50% 50% at 90% 30%, rgba(var(--ciano-rgb), 0.12), transparent 70%),
+                var(--fundo);
+            overflow-x: hidden;
+        }
+
+        .hud, .orb { font-family: 'Orbitron', 'Space Grotesk', sans-serif; }
+
+        #estrelas { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+
+        /* chão em grade com perspectiva, andando pra frente */
+        .chao {
+            position: fixed;
+            left: -50%; right: -50%; bottom: -10vh;
+            height: 55vh;
+            z-index: 0;
+            pointer-events: none;
+            background-image:
+                linear-gradient(rgba(var(--ciano-rgb), 0.35) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(var(--ciano-rgb), 0.35) 1px, transparent 1px);
+            background-size: 60px 60px;
+            transform: perspective(400px) rotateX(70deg);
+            transform-origin: center top;
+            -webkit-mask-image: linear-gradient(transparent, #000 40%);
+            mask-image: linear-gradient(transparent, #000 40%);
+            opacity: 0.35;
+            animation: andaChao 3s linear infinite;
+        }
+        @keyframes andaChao { to { background-position: 0 60px, 0 0; } }
+
+        main { position: relative; z-index: 1; max-width: 1240px; margin: 0 auto; padding: 22px 20px 40px; }
+
+        /* ===== HUD ===== */
+        .barra-hud {
+            display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;
+            gap: 10px 22px;
+            padding: 10px 18px;
+            margin-bottom: 22px;
+            border: 1px solid var(--borda);
+            border-radius: 14px;
+            background: var(--vidro);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            font-size: 11px;
+            letter-spacing: 2px;
+            color: var(--apagado);
+        }
+        .logo35 { color: var(--ciano); font-weight: 900; font-size: 15px; letter-spacing: 4px; text-shadow: 0 0 14px rgba(var(--ciano-rgb), 0.8); }
+        .logo35 span { color: var(--magenta); }
+        .hud-itens { display: flex; gap: 22px; flex-wrap: wrap; }
+        .hud-itens b { color: var(--texto); font-weight: 500; }
+        .ponto-vivo { display: inline-block; width: 7px; height: 7px; margin-right: 6px; border-radius: 50%; background: #4dff9a; box-shadow: 0 0 8px #4dff9a; animation: vivo 1.6s ease-in-out infinite; }
+        @keyframes vivo { 50% { opacity: 0.3; } }
+
+        /* ===== PAINÉIS DE VIDRO ===== */
+        .painel35 {
+            position: relative;
+            border: 1px solid var(--borda);
+            border-radius: 20px;
+            background: linear-gradient(160deg, rgba(120, 220, 255, 0.09), rgba(120, 220, 255, 0.02));
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.03) inset, 0 30px 80px -40px rgba(var(--ciano-rgb), 0.35);
+            padding: 22px;
+            overflow: hidden;
+        }
+        /* cantos de "mira" */
+        .painel35::before, .painel35::after {
+            content: '';
+            position: absolute;
+            width: 16px; height: 16px;
+            border: 2px solid var(--ciano);
+            opacity: 0.7;
+        }
+        .painel35::before { top: 8px; left: 8px; border-right: 0; border-bottom: 0; border-radius: 6px 0 0 0; }
+        .painel35::after { bottom: 8px; right: 8px; border-left: 0; border-top: 0; border-radius: 0 0 6px 0; }
+
+        .rotulo35 {
+            display: flex; align-items: center; gap: 8px;
+            margin-bottom: 14px;
+            font-size: 10px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--ciano);
+        }
+        .rotulo35::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, var(--borda), transparent); }
+
+        .grade35 {
+            display: grid;
+            grid-template-columns: 300px 1fr 300px;
+            gap: 20px;
+            align-items: stretch;
+        }
+
+        /* ===== IDENTIDADE + HOLOGRAMA ===== */
+        .holo {
+            position: relative;
+            width: 170px; height: 210px;
+            margin: 6px auto 34px;
+        }
+        .holo img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            object-position: center 20%;
+            border-radius: 50% 50% 46% 46% / 40% 40% 60% 60%;
+            filter: grayscale(1) brightness(1.15) contrast(1.2) sepia(1) hue-rotate(140deg) saturate(3);
+            opacity: 0.85;
+            mix-blend-mode: screen;
+            -webkit-mask-image: linear-gradient(#000 65%, transparent);
+            mask-image: linear-gradient(#000 65%, transparent);
+            animation: piscaHolo 5s infinite;
+        }
+        .holo::after {
+            content: '';
+            position: absolute; inset: 0;
+            background: repeating-linear-gradient(0deg, rgba(var(--ciano-rgb), 0.18) 0 1px, transparent 1px 4px);
+            border-radius: 50% 50% 46% 46% / 40% 40% 60% 60%;
+            animation: varre 3s linear infinite;
+            pointer-events: none;
+        }
+        @keyframes varre { to { background-position: 0 40px; } }
+        @keyframes piscaHolo { 0%, 92%, 100% { opacity: 0.85; transform: none; } 93% { opacity: 0.4; transform: translateX(3px); } 95% { opacity: 0.9; transform: translateX(-2px); } }
+
+        /* base do projetor */
+        .holo-base {
+            position: absolute;
+            left: 50%; bottom: -26px;
+            width: 190px; height: 40px;
+            margin-left: -95px;
+            border: 2px solid rgba(var(--ciano-rgb), 0.6);
+            border-radius: 50%;
+            box-shadow: 0 0 25px rgba(var(--ciano-rgb), 0.6), inset 0 0 20px rgba(var(--ciano-rgb), 0.4);
+        }
+        .holo-feixe {
+            position: absolute;
+            left: 50%; bottom: -8px;
+            width: 190px; height: 230px;
+            margin-left: -95px;
+            background: linear-gradient(0deg, rgba(var(--ciano-rgb), 0.22), transparent 80%);
+            clip-path: polygon(0 100%, 100% 100%, 78% 0, 22% 0);
+            pointer-events: none;
+        }
+
+        .nome35 { text-align: center; font-size: 20px; font-weight: 700; letter-spacing: 2px; }
+        .cargo35 { text-align: center; color: var(--magenta); font-size: 11px; letter-spacing: 2px; text-transform: uppercase; margin: 6px 0 14px; }
+        .bio35 { color: var(--apagado); font-size: 14px; line-height: 1.65; }
+        .bio35 b { color: var(--texto); font-weight: 500; }
+
+        .links35 { display: flex; gap: 8px; margin-top: 16px; flex-wrap: wrap; }
+        .chip35 {
+            padding: 7px 12px;
+            border: 1px solid var(--borda);
+            border-radius: 50px;
+            background: rgba(var(--ciano-rgb), 0.05);
+            color: var(--texto);
+            font: 500 12px 'Space Grotesk', sans-serif;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background 0.2s, border-color 0.2s, box-shadow 0.2s;
+        }
+        .chip35:hover, .chip35:focus-visible { background: rgba(var(--ciano-rgb), 0.15); border-color: var(--ciano); box-shadow: 0 0 16px rgba(var(--ciano-rgb), 0.35); outline: none; }
+
+        /* ===== EKO, O ASSISTENTE ===== */
+        .eko { display: flex; flex-direction: column; min-height: 520px; }
+        .eko-topo { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
+        .eko-orb {
+            width: 48px; height: 48px; flex-shrink: 0;
+            border-radius: 50%;
+            background: radial-gradient(circle at 35% 30%, #fff, var(--ciano) 30%, var(--magenta) 75%, transparent 76%);
+            box-shadow: 0 0 25px rgba(var(--ciano-rgb), 0.7), 0 0 50px rgba(var(--magenta-rgb), 0.35);
+            animation: respira 3s ease-in-out infinite;
+        }
+        .eko.falando .eko-orb { animation-duration: 0.5s; }
+        @keyframes respira { 50% { transform: scale(0.88); filter: hue-rotate(40deg); } }
+        .eko-topo h2 { font-size: 16px; letter-spacing: 3px; }
+        .eko-topo p { color: var(--apagado); font-size: 12px; }
+        .voz {
+            margin-left: auto;
+            padding: 6px 10px;
+            border: 1px solid var(--borda);
+            border-radius: 50px;
+            background: none;
+            color: var(--apagado);
+            font: 11px 'Space Grotesk', sans-serif;
+            cursor: pointer;
+        }
+        .voz[aria-pressed="true"] { color: var(--fundo); background: var(--ciano); border-color: var(--ciano); }
+
+        .conversa {
+            flex: 1;
+            display: flex; flex-direction: column; gap: 10px;
+            overflow-y: auto;
+            max-height: 340px;
+            padding: 4px 4px 4px 0;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(var(--ciano-rgb), 0.3) transparent;
+        }
+        .msg { max-width: 88%; padding: 10px 14px; border-radius: 14px; font-size: 14px; line-height: 1.55; white-space: pre-line; animation: surge 0.35s ease-out; }
+        @keyframes surge { from { opacity: 0; transform: translateY(8px); } }
+        .msg.eko-msg { align-self: flex-start; background: rgba(var(--ciano-rgb), 0.08); border: 1px solid var(--borda); border-bottom-left-radius: 4px; }
+        .msg.eu { align-self: flex-end; background: linear-gradient(135deg, rgba(var(--magenta-rgb), 0.35), rgba(var(--ciano-rgb), 0.25)); border-bottom-right-radius: 4px; }
+        .msg a { color: var(--ciano); }
+        .digitando i { display: inline-block; width: 6px; height: 6px; margin-right: 4px; border-radius: 50%; background: var(--ciano); animation: pula 1s infinite; }
+        .digitando i:nth-child(2) { animation-delay: 0.15s; }
+        .digitando i:nth-child(3) { animation-delay: 0.3s; }
+        @keyframes pula { 50% { transform: translateY(-5px); opacity: 0.4; } }
+
+        .sugestoes { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0 12px; }
+
+        .entrada { display: flex; gap: 8px; }
+        .entrada input {
+            flex: 1; min-width: 0;
+            padding: 12px 16px;
+            border: 1px solid var(--borda);
+            border-radius: 50px;
+            background: rgba(0, 0, 0, 0.35);
+            color: var(--texto);
+            font: 14px 'Space Grotesk', sans-serif;
+            outline: none;
+        }
+        .entrada input:focus { border-color: var(--ciano); box-shadow: 0 0 16px rgba(var(--ciano-rgb), 0.3); }
+        .entrada input::placeholder { color: var(--apagado); }
+        .entrada button {
+            padding: 0 20px;
+            border: 0;
+            border-radius: 50px;
+            background: linear-gradient(135deg, var(--ciano), var(--magenta));
+            color: var(--fundo);
+            font: 700 12px 'Orbitron', sans-serif;
+            letter-spacing: 2px;
+            cursor: pointer;
+        }
+
+        /* ===== SKILLS EM ÓRBITA ===== */
+        .sistema { position: relative; width: 250px; height: 250px; margin: 6px auto 16px; }
+        .nucleo {
+            position: absolute; left: 50%; top: 50%;
+            width: 64px; height: 64px; margin: -32px 0 0 -32px;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(var(--ciano-rgb), 0.4), transparent 70%);
+            border: 1px solid var(--ciano);
+            font-size: 10px; letter-spacing: 2px; color: var(--ciano);
+        }
+        .orbita { position: absolute; inset: 0; border: 1px dashed rgba(var(--ciano-rgb), 0.25); border-radius: 50%; animation: gira 40s linear infinite; }
+        .orbita.interna { inset: 45px; border-color: rgba(var(--magenta-rgb), 0.3); animation-duration: 26s; animation-direction: reverse; }
+        .orbita span {
+            position: absolute; left: 50%; top: 50%;
+            transform: rotate(var(--a)) translateX(var(--r)) rotate(calc(-1 * var(--a)));
+        }
+        .orbita span b {
+            display: block;
+            transform: translate(-50%, -50%);
+            padding: 3px 8px;
+            border: 1px solid var(--borda);
+            border-radius: 50px;
+            background: rgba(2, 4, 10, 0.85);
+            font-size: 10px; font-weight: 500;
+            white-space: nowrap;
+            animation: gira 40s linear infinite reverse;
+        }
+        .orbita.interna span b { animation-duration: 26s; animation-direction: normal; border-color: rgba(var(--magenta-rgb), 0.4); }
+        @keyframes gira { to { transform: rotate(360deg); } }
+        /* o texto gira ao contrário da órbita para continuar de pé */
+        .orbita span b { transform-origin: center; }
+
+        .metricas { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .metrica { padding: 10px; border: 1px solid var(--borda); border-radius: 12px; background: rgba(0, 0, 0, 0.2); }
+        .metrica strong { display: block; font-size: 20px; color: var(--ciano); }
+        .metrica span { font-size: 11px; color: var(--apagado); }
+
+        /* ===== ARQUIVO DE PROJETOS ===== */
+        .projetos35 { margin-top: 20px; }
+        .cards35 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; perspective: 900px; }
+        .card35 {
+            position: relative;
+            display: block;
+            border: 1px solid var(--borda);
+            border-radius: 16px;
+            overflow: hidden;
+            background: rgba(var(--ciano-rgb), 0.04);
+            color: var(--texto);
+            text-decoration: none;
+            transform-style: preserve-3d;
+            transition: transform 0.15s ease-out, box-shadow 0.3s, border-color 0.3s;
+        }
+        .card35:hover, .card35:focus-visible { border-color: var(--ciano); box-shadow: 0 0 30px rgba(var(--ciano-rgb), 0.35); outline: none; }
+        .card35 img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; display: block; filter: saturate(0.7) hue-rotate(-10deg); }
+        .card35::after {
+            content: '';
+            position: absolute; inset: 0;
+            background: linear-gradient(115deg, transparent 30%, rgba(255, 255, 255, 0.12) 45%, transparent 60%);
+            background-size: 250% 100%;
+            background-position: var(--brilho, 100%) 0;
+            pointer-events: none;
+        }
+        .card35-info { padding: 12px 14px 14px; }
+        .card35-info h3 { font-size: 15px; letter-spacing: 1px; }
+        .card35-info p { font-size: 12px; color: var(--apagado); margin-top: 4px; }
+        .card35-tag { position: absolute; top: 10px; right: 10px; padding: 3px 8px; border-radius: 50px; background: rgba(2, 4, 10, 0.75); border: 1px solid var(--borda); font-size: 9px; letter-spacing: 2px; color: var(--ciano); }
+
+        .rodape35 { margin-top: 26px; text-align: center; color: var(--apagado); font-size: 11px; letter-spacing: 2px; }
+        .rodape35 em { color: var(--magenta); font-style: normal; }
+
+        /* ===== BOOT ===== */
+        .boot {
+            position: fixed; inset: 0;
+            z-index: 5000;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            gap: 10px;
+            background: var(--fundo);
+            transition: opacity 0.7s ease, filter 0.7s ease;
+        }
+        .boot.saindo { opacity: 0; filter: blur(10px); pointer-events: none; }
+        .boot[hidden] { display: none; }
+        .boot-logo { font-size: clamp(26px, 6vw, 44px); font-weight: 900; letter-spacing: 8px; color: var(--ciano); text-shadow: 0 0 30px rgba(var(--ciano-rgb), 0.9); }
+        .boot-logo span { color: var(--magenta); }
+        .boot-linhas { min-height: 90px; font-size: 11px; letter-spacing: 2px; color: var(--apagado); text-align: center; line-height: 1.9; }
+        .boot-linhas b { color: #4dff9a; font-weight: 500; }
+
+        html.mt-embed .boot { display: none; }
+
+        @media (max-width: 1100px) {
+            .grade35 { grid-template-columns: 1fr 1fr; }
+            .eko { grid-column: 1 / -1; order: -1; }
+            .cards35 { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 700px) {
+            .grade35 { grid-template-columns: 1fr; }
+            .hud-itens { gap: 12px; font-size: 10px; }
+            .eko { min-height: 0; }
+            .conversa { max-height: 300px; }
+            .cards35 { grid-template-columns: 1fr; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .chao, .orbita, .orbita span b, .holo img, .holo::after, .eko-orb { animation: none; }
+        }
+    </style>
+</head>
+
+<body data-era="2035">
+
+    <div class="boot" id="boot" aria-hidden="true">
+        <div class="boot-logo hud">ERICK<span>.</span>OS</div>
+        <div class="boot-linhas hud" id="bootLinhas"></div>
+    </div>
+
+    <canvas id="estrelas" aria-hidden="true"></canvas>
+    <div class="chao" aria-hidden="true"></div>
+
+    <main>
+        <header class="barra-hud hud">
+            <div class="logo35">ERICK<span>.</span>OS</div>
+            <div class="hud-itens">
+                <span><span class="ponto-vivo"></span>link neural <b>estável</b></span>
+                <span>latência <b>0.3ms</b></span>
+                <span id="relogio35"><b>--.--.2035 · --:--</b></span>
+            </div>
+        </header>
+
+        <div class="grade35">
+            <section class="painel35" aria-label="Identidade">
+                <div class="rotulo35 hud">identidade</div>
+                <div class="holo">
+                    <div class="holo-feixe"></div>
+                    <img src="../assets/img/erickfoto.jpeg" alt="Holograma do Erick">
+                    <div class="holo-base"></div>
+                </div>
+                <div class="nome35 hud">ERICK SILVA</div>
+                <div class="cargo35">Arquiteto de experiências digitais · IA</div>
+                <p class="bio35">Em 2035, o Erick continua fazendo o que sempre fez: <b>transformar ideias em experiências digitais</b>. Só que agora elas são em 3D, por voz e feitas junto com IA.</p>
+                <div class="links35">
+                    <a class="chip35" href="https://github.com/Erickaocode/" target="_blank" rel="noopener noreferrer">GitHub</a>
+                    <a class="chip35" href="https://www.linkedin.com/in/erick-silva-8579002b0/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                    <a class="chip35" href="https://www.instagram.com/_erickz77_/" target="_blank" rel="noopener noreferrer">Instagram</a>
+                </div>
+            </section>
+
+            <section class="painel35 eko" id="eko" aria-label="Assistente EKO">
+                <div class="eko-topo">
+                    <div class="eko-orb" aria-hidden="true"></div>
+                    <div>
+                        <h2 class="hud">EKO</h2>
+                        <p>assistente pessoal do Erick · online</p>
+                    </div>
+                    <button type="button" class="voz" id="voz" aria-pressed="false">🔈 voz desligada</button>
+                </div>
+                <div class="conversa" id="conversa" aria-live="polite"></div>
+                <div class="sugestoes" id="sugestoes">
+                    <button type="button" class="chip35">Quem é o Erick?</button>
+                    <button type="button" class="chip35">Mostre os projetos</button>
+                    <button type="button" class="chip35">Quais as skills?</button>
+                    <button type="button" class="chip35">Como falar com ele?</button>
+                </div>
+                <form class="entrada" id="entrada">
+                    <input type="text" id="pergunta" placeholder="Pergunte qualquer coisa pro EKO..." autocomplete="off" aria-label="Sua pergunta">
+                    <button type="submit">ENVIAR</button>
+                </form>
+            </section>
+
+            <section class="painel35" aria-label="Skills">
+                <div class="rotulo35 hud">sistema de skills</div>
+                <div class="sistema" aria-hidden="true">
+                    <div class="orbita">
+                        <span style="--a:0deg;--r:125px"><b>JavaScript</b></span>
+                        <span style="--a:45deg;--r:125px"><b>TypeScript</b></span>
+                        <span style="--a:90deg;--r:125px"><b>React</b></span>
+                        <span style="--a:135deg;--r:125px"><b>C# .NET</b></span>
+                        <span style="--a:180deg;--r:125px"><b>PHP</b></span>
+                        <span style="--a:225deg;--r:125px"><b>Docker</b></span>
+                        <span style="--a:270deg;--r:125px"><b>SQL</b></span>
+                        <span style="--a:315deg;--r:125px"><b>Vue</b></span>
+                    </div>
+                    <div class="orbita interna">
+                        <span style="--a:30deg;--r:80px"><b>IA</b></span>
+                        <span style="--a:150deg;--r:80px"><b>n8n</b></span>
+                        <span style="--a:270deg;--r:80px"><b>Agents</b></span>
+                    </div>
+                    <div class="nucleo hud">CORE</div>
+                </div>
+                <div class="metricas">
+                    <div class="metrica"><strong class="hud">29</strong><span>tecnologias</span></div>
+                    <div class="metrica"><strong class="hud">4</strong><span>projetos no arquivo</span></div>
+                    <div class="metrica"><strong class="hud">35</strong><span>anos de web (2000 → 2035)</span></div>
+                    <div class="metrica"><strong class="hud">∞</strong><span>vontade de aprender</span></div>
+                </div>
+            </section>
+        </div>
+
+        <section class="painel35 projetos35" id="projetos35" aria-label="Arquivo de projetos">
+            <div class="rotulo35 hud">arquivo de projetos</div>
+            <div class="cards35">
+                <a class="card35" href="https://dep-company.vercel.app" target="_blank" rel="noopener noreferrer">
+                    <span class="card35-tag hud">WEB</span>
+                    <img src="../assets/img/dep-low-preview.png" alt="" loading="lazy">
+                    <div class="card35-info"><h3 class="hud">DEP LOW</h3><p>Marca streetwear minimalista</p></div>
+                </a>
+                <a class="card35" href="https://github.com/Erickaocode/Mini-Portfolio" target="_blank" rel="noopener noreferrer">
+                    <span class="card35-tag hud">BIO</span>
+                    <img src="../assets/img/mini-portfolio-preview.png" alt="" loading="lazy">
+                    <div class="card35-info"><h3 class="hud">MINI PORTFÓLIO</h3><p>Link-in-bio com redes e skills</p></div>
+                </a>
+                <a class="card35" href="https://falcon-burguer.vercel.app" target="_blank" rel="noopener noreferrer">
+                    <span class="card35-tag hud">WEB</span>
+                    <img src="../assets/img/falcon-burguer-preview.png" alt="" loading="lazy">
+                    <div class="card35-info"><h3 class="hud">FALCON BURGUER</h3><p>Hamburgueria com cardápio</p></div>
+                </a>
+                <a class="card35" href="../index.html#portfolio" data-viagem="hoje">
+                    <span class="card35-tag hud">PRIVADO</span>
+                    <img src="../assets/img/supergestao-preview.png" alt="" loading="lazy">
+                    <div class="card35-info"><h3 class="hud">SUPERGESTÃO</h3><p>Gestão de projetos em .NET</p></div>
+                </a>
+            </div>
+        </section>
+
+        <p class="rodape35 hud">© 2035 ERICK SILVA · transmitido via <em>rede quântica</em> · o CSS finalmente centraliza div sozinho</p>
+    </main>
+
+    <script>
+        var embutido = window.self !== window.top;
+        var parado = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+        // ===== BOOT =====
+        (function () {
+            var boot = document.getElementById('boot');
+            if (embutido || parado) { boot.hidden = true; return; }
+            var linhas = document.getElementById('bootLinhas');
+            var etapas = ['inicializando interface neural...', 'sincronizando holograma...', 'carregando EKO...', '<b>sistema pronto</b>'];
+            etapas.forEach(function (t, i) {
+                setTimeout(function () { linhas.innerHTML += t + '<br>'; }, 250 + i * 330);
+            });
+            setTimeout(function () {
+                boot.classList.add('saindo');
+                setTimeout(function () { boot.hidden = true; }, 700);
+            }, 250 + etapas.length * 330 + 250);
+        })();
+
+        // ===== RELÓGIO (hoje, só que em 2035) =====
+        (function () {
+            var el = document.getElementById('relogio35');
+            function pad(n) { return String(n).padStart(2, '0'); }
+            function tick() {
+                var d = new Date();
+                el.innerHTML = '<b>' + pad(d.getDate()) + '.' + pad(d.getMonth() + 1) + '.2035 · ' + pad(d.getHours()) + ':' + pad(d.getMinutes()) + ':' + pad(d.getSeconds()) + '</b>';
+            }
+            tick();
+            setInterval(tick, 1000);
+        })();
+
+        // ===== ESTRELAS =====
+        (function () {
+            var c = document.getElementById('estrelas');
+            var ctx = c.getContext('2d');
+            var est = [], w, h;
+            function tam() {
+                w = c.width = window.innerWidth;
+                h = c.height = window.innerHeight;
+                est = [];
+                for (var i = 0; i < 140; i++) est.push({ x: Math.random() * w, y: Math.random() * h, z: Math.random() * 0.8 + 0.2 });
+            }
+            function quadro() {
+                ctx.clearRect(0, 0, w, h);
+                est.forEach(function (s) {
+                    if (!parado) { s.y += s.z * 0.25; if (s.y > h) { s.y = 0; s.x = Math.random() * w; } }
+                    ctx.fillStyle = 'rgba(200,245,255,' + (s.z * 0.8) + ')';
+                    ctx.fillRect(s.x, s.y, s.z * 1.6, s.z * 1.6);
+                });
+                if (!parado) requestAnimationFrame(quadro);
+            }
+            window.addEventListener('resize', tam);
+            tam();
+            quadro();
+        })();
+
+        // ===== CARDS COM INCLINAÇÃO 3D =====
+        (function () {
+            if (parado) return;
+            document.querySelectorAll('.card35').forEach(function (card) {
+                card.addEventListener('mousemove', function (e) {
+                    var r = card.getBoundingClientRect();
+                    var x = (e.clientX - r.left) / r.width - 0.5;
+                    var y = (e.clientY - r.top) / r.height - 0.5;
+                    card.style.transform = 'rotateY(' + (x * 16) + 'deg) rotateX(' + (-y * 16) + 'deg) translateZ(10px)';
+                    card.style.setProperty('--brilho', (100 - (x + 0.5) * 100) + '%');
+                });
+                card.addEventListener('mouseleave', function () {
+                    card.style.transform = '';
+                    card.style.removeProperty('--brilho');
+                });
+            });
+        })();
+
+        // ===== EKO: assistente roteirizado =====
+        (function () {
+            var eko = document.getElementById('eko');
+            var conversa = document.getElementById('conversa');
+            var form = document.getElementById('entrada');
+            var input = document.getElementById('pergunta');
+            var botaoVoz = document.getElementById('voz');
+            var vozLigada = false;
+            var temVoz = 'speechSynthesis' in window;
+            var falando = false;
+
+            if (!temVoz) botaoVoz.hidden = true;
+
+            // cada resposta: palavras-chave, texto e (opcional) uma ação
+            var RESPOSTAS = [
+                {
+                    chaves: ['projeto', 'trabalho', 'portfolio', 'portfólio', 'site', 'mostre'],
+                    texto: 'No arquivo tem 4 projetos: Dep Low (streetwear), Mini Portfólio (link-in-bio), Falcon Burguer (hamburgueria) e SuperGestão (sistema em .NET). Vou rolar até lá pra você. ⬇️',
+                    acao: function () { document.getElementById('projetos35').scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+                },
+                {
+                    chaves: ['skill', 'tecnologia', 'stack', 'linguagem', 'sabe', 'habilidade'],
+                    texto: 'Stack principal: HTML, CSS, JavaScript, TypeScript, React, Vue, PHP, Laravel, C#, ASP.NET, C/C++, MySQL, SQL Server, Supabase, Docker e Git. E na parte de IA: IA generativa, agents, n8n, Gemini, Ollama e Botpress.\n\nE sim: em 2035 o HTML ainda existe. 😄'
+                },
+                {
+                    chaves: ['contato', 'falar', 'email', 'e-mail', 'whats', 'contratar', 'mensagem', 'trabalhar'],
+                    texto: 'Os canais quânticos ainda estão em teste. O jeito mais garantido é mandar mensagem pelo formulário do presente. É só clicar aqui: <a href="../index.html#contato" data-viagem="hoje">abrir canal com o Erick →</a>\n\nOu direto por e-mail: <a href="mailto:ericksilva112017@gmail.com">ericksilva112017@gmail.com</a>'
+                },
+                {
+                    chaves: ['passado', 'tempo', '2000', '2005', '2010', '2017', 'antigo', 'viagem'],
+                    texto: 'Curioso pelo passado? Use a barra da Máquina do Tempo aqui embaixo e visite as versões de 2000, 2005, 2010 e 2017. Recomendo começar por 2000. 🕹️'
+                },
+                {
+                    chaves: ['ia', 'inteligencia', 'inteligência', 'real', 'robo', 'robô', 'chatgpt', 'claude'],
+                    texto: 'Confissão: eu sou um assistente roteirizado, feito com algumas respostas prontas, não uma IA de verdade. Mas o Erick trabalha com IA de verdade, com agents, n8n e modelos generativos!'
+                },
+                {
+                    chaves: ['quem', 'erick', 'sobre', 'ele', 'voce', 'você'],
+                    texto: 'O Erick Silva é desenvolvedor, apaixonado por tecnologia, e cria soluções modernas e funcionais. Desde sempre ele transforma ideias em experiências digitais que juntam desempenho, estética e usabilidade.\n\nEsse holograma aí do lado é ele. Bonito, né?'
+                },
+                {
+                    chaves: ['oi', 'ola', 'olá', 'eae', 'e ai', 'bom dia', 'boa tarde', 'boa noite', 'hey'],
+                    texto: 'Olá, humano do passado! 👋 Sou o EKO. Posso te contar sobre o Erick, os projetos, as skills ou como falar com ele.'
+                }
+            ];
+
+            var PADRAO = 'Hmm, ainda estou treinando para essa pergunta. (Sou um assistente roteirizado, não uma IA de verdade 😉)\n\nTente perguntar sobre o Erick, os projetos, as skills ou como falar com ele.';
+
+            function normalizar(t) { return t.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, ''); }
+
+            // compara palavras inteiras (aceitando plural: "projeto" casa com "projetos"),
+            // para "ia" não casar com "tecnologia" nem "ele" com "telefone"
+            function casa(palavras, frase, chave) {
+                chave = normalizar(chave);
+                if (chave.indexOf(' ') !== -1) return frase.indexOf(' ' + chave + ' ') !== -1;
+                return palavras.some(function (w) { return w === chave || (chave.length > 3 && w.indexOf(chave) === 0); });
+            }
+
+            // a ordem de RESPOSTAS é a prioridade: "como falar com ele" é contato, não "quem é"
+            function escolher(pergunta) {
+                var frase = ' ' + normalizar(pergunta).replace(/[^a-z0-9]+/g, ' ') + ' ';
+                var palavras = frase.trim().split(' ');
+                for (var i = 0; i < RESPOSTAS.length; i++) {
+                    var r = RESPOSTAS[i];
+                    if (r.chaves.some(function (c) { return casa(palavras, frase, c); })) return r;
+                }
+                return { texto: PADRAO };
+            }
+
+            function adicionar(classe, html) {
+                var m = document.createElement('div');
+                m.className = 'msg ' + classe;
+                m.innerHTML = html;
+                conversa.appendChild(m);
+                conversa.scrollTop = conversa.scrollHeight;
+                return m;
+            }
+
+            function falar(texto) {
+                if (!vozLigada || !temVoz) return;
+                speechSynthesis.cancel();
+                var u = new SpeechSynthesisUtterance(texto.replace(/<[^>]+>/g, '').replace(/[^\p{L}\p{N}\s.,!?:()-]/gu, ''));
+                u.lang = 'pt-BR';
+                u.rate = 1.05;
+                u.pitch = 1.1;
+                speechSynthesis.speak(u);
+            }
+
+            // escreve a resposta aos poucos; links só entram no final, prontos
+            function responder(r) {
+                if (falando) return;
+                falando = true;
+                eko.classList.add('falando');
+                var bolha = adicionar('eko-msg', '<span class="digitando"><i></i><i></i><i></i></span>');
+                var puro = r.texto.replace(/<[^>]+>/g, '');
+                setTimeout(function () {
+                    var i = 0;
+                    var passo = parado ? puro.length : 3;
+                    falar(r.texto);
+                    (function escreve() {
+                        i = Math.min(i + passo, puro.length);
+                        bolha.textContent = puro.slice(0, i);
+                        conversa.scrollTop = conversa.scrollHeight;
+                        if (i < puro.length) return setTimeout(escreve, 18);
+                        bolha.innerHTML = r.texto;
+                        eko.classList.remove('falando');
+                        falando = false;
+                        if (r.acao) r.acao();
+                    })();
+                }, 650);
+            }
+
+            function perguntar(texto) {
+                texto = texto.trim();
+                if (!texto || falando) return;
+                var eu = adicionar('eu', '');
+                eu.textContent = texto;
+                responder(escolher(texto));
+            }
+
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                perguntar(input.value);
+                input.value = '';
+            });
+
+            document.querySelectorAll('#sugestoes button').forEach(function (b) {
+                b.addEventListener('click', function () { perguntar(b.textContent); });
+            });
+
+            botaoVoz.addEventListener('click', function () {
+                vozLigada = !vozLigada;
+                botaoVoz.setAttribute('aria-pressed', vozLigada);
+                botaoVoz.textContent = vozLigada ? '🔊 voz ligada' : '🔈 voz desligada';
+                if (!vozLigada) speechSynthesis.cancel();
+            });
+
+            // mensagem de boas-vindas (depois do boot)
+            setTimeout(function () {
+                responder({ texto: 'Bem-vindo a 2035! Eu sou o EKO, assistente do Erick. Pergunte o que quiser ou toque numa sugestão abaixo. ✨' });
+            }, embutido || parado ? 0 : 1900);
+        })();
+    </script>
+
+    <script src="tempo.js"></script>
+</body>
+</html>
