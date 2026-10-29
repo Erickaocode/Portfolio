@@ -378,8 +378,8 @@ scrambleOnVisible('scrambleContato');
             href: 'tempo/2035.html',
             janela: 'ERICK.OS — interface 2035',
             titulo: 'Uma espiada no futuro',
-            descricao: 'Uma interface holográfica em vidro e neon, com um assistente que responde perguntas sobre mim.',
-            tracos: ['Holograma e chão em grade sci-fi', 'EKO, assistente com voz opcional', 'Skills orbitando um núcleo', 'Cards de projeto com inclinação 3D'],
+            descricao: 'Uma interface holográfica em vidro e neon, com o EKS AI, o meu assistente, respondendo perguntas sobre mim.',
+            tracos: ['Holograma e chão em grade sci-fi', 'EKS AI com voz opcional', 'Skills orbitando um núcleo', 'Cards de projeto com inclinação 3D'],
             botao: 'Viajar para 2035'
         }
     };
