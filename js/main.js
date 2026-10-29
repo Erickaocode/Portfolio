@@ -342,6 +342,14 @@ scrambleOnVisible('scrambleContato');
             tracos: ['Layout em tabelas, <font> e WordArt', 'Texto piscando e <marquee> no topo', 'Contador de visitas e livro de visitas', 'Rastro de estrelinhas e MIDI de fundo'],
             botao: 'Viajar para 2000'
         },
+        '2005': {
+            href: 'tempo/2005.html',
+            janela: '.:: ERICK SILVA ::. web developer - v2.0',
+            titulo: 'A era do Flash',
+            descricao: 'Site "todo em Flash", com intro, som nos botões e um perfil de rede social cheio de recados e comunidades.',
+            tracos: ['Intro com preloader travado em 87%', 'Abas animadas com som de clique', 'Selinhos 80x15 e lightbox nos projetos', 'Messenger com "chamar a atenção"'],
+            botao: 'Viajar para 2005'
+        },
         '2010': {
             href: 'tempo/2010.html',
             janela: 'Erick Silva :: Web Developer 2.0 (beta)',
