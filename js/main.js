@@ -331,3 +331,9 @@ ${dados.mensagem}`
     clone.setAttribute('aria-hidden', 'true');
     hs.parentNode.appendChild(clone);
 })();
+
+// ===== ANO DO FOOTER =====
+(function () {
+    const ano = document.getElementById('anoAtual');
+    if (ano) ano.textContent = new Date().getFullYear();
+})();
