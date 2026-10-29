@@ -149,28 +149,19 @@ scrambleOnVisible('scrambleContato');
 (function () {
     const backToTopButton = document.getElementById('backToTop');
     const whatsappButton  = document.getElementById('whatsappButton');
+    if (!backToTopButton || !whatsappButton) return;
 
+    // só alterna uma classe: o fade fica no CSS e não há setTimeout competindo
+    // entre mostrar/esconder quando o scroll sobe e desce rápido
     function toggleButtons() {
-        if (window.scrollY > 100) {
-            backToTopButton.style.display = 'flex';
-            whatsappButton.style.display  = 'flex';
-            setTimeout(() => {
-                backToTopButton.style.opacity = '1';
-                whatsappButton.style.opacity  = '1';
-            }, 10);
-        } else {
-            backToTopButton.style.opacity = '0';
-            whatsappButton.style.opacity  = '0';
-            setTimeout(() => {
-                backToTopButton.style.display = 'none';
-                whatsappButton.style.display  = 'none';
-            }, 500);
-        }
+        const visible = window.scrollY > 100;
+        backToTopButton.classList.toggle('visible', visible);
+        whatsappButton.classList.toggle('visible', visible);
     }
 
-    window.addEventListener('scroll', toggleButtons);
+    window.addEventListener('scroll', toggleButtons, { passive: true });
     backToTopButton.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-    whatsappButton.addEventListener('click',  () => window.open('https://wa.me/5511994842434', '_blank'));
+    toggleButtons();
 })();
 
 // ===== MENU =====

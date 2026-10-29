@@ -88,18 +88,27 @@ a { text-decoration: none; }
 /* ===== BOTÕES FIXOS ===== */
 .fixed-button {
     position: fixed;
-    display: none;
+    display: flex;
     align-items: center;
     justify-content: center;
     width: 48px;
     height: 48px;
+    border: none;
     border-radius: 50%;
     background-color: var(--color-white);
     color: var(--color-black);
     cursor: pointer;
     z-index: 1000;
     opacity: 0;
-    transition: opacity 0.5s ease, box-shadow 0.5s ease;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.5s ease, visibility 0.5s ease, box-shadow 0.5s ease;
+}
+
+.fixed-button.visible {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
 }
 
 #backToTop {
