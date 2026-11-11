@@ -660,13 +660,13 @@ a { text-decoration: none; }
     gap: 6rem;
 }
 
-.case1, .case2, .case3, .case4, .case5 {
+.case1, .case2, .case3, .case4, .case5, .case6, .case7 {
     display: flex;
     align-items: center;
     gap: 3rem;
 }
 
-.case2, .case4 { flex-direction: row-reverse; }
+.case2, .case4, .case6 { flex-direction: row-reverse; }
 
 .imagens-case {
     width: 50%;
@@ -1628,7 +1628,7 @@ a { text-decoration: none; }
 
     .container-case { gap: 4rem; }
 
-    .case1, .case2, .case3, .case4, .case5 {
+    .case1, .case2, .case3, .case4, .case5, .case6, .case7 {
         flex-direction: column !important;
         gap: 1.5rem;
     }
