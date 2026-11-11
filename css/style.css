@@ -660,7 +660,7 @@ a { text-decoration: none; }
     gap: 6rem;
 }
 
-.case1, .case2, .case3, .case4, .case5, .case6, .case7 {
+.case1, .case2, .case3, .case4, .case5, .case6 {
     display: flex;
     align-items: center;
     gap: 3rem;
@@ -1628,7 +1628,7 @@ a { text-decoration: none; }
 
     .container-case { gap: 4rem; }
 
-    .case1, .case2, .case3, .case4, .case5, .case6, .case7 {
+    .case1, .case2, .case3, .case4, .case5, .case6 {
         flex-direction: column !important;
         gap: 1.5rem;
     }
